@@ -29,6 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="266" y="357"/>
         </scene>
         <!--Join Popup View Controller-->
         <scene sceneID="wP4-nt-qNE">
@@ -156,11 +157,63 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="loginBtn" destination="b1d-qH-Ukb" id="XCy-ZQ-L9k"/>
+                        <segue destination="sfV-kv-zpf" kind="presentation" identifier="MainViewSegue" id="ad0-4f-mP8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9w5-KG-C5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="782" y="357"/>
+        </scene>
+        <!--Monkey Me-->
+        <scene sceneID="yhT-YK-pu9">
+            <objects>
+                <viewController id="hgj-ju-mgV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yh3-3a-vis"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ikd-Lf-Sw1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rbD-h2-O0p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Monkey Me" id="sHo-6S-rZS">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="HgD-Pm-Ivy">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bHF-VK-gdG">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WLH-U2-xuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1722" y="357"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dYg-sz-DpC">
+            <objects>
+                <navigationController id="sfV-kv-zpf" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wjk-u4-dkb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.090196078431372548" green="0.6470588235294118" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="hgj-ju-mgV" kind="relationship" relationship="rootViewController" id="eb5-UD-up8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nHf-U6-iLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1242" y="357"/>
         </scene>
         <!--Login Popup View Controller-->
         <scene sceneID="vuV-lX-J3P">

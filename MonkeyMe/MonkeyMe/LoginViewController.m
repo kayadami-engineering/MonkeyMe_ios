@@ -77,7 +77,7 @@
     
     //do something..
     [SVProgressHUD dismiss];
-    [self performSegueWithIdentifier:@"TabViewSegue" sender:self];
+    [self performSegueWithIdentifier:@"MainViewSegue" sender:self];
 }
 
 - (void)joinOk {
