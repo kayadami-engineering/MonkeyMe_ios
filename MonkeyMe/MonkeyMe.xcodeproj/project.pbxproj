@@ -1,0 +1,541 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		883BA7C31A7FA28A00B0DDA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7C21A7FA28A00B0DDA1 /* main.m */; };
+		883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7C51A7FA28A00B0DDA1 /* AppDelegate.m */; };
+		883BA7CC1A7FA28A00B0DDA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7CA1A7FA28A00B0DDA1 /* Main.storyboard */; };
+		883BA7CE1A7FA28A00B0DDA1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7CD1A7FA28A00B0DDA1 /* Images.xcassets */; };
+		883BA7D11A7FA28A00B0DDA1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7CF1A7FA28A00B0DDA1 /* LaunchScreen.xib */; };
+		883BA7DD1A7FA28B00B0DDA1 /* MonkeyMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7DC1A7FA28B00B0DDA1 /* MonkeyMeTests.m */; };
+		883BA7EB1A7FA2EB00B0DDA1 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7E61A7FA2EB00B0DDA1 /* background.jpg */; };
+		883BA7EC1A7FA2EB00B0DDA1 /* cancel_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7E71A7FA2EB00B0DDA1 /* cancel_ic.png */; };
+		883BA7ED1A7FA2EB00B0DDA1 /* pinkLine.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7E81A7FA2EB00B0DDA1 /* pinkLine.png */; };
+		883BA7EE1A7FA2EB00B0DDA1 /* signup_1_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7E91A7FA2EB00B0DDA1 /* signup_1_ic.png */; };
+		883BA7EF1A7FA2EB00B0DDA1 /* signup_e_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7EA1A7FA2EB00B0DDA1 /* signup_e_ic.png */; };
+		883BA8051A7FA3C200B0DDA1 /* JoinPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7F21A7FA3C100B0DDA1 /* JoinPopupViewController.m */; };
+		883BA8061A7FA3C200B0DDA1 /* LoginPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7F41A7FA3C100B0DDA1 /* LoginPopupViewController.m */; };
+		883BA8071A7FA3C200B0DDA1 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7F61A7FA3C100B0DDA1 /* NetworkController.m */; };
+		883BA8081A7FA3C200B0DDA1 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7F81A7FA3C100B0DDA1 /* RootViewController.m */; };
+		883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7FB1A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m */; };
+		883BA80A1A7FA3C200B0DDA1 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7FD1A7FA3C200B0DDA1 /* SVProgressHUD.bundle */; };
+		883BA80B1A7FA3C200B0DDA1 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7FF1A7FA3C200B0DDA1 /* SVProgressHUD.m */; };
+		883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA8021A7FA3C200B0DDA1 /* WYPopoverController.m */; };
+		883BA80D1A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA8041A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m */; };
+		883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */; };
+		883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */; };
+		883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		883BA7D71A7FA28B00B0DDA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 883BA7B51A7FA28A00B0DDA1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 883BA7BC1A7FA28A00B0DDA1;
+			remoteInfo = MonkeyMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		883BA7BD1A7FA28A00B0DDA1 /* MonkeyMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonkeyMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		883BA7C11A7FA28A00B0DDA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		883BA7C21A7FA28A00B0DDA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		883BA7C41A7FA28A00B0DDA1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		883BA7C51A7FA28A00B0DDA1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		883BA7CB1A7FA28A00B0DDA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		883BA7CD1A7FA28A00B0DDA1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		883BA7D01A7FA28A00B0DDA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		883BA7D61A7FA28B00B0DDA1 /* MonkeyMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MonkeyMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		883BA7DB1A7FA28B00B0DDA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		883BA7DC1A7FA28B00B0DDA1 /* MonkeyMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MonkeyMeTests.m; sourceTree = "<group>"; };
+		883BA7E61A7FA2EB00B0DDA1 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		883BA7E71A7FA2EB00B0DDA1 /* cancel_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel_ic.png; sourceTree = "<group>"; };
+		883BA7E81A7FA2EB00B0DDA1 /* pinkLine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinkLine.png; sourceTree = "<group>"; };
+		883BA7E91A7FA2EB00B0DDA1 /* signup_1_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_1_ic.png; sourceTree = "<group>"; };
+		883BA7EA1A7FA2EB00B0DDA1 /* signup_e_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = signup_e_ic.png; sourceTree = "<group>"; };
+		883BA7F11A7FA3C100B0DDA1 /* JoinPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinPopupViewController.h; sourceTree = "<group>"; };
+		883BA7F21A7FA3C100B0DDA1 /* JoinPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinPopupViewController.m; sourceTree = "<group>"; };
+		883BA7F31A7FA3C100B0DDA1 /* LoginPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginPopupViewController.h; sourceTree = "<group>"; };
+		883BA7F41A7FA3C100B0DDA1 /* LoginPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginPopupViewController.m; sourceTree = "<group>"; };
+		883BA7F51A7FA3C100B0DDA1 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkController.h; sourceTree = "<group>"; };
+		883BA7F61A7FA3C100B0DDA1 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkController.m; sourceTree = "<group>"; };
+		883BA7F71A7FA3C100B0DDA1 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		883BA7F81A7FA3C100B0DDA1 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		883BA7FA1A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		883BA7FB1A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		883BA7FC1A7FA3C200B0DDA1 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		883BA7FD1A7FA3C200B0DDA1 /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		883BA7FE1A7FA3C200B0DDA1 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		883BA7FF1A7FA3C200B0DDA1 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		883BA8011A7FA3C200B0DDA1 /* WYPopoverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYPopoverController.h; sourceTree = "<group>"; };
+		883BA8021A7FA3C200B0DDA1 /* WYPopoverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYPopoverController.m; sourceTree = "<group>"; };
+		883BA8031A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WYStoryboardPopoverSegue.h; sourceTree = "<group>"; };
+		883BA8041A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WYStoryboardPopoverSegue.m; sourceTree = "<group>"; };
+		883BA80E1A7FA3E700B0DDA1 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_launch_up.jpg; sourceTree = "<group>"; };
+		883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eg_launch.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		883BA7BA1A7FA28A00B0DDA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		883BA7D31A7FA28B00B0DDA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		883BA7B41A7FA28A00B0DDA1 = {
+			isa = PBXGroup;
+			children = (
+				883BA7F01A7FA2F100B0DDA1 /* UI */,
+				883BA7BF1A7FA28A00B0DDA1 /* MonkeyMe */,
+				883BA7D91A7FA28B00B0DDA1 /* MonkeyMeTests */,
+				883BA7BE1A7FA28A00B0DDA1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		883BA7BE1A7FA28A00B0DDA1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7BD1A7FA28A00B0DDA1 /* MonkeyMe.app */,
+				883BA7D61A7FA28B00B0DDA1 /* MonkeyMeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		883BA7BF1A7FA28A00B0DDA1 /* MonkeyMe */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7F91A7FA3C100B0DDA1 /* SVProgressHUD */,
+				883BA8001A7FA3C200B0DDA1 /* WYPopoverController */,
+				883BA8151A7FA7CE00B0DDA1 /* MainViewControllers */,
+				883BA7F51A7FA3C100B0DDA1 /* NetworkController.h */,
+				883BA7F61A7FA3C100B0DDA1 /* NetworkController.m */,
+				883BA7C41A7FA28A00B0DDA1 /* AppDelegate.h */,
+				883BA7C51A7FA28A00B0DDA1 /* AppDelegate.m */,
+				883BA7CA1A7FA28A00B0DDA1 /* Main.storyboard */,
+				883BA7CD1A7FA28A00B0DDA1 /* Images.xcassets */,
+				883BA7CF1A7FA28A00B0DDA1 /* LaunchScreen.xib */,
+				883BA7C01A7FA28A00B0DDA1 /* Supporting Files */,
+			);
+			path = MonkeyMe;
+			sourceTree = "<group>";
+		};
+		883BA7C01A7FA28A00B0DDA1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7C11A7FA28A00B0DDA1 /* Info.plist */,
+				883BA7C21A7FA28A00B0DDA1 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		883BA7D91A7FA28B00B0DDA1 /* MonkeyMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7DC1A7FA28B00B0DDA1 /* MonkeyMeTests.m */,
+				883BA7DA1A7FA28B00B0DDA1 /* Supporting Files */,
+			);
+			path = MonkeyMeTests;
+			sourceTree = "<group>";
+		};
+		883BA7DA1A7FA28B00B0DDA1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7DB1A7FA28B00B0DDA1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		883BA7F01A7FA2F100B0DDA1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */,
+				883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */,
+				883BA7E61A7FA2EB00B0DDA1 /* background.jpg */,
+				883BA7E71A7FA2EB00B0DDA1 /* cancel_ic.png */,
+				883BA7E81A7FA2EB00B0DDA1 /* pinkLine.png */,
+				883BA7E91A7FA2EB00B0DDA1 /* signup_1_ic.png */,
+				883BA7EA1A7FA2EB00B0DDA1 /* signup_e_ic.png */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		883BA7F91A7FA3C100B0DDA1 /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7FA1A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.h */,
+				883BA7FB1A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m */,
+				883BA7FC1A7FA3C200B0DDA1 /* SVProgressHUD-Prefix.pch */,
+				883BA7FD1A7FA3C200B0DDA1 /* SVProgressHUD.bundle */,
+				883BA7FE1A7FA3C200B0DDA1 /* SVProgressHUD.h */,
+				883BA7FF1A7FA3C200B0DDA1 /* SVProgressHUD.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		883BA8001A7FA3C200B0DDA1 /* WYPopoverController */ = {
+			isa = PBXGroup;
+			children = (
+				883BA8011A7FA3C200B0DDA1 /* WYPopoverController.h */,
+				883BA8021A7FA3C200B0DDA1 /* WYPopoverController.m */,
+				883BA8031A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.h */,
+				883BA8041A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m */,
+			);
+			path = WYPopoverController;
+			sourceTree = "<group>";
+		};
+		883BA8151A7FA7CE00B0DDA1 /* MainViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				883BA7F11A7FA3C100B0DDA1 /* JoinPopupViewController.h */,
+				883BA7F21A7FA3C100B0DDA1 /* JoinPopupViewController.m */,
+				883BA80E1A7FA3E700B0DDA1 /* LoginViewController.h */,
+				883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */,
+				883BA7F31A7FA3C100B0DDA1 /* LoginPopupViewController.h */,
+				883BA7F41A7FA3C100B0DDA1 /* LoginPopupViewController.m */,
+				883BA7F71A7FA3C100B0DDA1 /* RootViewController.h */,
+				883BA7F81A7FA3C100B0DDA1 /* RootViewController.m */,
+			);
+			name = MainViewControllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		883BA7BC1A7FA28A00B0DDA1 /* MonkeyMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 883BA7E01A7FA28B00B0DDA1 /* Build configuration list for PBXNativeTarget "MonkeyMe" */;
+			buildPhases = (
+				883BA7B91A7FA28A00B0DDA1 /* Sources */,
+				883BA7BA1A7FA28A00B0DDA1 /* Frameworks */,
+				883BA7BB1A7FA28A00B0DDA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MonkeyMe;
+			productName = MonkeyMe;
+			productReference = 883BA7BD1A7FA28A00B0DDA1 /* MonkeyMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		883BA7D51A7FA28B00B0DDA1 /* MonkeyMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 883BA7E31A7FA28B00B0DDA1 /* Build configuration list for PBXNativeTarget "MonkeyMeTests" */;
+			buildPhases = (
+				883BA7D21A7FA28B00B0DDA1 /* Sources */,
+				883BA7D31A7FA28B00B0DDA1 /* Frameworks */,
+				883BA7D41A7FA28B00B0DDA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				883BA7D81A7FA28B00B0DDA1 /* PBXTargetDependency */,
+			);
+			name = MonkeyMeTests;
+			productName = MonkeyMeTests;
+			productReference = 883BA7D61A7FA28B00B0DDA1 /* MonkeyMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		883BA7B51A7FA28A00B0DDA1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = kayadami;
+				TargetAttributes = {
+					883BA7BC1A7FA28A00B0DDA1 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					883BA7D51A7FA28B00B0DDA1 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 883BA7BC1A7FA28A00B0DDA1;
+					};
+				};
+			};
+			buildConfigurationList = 883BA7B81A7FA28A00B0DDA1 /* Build configuration list for PBXProject "MonkeyMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 883BA7B41A7FA28A00B0DDA1;
+			productRefGroup = 883BA7BE1A7FA28A00B0DDA1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				883BA7BC1A7FA28A00B0DDA1 /* MonkeyMe */,
+				883BA7D51A7FA28B00B0DDA1 /* MonkeyMeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		883BA7BB1A7FA28A00B0DDA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883BA7CC1A7FA28A00B0DDA1 /* Main.storyboard in Resources */,
+				883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */,
+				883BA80A1A7FA3C200B0DDA1 /* SVProgressHUD.bundle in Resources */,
+				883BA7ED1A7FA2EB00B0DDA1 /* pinkLine.png in Resources */,
+				883BA7EE1A7FA2EB00B0DDA1 /* signup_1_ic.png in Resources */,
+				883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */,
+				883BA7EB1A7FA2EB00B0DDA1 /* background.jpg in Resources */,
+				883BA7EC1A7FA2EB00B0DDA1 /* cancel_ic.png in Resources */,
+				883BA7D11A7FA28A00B0DDA1 /* LaunchScreen.xib in Resources */,
+				883BA7CE1A7FA28A00B0DDA1 /* Images.xcassets in Resources */,
+				883BA7EF1A7FA2EB00B0DDA1 /* signup_e_ic.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		883BA7D41A7FA28B00B0DDA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		883BA7B91A7FA28A00B0DDA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883BA8061A7FA3C200B0DDA1 /* LoginPopupViewController.m in Sources */,
+				883BA8081A7FA3C200B0DDA1 /* RootViewController.m in Sources */,
+				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
+				883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */,
+				883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */,
+				883BA80B1A7FA3C200B0DDA1 /* SVProgressHUD.m in Sources */,
+				883BA7C31A7FA28A00B0DDA1 /* main.m in Sources */,
+				883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */,
+				883BA8071A7FA3C200B0DDA1 /* NetworkController.m in Sources */,
+				883BA8051A7FA3C200B0DDA1 /* JoinPopupViewController.m in Sources */,
+				883BA80D1A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		883BA7D21A7FA28B00B0DDA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				883BA7DD1A7FA28B00B0DDA1 /* MonkeyMeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		883BA7D81A7FA28B00B0DDA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 883BA7BC1A7FA28A00B0DDA1 /* MonkeyMe */;
+			targetProxy = 883BA7D71A7FA28B00B0DDA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		883BA7CA1A7FA28A00B0DDA1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883BA7CB1A7FA28A00B0DDA1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		883BA7CF1A7FA28A00B0DDA1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				883BA7D01A7FA28A00B0DDA1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		883BA7DE1A7FA28B00B0DDA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		883BA7DF1A7FA28B00B0DDA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		883BA7E11A7FA28B00B0DDA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MonkeyMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		883BA7E21A7FA28B00B0DDA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MonkeyMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		883BA7E41A7FA28B00B0DDA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MonkeyMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonkeyMe.app/MonkeyMe";
+			};
+			name = Debug;
+		};
+		883BA7E51A7FA28B00B0DDA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MonkeyMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MonkeyMe.app/MonkeyMe";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		883BA7B81A7FA28A00B0DDA1 /* Build configuration list for PBXProject "MonkeyMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883BA7DE1A7FA28B00B0DDA1 /* Debug */,
+				883BA7DF1A7FA28B00B0DDA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		883BA7E01A7FA28B00B0DDA1 /* Build configuration list for PBXNativeTarget "MonkeyMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883BA7E11A7FA28B00B0DDA1 /* Debug */,
+				883BA7E21A7FA28B00B0DDA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		883BA7E31A7FA28B00B0DDA1 /* Build configuration list for PBXNativeTarget "MonkeyMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				883BA7E41A7FA28B00B0DDA1 /* Debug */,
+				883BA7E51A7FA28B00B0DDA1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 883BA7B51A7FA28A00B0DDA1 /* Project object */;
+}
