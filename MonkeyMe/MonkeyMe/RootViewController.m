@@ -32,7 +32,7 @@
     
     networkController = [[NetworkController alloc]init];
     [networkController initNetwork];
-    [networkController postToServer:[NSString stringWithFormat:@"command=%@", @"BookList"]];
+    //[networkController postToServer:[NSString stringWithFormat:@"command=%@", @"BookList"]];
     
     
 }
