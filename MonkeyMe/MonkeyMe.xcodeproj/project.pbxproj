@@ -30,6 +30,8 @@
 		883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */; };
 		883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */; };
 		883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */; };
+		889789D21A88BA3800B2B8A6 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 889789D11A88BA3800B2B8A6 /* back.png */; };
+		889789D41A88BE1F00B2B8A6 /* profbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 889789D31A88BE1F00B2B8A6 /* profbox.png */; };
 		889CD0C41A85EFEF00580FB6 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD0B81A85EFEF00580FB6 /* banana.png */; };
 		889CD0C51A85EFEF00580FB6 /* energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD0B91A85EFEF00580FB6 /* energy.png */; };
 		889CD0C61A85EFEF00580FB6 /* friendslist.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD0BA1A85EFEF00580FB6 /* friendslist.png */; };
@@ -61,6 +63,11 @@
 		889CD1051A8641E400580FB6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889CD1041A8641E400580FB6 /* UIKit.framework */; };
 		889CD1071A8641F400580FB6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889CD1061A8641F400580FB6 /* Foundation.framework */; };
 		889CD1091A8641FB00580FB6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 889CD1081A8641FB00580FB6 /* CoreGraphics.framework */; };
+		88A68FE31A8A0DDD00DBA3CE /* MainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */; };
+		88A68FE91A8A14B400DBA3CE /* yong.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE51A8A14B400DBA3CE /* yong.jpg */; };
+		88A68FEA1A8A14B400DBA3CE /* chole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE61A8A14B400DBA3CE /* chole.jpg */; };
+		88A68FEB1A8A14B400DBA3CE /* medic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE71A8A14B400DBA3CE /* medic.jpg */; };
+		88A68FEC1A8A14B400DBA3CE /* ky.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE81A8A14B400DBA3CE /* ky.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +119,8 @@
 		883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_launch_up.jpg; sourceTree = "<group>"; };
 		883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eg_launch.png; sourceTree = "<group>"; };
+		889789D11A88BA3800B2B8A6 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		889789D31A88BE1F00B2B8A6 /* profbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profbox.png; sourceTree = "<group>"; };
 		889CD0B81A85EFEF00580FB6 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
 		889CD0B91A85EFEF00580FB6 /* energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = energy.png; sourceTree = "<group>"; };
 		889CD0BA1A85EFEF00580FB6 /* friendslist.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friendslist.png; sourceTree = "<group>"; };
@@ -153,6 +162,12 @@
 		889CD1041A8641E400580FB6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		889CD1061A8641F400580FB6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		889CD1081A8641FB00580FB6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		88A68FE11A8A0DDD00DBA3CE /* MainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewCell.h; sourceTree = "<group>"; };
+		88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewCell.m; sourceTree = "<group>"; };
+		88A68FE51A8A14B400DBA3CE /* yong.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = yong.jpg; sourceTree = "<group>"; };
+		88A68FE61A8A14B400DBA3CE /* chole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chole.jpg; sourceTree = "<group>"; };
+		88A68FE71A8A14B400DBA3CE /* medic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = medic.jpg; sourceTree = "<group>"; };
+		88A68FE81A8A14B400DBA3CE /* ky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ky.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +261,8 @@
 		883BA7F01A7FA2F100B0DDA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				88A68FE41A8A14AA00DBA3CE /* Test */,
+				889789D11A88BA3800B2B8A6 /* back.png */,
 				889CD0F11A86204000580FB6 /* gear.png */,
 				889CD0F21A86204000580FB6 /* rightMenu.jpg */,
 				889CD0F31A86204000580FB6 /* leftMenu.jpg */,
@@ -260,6 +277,7 @@
 				889CD0BF1A85EFEF00580FB6 /* menu.png */,
 				889CD0C01A85EFEF00580FB6 /* myturn.png */,
 				889CD0C11A85EFEF00580FB6 /* puzzlemode.png */,
+				889789D31A88BE1F00B2B8A6 /* profbox.png */,
 				889CD0C21A85EFEF00580FB6 /* shop.png */,
 				889CD0C31A85EFEF00580FB6 /* theirturn.png */,
 				883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */,
@@ -300,12 +318,8 @@
 		883BA8151A7FA7CE00B0DDA1 /* MainViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				883BA7F11A7FA3C100B0DDA1 /* JoinPopupViewController.h */,
-				883BA7F21A7FA3C100B0DDA1 /* JoinPopupViewController.m */,
 				883BA80E1A7FA3E700B0DDA1 /* LoginViewController.h */,
 				883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */,
-				883BA7F31A7FA3C100B0DDA1 /* LoginPopupViewController.h */,
-				883BA7F41A7FA3C100B0DDA1 /* LoginPopupViewController.m */,
 				883BA7F71A7FA3C100B0DDA1 /* RootViewController.h */,
 				883BA7F81A7FA3C100B0DDA1 /* RootViewController.m */,
 				889CD0F91A8624A800580FB6 /* MainViewController.h */,
@@ -317,10 +331,16 @@
 		889CD0D01A86153200580FB6 /* SupportViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				883BA7F11A7FA3C100B0DDA1 /* JoinPopupViewController.h */,
+				883BA7F21A7FA3C100B0DDA1 /* JoinPopupViewController.m */,
+				883BA7F31A7FA3C100B0DDA1 /* LoginPopupViewController.h */,
+				883BA7F41A7FA3C100B0DDA1 /* LoginPopupViewController.m */,
 				889CD0FD1A86345600580FB6 /* LeftViewController.m */,
 				889CD0FC1A86345600580FB6 /* LeftViewController.h */,
 				889CD0FF1A86346200580FB6 /* RightViewController.h */,
 				889CD1001A86346200580FB6 /* RightViewController.m */,
+				88A68FE11A8A0DDD00DBA3CE /* MainTableViewCell.h */,
+				88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */,
 			);
 			name = SupportViewControllers;
 			sourceTree = "<group>";
@@ -373,6 +393,17 @@
 				889CD1021A8641D900580FB6 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		88A68FE41A8A14AA00DBA3CE /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				88A68FE51A8A14B400DBA3CE /* yong.jpg */,
+				88A68FE61A8A14B400DBA3CE /* chole.jpg */,
+				88A68FE71A8A14B400DBA3CE /* medic.jpg */,
+				88A68FE81A8A14B400DBA3CE /* ky.png */,
+			);
+			name = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -455,6 +486,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				889789D41A88BE1F00B2B8A6 /* profbox.png in Resources */,
 				889CD0C51A85EFEF00580FB6 /* energy.png in Resources */,
 				883BA7CC1A7FA28A00B0DDA1 /* Main.storyboard in Resources */,
 				883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */,
@@ -468,19 +500,24 @@
 				883BA7EB1A7FA2EB00B0DDA1 /* background.jpg in Resources */,
 				889CD0C61A85EFEF00580FB6 /* friendslist.png in Resources */,
 				889CD0F61A86204000580FB6 /* rightMenu.jpg in Resources */,
+				88A68FEB1A8A14B400DBA3CE /* medic.jpg in Resources */,
 				889CD0CE1A85EFEF00580FB6 /* shop.png in Resources */,
 				889CD0E91A861E4300580FB6 /* menu-button@2x.png in Resources */,
 				889CD0CD1A85EFEF00580FB6 /* puzzlemode.png in Resources */,
 				889CD0C81A85EFEF00580FB6 /* goprof.png in Resources */,
 				889CD0CA1A85EFEF00580FB6 /* levc.png in Resources */,
 				889CD0F81A86204000580FB6 /* animation.png in Resources */,
+				88A68FE91A8A14B400DBA3CE /* yong.jpg in Resources */,
 				889CD0CB1A85EFEF00580FB6 /* menu.png in Resources */,
 				889CD0F71A86204000580FB6 /* leftMenu.jpg in Resources */,
 				889CD0F51A86204000580FB6 /* gear.png in Resources */,
+				88A68FEC1A8A14B400DBA3CE /* ky.png in Resources */,
+				88A68FEA1A8A14B400DBA3CE /* chole.jpg in Resources */,
 				889CD0CF1A85EFEF00580FB6 /* theirturn.png in Resources */,
 				883BA7EC1A7FA2EB00B0DDA1 /* cancel_ic.png in Resources */,
 				889CD0C71A85EFEF00580FB6 /* gomonkey.png in Resources */,
 				883BA7D11A7FA28A00B0DDA1 /* LaunchScreen.xib in Resources */,
+				889789D21A88BA3800B2B8A6 /* back.png in Resources */,
 				883BA7CE1A7FA28A00B0DDA1 /* Images.xcassets in Resources */,
 				883BA7EF1A7FA2EB00B0DDA1 /* signup_e_ic.png in Resources */,
 				889CD0C91A85EFEF00580FB6 /* indexline.png in Resources */,
@@ -510,6 +547,7 @@
 				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
 				883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */,
 				883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */,
+				88A68FE31A8A0DDD00DBA3CE /* MainTableViewCell.m in Sources */,
 				889CD0FE1A86345600580FB6 /* LeftViewController.m in Sources */,
 				883BA80B1A7FA3C200B0DDA1 /* SVProgressHUD.m in Sources */,
 				889CD0E31A861E4300580FB6 /* SlideNavigationContorllerAnimatorFade.m in Sources */,

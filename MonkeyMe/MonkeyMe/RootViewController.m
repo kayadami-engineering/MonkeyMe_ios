@@ -34,7 +34,6 @@
     [networkController initNetwork];
     //[networkController postToServer:[NSString stringWithFormat:@"command=%@", @"BookList"]];
     
-    
 }
 - (void)myTask {
     
@@ -44,6 +43,7 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     
 }
 @end

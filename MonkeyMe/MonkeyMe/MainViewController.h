@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "MainTableViewCell.h"
 
-@interface MainViewController : UIViewController <SlideNavigationControllerDelegate>
+@interface MainViewController : UIViewController <SlideNavigationControllerDelegate,UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *gameListArray;
 
 @end
