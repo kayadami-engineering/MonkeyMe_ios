@@ -41,37 +41,45 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"rightMenuCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RightCell"];
+    UIImageView *profile = (UIImageView *)[cell viewWithTag:100];
+    profile.image = [UIImage imageNamed:@"ky"];
+    
+    UILabel *name = (UILabel *)[cell viewWithTag:101];
     
     switch (indexPath.row)
     {
         case 0:
-            cell.textLabel.text = @"None";
+            name.text = @"Kaya lee";
             break;
             
         case 1:
-            cell.textLabel.text = @"Slide";
+            name.text = @"sy";
             break;
             
         case 2:
-            cell.textLabel.text = @"Fade";
+            name.text = @"kj";
             break;
             
         case 3:
-            cell.textLabel.text = @"Slide And Fade";
+            name.text = @"qwe";
             break;
             
         case 4:
-            cell.textLabel.text = @"Scale";
+            name.text = @"123";
             break;
             
         case 5:
-            cell.textLabel.text = @"Scale And Fade";
+            name.text = @"asd";
             break;
     }
     
     cell.backgroundColor = [UIColor clearColor];
+    
     cell.textLabel.textAlignment = NSTextAlignmentRight;
+    profile.layer.cornerRadius = profile.frame.size.height /2;
+    profile.layer.masksToBounds = YES;
+    profile.layer.borderWidth = 0;
     
     return cell;
 }

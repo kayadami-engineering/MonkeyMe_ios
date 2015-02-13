@@ -20,8 +20,9 @@
     
     self.tableView.separatorColor = [UIColor lightGrayColor];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftMenu.jpg"]];
-    self.tableView.backgroundView = imageView;
+    //UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"leftMenu.jpg"]];
+    //self.tableView.backgroundView = imageView;
+    self.tableView.backgroundColor = [UIColor colorWithRed:0/255.0 green:143/255.0 blue:158.0/255.0 alpha:1.0f];
     NSLog(@"Left view load");
 }
 
@@ -29,7 +30,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 7;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -46,24 +47,43 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leftMenuCell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LeftCell"];
+    
+    UIImageView *image = (UIImageView *)[cell viewWithTag:100];
+    UILabel *text = (UILabel *)[cell viewWithTag:101];
     
     switch (indexPath.row)
     {
         case 0:
-            cell.textLabel.text = @"Home";
+            text.text = @"Shop";
+            image.image = [UIImage imageNamed:@"shop"];
             break;
             
         case 1:
-            cell.textLabel.text = @"Profile";
+            text.text = @"Inbox";
+            image.image = [UIImage imageNamed:@"inbox"];
             break;
             
         case 2:
-            cell.textLabel.text = @"Friends";
+            text.text = @"Ranking";
+            image.image = [UIImage imageNamed:@"ranking"];
             break;
             
         case 3:
-            cell.textLabel.text = @"Sign Out";
+            text.text = @"Add your monkey";
+            image.image = [UIImage imageNamed:@"word"];
+            break;
+        case 4 :
+            text.text = @"Achievements";
+            image.image = [UIImage imageNamed:@"achieve"];
+            break;
+        case 5 :
+            text.text = @"Settings";
+            image.image = [UIImage imageNamed:@"settings"];
+            break;
+        case 6 :
+            text.text = @"Help";
+            image.image = [UIImage imageNamed:@"help"];
             break;
     }
     

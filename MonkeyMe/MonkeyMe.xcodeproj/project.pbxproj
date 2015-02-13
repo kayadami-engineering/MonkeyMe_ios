@@ -68,6 +68,12 @@
 		88A68FEA1A8A14B400DBA3CE /* chole.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE61A8A14B400DBA3CE /* chole.jpg */; };
 		88A68FEB1A8A14B400DBA3CE /* medic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE71A8A14B400DBA3CE /* medic.jpg */; };
 		88A68FEC1A8A14B400DBA3CE /* ky.png in Resources */ = {isa = PBXBuildFile; fileRef = 88A68FE81A8A14B400DBA3CE /* ky.png */; };
+		88B656D21A8E0A7000F73DB4 /* achieve.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656CC1A8E0A7000F73DB4 /* achieve.png */; };
+		88B656D31A8E0A7000F73DB4 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656CD1A8E0A7000F73DB4 /* help.png */; };
+		88B656D41A8E0A7000F73DB4 /* inbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656CE1A8E0A7000F73DB4 /* inbox.png */; };
+		88B656D51A8E0A7000F73DB4 /* ranking.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656CF1A8E0A7000F73DB4 /* ranking.png */; };
+		88B656D61A8E0A7000F73DB4 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656D01A8E0A7000F73DB4 /* settings.png */; };
+		88B656D71A8E0A7000F73DB4 /* word.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656D11A8E0A7000F73DB4 /* word.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +174,12 @@
 		88A68FE61A8A14B400DBA3CE /* chole.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = chole.jpg; sourceTree = "<group>"; };
 		88A68FE71A8A14B400DBA3CE /* medic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = medic.jpg; sourceTree = "<group>"; };
 		88A68FE81A8A14B400DBA3CE /* ky.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ky.png; sourceTree = "<group>"; };
+		88B656CC1A8E0A7000F73DB4 /* achieve.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = achieve.png; sourceTree = "<group>"; };
+		88B656CD1A8E0A7000F73DB4 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		88B656CE1A8E0A7000F73DB4 /* inbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inbox.png; sourceTree = "<group>"; };
+		88B656CF1A8E0A7000F73DB4 /* ranking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ranking.png; sourceTree = "<group>"; };
+		88B656D01A8E0A7000F73DB4 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		88B656D11A8E0A7000F73DB4 /* word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = word.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +289,12 @@
 				889CD0BF1A85EFEF00580FB6 /* menu.png */,
 				889CD0C01A85EFEF00580FB6 /* myturn.png */,
 				889CD0C11A85EFEF00580FB6 /* puzzlemode.png */,
+				88B656CC1A8E0A7000F73DB4 /* achieve.png */,
+				88B656CD1A8E0A7000F73DB4 /* help.png */,
+				88B656CE1A8E0A7000F73DB4 /* inbox.png */,
+				88B656CF1A8E0A7000F73DB4 /* ranking.png */,
+				88B656D01A8E0A7000F73DB4 /* settings.png */,
+				88B656D11A8E0A7000F73DB4 /* word.png */,
 				889789D31A88BE1F00B2B8A6 /* profbox.png */,
 				889CD0C21A85EFEF00580FB6 /* shop.png */,
 				889CD0C31A85EFEF00580FB6 /* theirturn.png */,
@@ -491,6 +509,7 @@
 				883BA7CC1A7FA28A00B0DDA1 /* Main.storyboard in Resources */,
 				883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */,
 				889CD0C41A85EFEF00580FB6 /* banana.png in Resources */,
+				88B656D31A8E0A7000F73DB4 /* help.png in Resources */,
 				883BA80A1A7FA3C200B0DDA1 /* SVProgressHUD.bundle in Resources */,
 				883BA7ED1A7FA2EB00B0DDA1 /* pinkLine.png in Resources */,
 				883BA7EE1A7FA2EB00B0DDA1 /* signup_1_ic.png in Resources */,
@@ -501,7 +520,9 @@
 				889CD0C61A85EFEF00580FB6 /* friendslist.png in Resources */,
 				889CD0F61A86204000580FB6 /* rightMenu.jpg in Resources */,
 				88A68FEB1A8A14B400DBA3CE /* medic.jpg in Resources */,
+				88B656D61A8E0A7000F73DB4 /* settings.png in Resources */,
 				889CD0CE1A85EFEF00580FB6 /* shop.png in Resources */,
+				88B656D51A8E0A7000F73DB4 /* ranking.png in Resources */,
 				889CD0E91A861E4300580FB6 /* menu-button@2x.png in Resources */,
 				889CD0CD1A85EFEF00580FB6 /* puzzlemode.png in Resources */,
 				889CD0C81A85EFEF00580FB6 /* goprof.png in Resources */,
@@ -515,8 +536,11 @@
 				88A68FEA1A8A14B400DBA3CE /* chole.jpg in Resources */,
 				889CD0CF1A85EFEF00580FB6 /* theirturn.png in Resources */,
 				883BA7EC1A7FA2EB00B0DDA1 /* cancel_ic.png in Resources */,
+				88B656D71A8E0A7000F73DB4 /* word.png in Resources */,
 				889CD0C71A85EFEF00580FB6 /* gomonkey.png in Resources */,
 				883BA7D11A7FA28A00B0DDA1 /* LaunchScreen.xib in Resources */,
+				88B656D41A8E0A7000F73DB4 /* inbox.png in Resources */,
+				88B656D21A8E0A7000F73DB4 /* achieve.png in Resources */,
 				889789D21A88BA3800B2B8A6 /* back.png in Resources */,
 				883BA7CE1A7FA28A00B0DDA1 /* Images.xcassets in Resources */,
 				883BA7EF1A7FA2EB00B0DDA1 /* signup_e_ic.png in Resources */,
