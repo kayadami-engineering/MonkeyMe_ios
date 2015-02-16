@@ -258,7 +258,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="loginBtn" destination="b1d-qH-Ukb" id="XCy-ZQ-L9k"/>
                         <segue destination="sfV-kv-zpf" kind="presentation" identifier="MainViewSegue" id="ad0-4f-mP8"/>
@@ -283,7 +284,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OiK-IN-zqp">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back.png" translatesAutoresizingMaskIntoConstraints="NO" id="hjY-5G-euh">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back_top.png" translatesAutoresizingMaskIntoConstraints="NO" id="hjY-5G-euh">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="energy.png" translatesAutoresizingMaskIntoConstraints="NO" id="j81-IB-pdX">
@@ -312,10 +313,10 @@
                                         <state key="normal" title="Button" image="profbox.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="oBE-NL-imP" kind="show" id="uYZ-Wn-XGN"/>
+                                        </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="levc.png" translatesAutoresizingMaskIntoConstraints="NO" id="cah-PJ-uDl">
-                                        <rect key="frame" x="25" y="54" width="51" height="51"/>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damee Yoon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHC-TR-pZb">
                                         <rect key="frame" x="100" y="60" width="98" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -374,14 +375,19 @@
                                             <outlet property="delegate" destination="hgj-ju-mgV" id="BmU-SP-CrM"/>
                                         </connections>
                                     </tableView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cah-PJ-uDl">
+                                        <rect key="frame" x="25" y="49" width="60" height="60"/>
+                                    </imageView>
                                 </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Monkey Me" id="gqR-ts-MvM"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="profileImage" destination="cah-PJ-uDl" id="8On-PU-Y0d"/>
                         <outlet property="scrollView" destination="OiK-IN-zqp" id="win-aQ-KIm"/>
                         <outlet property="tableView" destination="PfE-jb-EQS" id="ad9-qQ-JqI"/>
                     </connections>
@@ -394,7 +400,8 @@
         <scene sceneID="dYg-sz-DpC">
             <objects>
                 <navigationController definesPresentationContext="YES" id="sfV-kv-zpf" customClass="SlideNavigationController" sceneMemberID="viewController">
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wjk-u4-dkb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -410,6 +417,115 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHf-U6-iLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1287" y="357"/>
+        </scene>
+        <!--Monkey Me-->
+        <scene sceneID="1WU-YR-Ohm">
+            <objects>
+                <viewController id="oBE-NL-imP" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DR8-j0-jga"/>
+                        <viewControllerLayoutGuide type="bottom" id="ky9-cZ-XZa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="2h4-hK-mec">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="back_top.png" translatesAutoresizingMaskIntoConstraints="NO" id="fgv-6H-qYS">
+                                <rect key="frame" x="0.0" y="64" width="320" height="41"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="energy.png" translatesAutoresizingMaskIntoConstraints="NO" id="yCd-8M-7Qc">
+                                <rect key="frame" x="25" y="69" width="21" height="34"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="banana.png" translatesAutoresizingMaskIntoConstraints="NO" id="E9i-vK-fZU">
+                                <rect key="frame" x="136" y="71" width="25" height="25"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shop.png" translatesAutoresizingMaskIntoConstraints="NO" id="nNa-Dl-vzV">
+                                <rect key="frame" x="260" y="72" width="25" height="25"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profbox.png" translatesAutoresizingMaskIntoConstraints="NO" id="6AJ-D2-ZJW">
+                                <rect key="frame" x="0.0" y="104" width="320" height="135"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="43v-1i-kRw">
+                                <rect key="frame" x="169" y="67" width="16" height="34"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="00k-6n-lxc">
+                                <rect key="frame" x="54" y="67" width="16" height="34"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-31-8cX">
+                                <rect key="frame" x="25" y="113" width="60" height="60"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damee Yoon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yz-ri-DBI">
+                                <rect key="frame" x="99" y="132" width="98" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2c-n4-hKP">
+                                <rect key="frame" x="37" y="189" width="32" height="32"/>
+                                <state key="normal" image="photog.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="photob.png"/>
+                                <connections>
+                                    <action selector="photoBtnTouch:" destination="oBE-NL-imP" eventType="touchUpInside" id="jK2-KJ-6RV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1h-Wj-t5o">
+                                <rect key="frame" x="251" y="189" width="32" height="32"/>
+                                <state key="normal" image="achieveg.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="achieveb.png"/>
+                                <connections>
+                                    <action selector="achieveBtnTouch:" destination="oBE-NL-imP" eventType="touchUpInside" id="KGY-8k-l0K"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vso-aT-Ich">
+                                <rect key="frame" x="0.0" y="229" width="106" height="10"/>
+                                <color key="backgroundColor" red="0.14509803921568629" green="0.54509803921568623" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eq5-gV-UaF">
+                                <rect key="frame" x="0.0" y="237" width="320" height="331"/>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ipr-s1-Pn5">
+                                <rect key="frame" x="141" y="192" width="39" height="25"/>
+                                <state key="normal" image="gameg.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="gameb.png"/>
+                                <connections>
+                                    <action selector="gameBtnTouch:" destination="oBE-NL-imP" eventType="touchUpInside" id="J2R-9U-tLH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Monkey Me" id="YSp-68-65A">
+                        <barButtonItem key="backBarButtonItem" title=" " id="7mz-ep-eQ6"/>
+                    </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                    <connections>
+                        <outlet property="achieveBtn" destination="v1h-Wj-t5o" id="LMY-bk-4WK"/>
+                        <outlet property="gameBtn" destination="ipr-s1-Pn5" id="kxW-f7-5qz"/>
+                        <outlet property="photoBtn" destination="f2c-n4-hKP" id="USm-dd-Ozt"/>
+                        <outlet property="profileImage" destination="ebM-31-8cX" id="rxr-cs-OBp"/>
+                        <outlet property="scrollView" destination="eq5-gV-UaF" id="HZN-X1-iTH"/>
+                        <outlet property="slidLabel" destination="Vso-aT-Ich" id="z1y-uM-hgJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EkB-Sa-2QD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2187" y="357"/>
         </scene>
         <!--Login Popup View Controller-->
         <scene sceneID="vuV-lX-J3P">
@@ -467,16 +583,106 @@
             </objects>
             <point key="canvasLocation" x="1197" y="-307"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="h6Y-cA-laS">
+            <objects>
+                <viewController storyboardIdentifier="PhotoViewController" id="gQA-Jf-gEQ" customClass="PhotoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ive-wb-QTq"/>
+                        <viewControllerLayoutGuide type="bottom" id="WmM-cM-7xu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="usy-z5-4dg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="331"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Photo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50J-q6-9XB">
+                                <rect key="frame" x="137" y="155" width="46" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="331"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="acu-1E-0HN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1815" y="-287"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="VTy-ig-eGo">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="stS-vI-O7z" customClass="GameViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dgA-4R-zZb"/>
+                        <viewControllerLayoutGuide type="bottom" id="o0b-XR-r05"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cMH-92-dR1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="331"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kH-KW-qwb">
+                                <rect key="frame" x="139" y="155" width="43" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="331"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Wi-lM-y1C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2187" y="-287"/>
+        </scene>
+        <!--Achieve View Controller-->
+        <scene sceneID="nuH-OU-ITA">
+            <objects>
+                <viewController storyboardIdentifier="AchieveViewController" id="lOe-OE-fja" customClass="AchieveViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3a2-yZ-rmR"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gf4-fs-DQv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IzI-gv-UWe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="331"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="achieve" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2z-fs-45r">
+                                <rect key="frame" x="131" y="155" width="59" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="331"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x4o-bh-b8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2557" y="-287"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="back.png" width="167" height="64"/>
+        <image name="achieveb.png" width="100" height="100"/>
+        <image name="achieveg.png" width="100" height="100"/>
+        <image name="back_top.png" width="167" height="64"/>
         <image name="banana.png" width="77" height="69"/>
         <image name="cancel_ic.png" width="41" height="41"/>
         <image name="eg_launch.png" width="720" height="1280"/>
         <image name="eg_launch_up.jpg" width="720" height="1280"/>
         <image name="energy.png" width="40" height="74"/>
+        <image name="gameb.png" width="100" height="60"/>
+        <image name="gameg.png" width="100" height="60"/>
         <image name="goprof.png" width="30" height="80"/>
         <image name="levc.png" width="52" height="52"/>
+        <image name="photob.png" width="100" height="100"/>
+        <image name="photog.png" width="100" height="100"/>
         <image name="pinkLine.png" width="536" height="1"/>
         <image name="profbox.png" width="1080" height="260"/>
         <image name="shop.png" width="84" height="75"/>

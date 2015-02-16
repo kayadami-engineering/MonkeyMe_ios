@@ -14,17 +14,32 @@
 @synthesize tableView;
 @synthesize scrollView;
 @synthesize gameListArray;
+@synthesize profileImage;
 
 
 - (void)viewDidLoad {
+    
+    
+    [super viewDidLoad];
+    [self setNavigationItem];
+    [self setGameList];
+    
+    [self.profileImage setImage:[UIImage imageNamed:@"ky"]];
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.borderWidth = 0;
+    
+    
+}
+- (void)setNavigationItem {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
     LeftViewController *leftMenu = (LeftViewController*)[mainStoryboard
-                                                                 instantiateViewControllerWithIdentifier: @"LeftViewController"];
+                                                         instantiateViewControllerWithIdentifier: @"LeftViewController"];
     
     RightViewController *rightMenu = (RightViewController*)[mainStoryboard
-                                                                    instantiateViewControllerWithIdentifier: @"RightViewController"];
+                                                            instantiateViewControllerWithIdentifier: @"RightViewController"];
     
     [SlideNavigationController sharedInstance].rightMenu = rightMenu;
     [SlideNavigationController sharedInstance].leftMenu = leftMenu;
@@ -44,28 +59,22 @@
     [SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
     
     /*
-    [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidClose object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSString *menu = note.userInfo[@"menu"];
-        NSLog(@"Closed %@", menu);
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidOpen object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSString *menu = note.userInfo[@"menu"];
-        NSLog(@"Opened %@", menu);
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidReveal object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSString *menu = note.userInfo[@"menu"];
-        NSLog(@"Revealed %@", menu);
-    }];
+     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidClose object:nil queue:nil usingBlock:^(NSNotification *note) {
+     NSString *menu = note.userInfo[@"menu"];
+     NSLog(@"Closed %@", menu);
+     }];
+     
+     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidOpen object:nil queue:nil usingBlock:^(NSNotification *note) {
+     NSString *menu = note.userInfo[@"menu"];
+     NSLog(@"Opened %@", menu);
+     }];
+     
+     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidReveal object:nil queue:nil usingBlock:^(NSNotification *note) {
+     NSString *menu = note.userInfo[@"menu"];
+     NSLog(@"Revealed %@", menu);
+     }];
      */
-    
-    [super viewDidLoad];
-    
-    [self setGameList];
-    
 }
-
 - (void)setGameList {
     
     gameListArray = [[NSMutableArray alloc]init];

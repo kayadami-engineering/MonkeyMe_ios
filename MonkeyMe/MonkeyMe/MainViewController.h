@@ -12,6 +12,7 @@
 
 @interface MainViewController : UIViewController <SlideNavigationControllerDelegate,UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *gameListArray;
