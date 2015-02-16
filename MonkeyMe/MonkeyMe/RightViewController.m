@@ -22,21 +22,32 @@
 
 #pragma mark - UITableView Delegate & Datasrouce -
 
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *headerview = [[UIView alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-70, 40)];
+    UISearchBar *headerSearch = [[UISearchBar alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-80, 35)];
+    headerSearch.backgroundColor = [UIColor whiteColor];
+    headerSearch.backgroundImage = [[UIImage alloc] init];
+    headerSearch.placeholder = @"Search";
+    headerSearch.layer.cornerRadius = 5;
+    headerSearch.clipsToBounds = YES;
+    [headerview addSubview:headerSearch];
+    
+    return headerview;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 6;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 20)];
-    view.backgroundColor = [UIColor clearColor];
-    return view;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
