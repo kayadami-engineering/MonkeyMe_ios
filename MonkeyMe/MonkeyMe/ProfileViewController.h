@@ -13,18 +13,17 @@
 #import "AchieveViewController.h"
 
 @interface ProfileViewController : UIViewController<SlideNavigationControllerDelegate> 
-@property (weak, nonatomic) IBOutlet UIImageView *profileImage;
-@property (weak, nonatomic) IBOutlet UILabel *slidLabel;
-@property (weak, nonatomic) UIButton *currentTabBtn;
-@property (weak, nonatomic) NSString *currentTabImageText;
-@property (weak, nonatomic) UIView *currentView;
-@property (weak, nonatomic) IBOutlet UIButton *photoBtn;
-@property (weak, nonatomic) IBOutlet UIButton *gameBtn;
-@property (weak, nonatomic) IBOutlet UIButton *achieveBtn;
-@property (weak, nonatomic) PhotoViewController *photoView;
-@property (weak, nonatomic) GameViewController *gameView;
-@property (weak, nonatomic) AchieveViewController *achieveView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (strong, nonatomic) UIButton *currentTabBtn;
+@property (strong, nonatomic) NSString *currentTabImageText;
+@property (strong, nonatomic) UIView *currentView;
+@property (strong, nonatomic) IBOutlet UIButton *photoBtn;
+@property (strong, nonatomic) IBOutlet UIButton *gameBtn;
+@property (strong, nonatomic) IBOutlet UIButton *achieveBtn;
+@property (strong, nonatomic) PhotoViewController *photoView;
+@property (strong, nonatomic) GameViewController *gameView;
+@property (strong, nonatomic) AchieveViewController *achieveView;
+@property (strong, nonatomic) IBOutlet UIView *myView;
 
 
 - (IBAction)photoBtnTouch:(id)sender;

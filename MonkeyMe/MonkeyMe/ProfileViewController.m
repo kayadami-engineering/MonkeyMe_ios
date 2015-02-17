@@ -12,13 +12,12 @@
 
 
 @implementation ProfileViewController
-@synthesize slidLabel;
 @synthesize profileImage;
 @synthesize currentTabImageText;
 @synthesize currentTabBtn;
 @synthesize photoView;
 @synthesize gameView;
-@synthesize scrollView;
+@synthesize myView;
 @synthesize achieveView;
 @synthesize currentView;
 
@@ -33,7 +32,6 @@
     self.profileImage.layer.borderWidth = 0;
     
     self.currentTabBtn = self.photoBtn;
-    self.currentTabImageText = @"photog";
     [self.currentTabBtn setSelected:true];
 
     
@@ -44,8 +42,8 @@
     photoView = (PhotoViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"PhotoViewController"];
     gameView = (GameViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"GameViewController"];
     achieveView = (AchieveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"AchieveViewController"];
-    self.currentView = gameView.view;
-    [scrollView addSubview:self.currentView];
+    self.currentView = photoView.view;
+    [myView addSubview:self.currentView];
     
     
     RightViewController *rightMenu = (RightViewController*)[mainStoryboard
@@ -69,41 +67,6 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) photoViewButtonAction
-{
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    
-    slidLabel.frame = CGRectMake(0, 229, 106, 10);
-    //[nibScrollView setContentOffset:CGPointMake(320*0, 0)];
-    
-    [UIView commitAnimations];
-}
-
-- (void) gameViewButtonAction
-{
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    
-    slidLabel.frame = CGRectMake(107, 229, 106, 10);
-    //[nibScrollView setContentOffset:CGPointMake(320*1, 0)];
-    
-    [UIView commitAnimations];
-}
-- (void) achieveViewButtonAction
-{
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    
-    slidLabel.frame = CGRectMake(214, 229, 106, 10);
-    //[nibScrollView setContentOffset:CGPointMake(320*1, 0)];
-    
-    [UIView commitAnimations];
-    
-}
-
 #pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
@@ -118,29 +81,34 @@
 
 - (IBAction)photoBtnTouch:(id)sender {
     
+    [currentView removeFromSuperview];
     [self.currentTabBtn setSelected:false];
     self.currentTabBtn = self.photoBtn;
-    self.currentTabImageText = @"photog";
     [self.currentTabBtn setSelected:true];
-    [self photoViewButtonAction];
+
+    currentView = photoView.view;
+    [myView addSubview:currentView];
 }
 
 - (IBAction)gameBtnTouch:(id)sender {
-    
+    [currentView removeFromSuperview];
     [self.currentTabBtn setSelected:false];
     self.currentTabBtn = self.gameBtn;
-    self.currentTabImageText = @"gameg";
     [self.currentTabBtn setSelected:true];
-    [self gameViewButtonAction];
+
+    currentView = gameView.view;
+    [myView addSubview:currentView];
+    
 }
 
 - (IBAction)achieveBtnTouch:(id)sender {
-    
+    [currentView removeFromSuperview];
     [self.currentTabBtn setSelected:false];
     self.currentTabBtn = self.achieveBtn;
-    self.currentTabImageText = @"achieveg";
     [self.currentTabBtn setSelected:true];
-    [self achieveViewButtonAction];
+    
+    currentView = achieveView.view;
+    [myView addSubview:currentView];
 }
 @end
 
