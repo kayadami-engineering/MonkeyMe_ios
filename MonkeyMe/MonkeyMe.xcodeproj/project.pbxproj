@@ -87,6 +87,8 @@
 		88BB5BDD1A935E7200385C04 /* gamg.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BD71A935E7200385C04 /* gamg.png */; };
 		88BB5BDE1A935E7200385C04 /* phob.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BD81A935E7200385C04 /* phob.png */; };
 		88BB5BDF1A935E7200385C04 /* phog.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BD91A935E7200385C04 /* phog.png */; };
+		88BB5BE21A94981500385C04 /* ProfileImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */; };
+		88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BE41A94AD7000385C04 /* SelectFriendView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +212,10 @@
 		88BB5BD71A935E7200385C04 /* gamg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamg.png; sourceTree = "<group>"; };
 		88BB5BD81A935E7200385C04 /* phob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phob.png; sourceTree = "<group>"; };
 		88BB5BD91A935E7200385C04 /* phog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phog.png; sourceTree = "<group>"; };
+		88BB5BE01A94981500385C04 /* ProfileImageItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageItemCell.h; sourceTree = "<group>"; };
+		88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageItemCell.m; sourceTree = "<group>"; };
+		88BB5BE31A94AD7000385C04 /* SelectFriendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendView.h; sourceTree = "<group>"; };
+		88BB5BE41A94AD7000385C04 /* SelectFriendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +389,8 @@
 				889CD0FA1A8624A800580FB6 /* MainViewController.m */,
 				88BB5BB41A91F16800385C04 /* ProfileViewController.h */,
 				88BB5BB51A91F16800385C04 /* ProfileViewController.m */,
+				88BB5BE31A94AD7000385C04 /* SelectFriendView.h */,
+				88BB5BE41A94AD7000385C04 /* SelectFriendView.m */,
 			);
 			name = MainViewControllers;
 			sourceTree = "<group>";
@@ -406,6 +414,8 @@
 				889CD1001A86346200580FB6 /* RightViewController.m */,
 				88A68FE11A8A0DDD00DBA3CE /* MainTableViewCell.h */,
 				88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */,
+				88BB5BE01A94981500385C04 /* ProfileImageItemCell.h */,
+				88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */,
 			);
 			name = SupportViewControllers;
 			sourceTree = "<group>";
@@ -620,6 +630,7 @@
 			files = (
 				889CD0EA1A861E4300580FB6 /* SlideNavigationController.m in Sources */,
 				889CD1011A86346200580FB6 /* RightViewController.m in Sources */,
+				88BB5BE21A94981500385C04 /* ProfileImageItemCell.m in Sources */,
 				883BA8061A7FA3C200B0DDA1 /* LoginPopupViewController.m in Sources */,
 				88BB5BD31A923DF400385C04 /* AchieveViewController.m in Sources */,
 				883BA8081A7FA3C200B0DDA1 /* RootViewController.m in Sources */,
@@ -639,6 +650,7 @@
 				883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */,
 				889CD0E51A861E4300580FB6 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				883BA8071A7FA3C200B0DDA1 /* NetworkController.m in Sources */,
+				88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */,
 				883BA8051A7FA3C200B0DDA1 /* JoinPopupViewController.m in Sources */,
 				883BA80D1A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m in Sources */,
 				889CD0E71A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
@@ -764,8 +776,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = MonkeyMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -775,8 +788,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = MonkeyMe/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

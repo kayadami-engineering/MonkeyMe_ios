@@ -132,6 +132,11 @@
     
     
 }
+
+- (IBAction)playWithFriend:(id)sender {
+    
+    [self performSegueWithIdentifier:@"SelectFriendSegue" sender:self];
+}
 #pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
@@ -179,6 +184,7 @@
             text2.text = @"퍼즐 몽키";
             text2.textColor = [UIColor whiteColor];
             [button setImage:[UIImage imageNamed:@"gomonkey.png"] forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(playWithFriend:) forControlEvents:UIControlEventTouchUpInside];
             [button2 setImage:[UIImage imageNamed:@"puzzlemode.png"] forState:UIControlStateNormal];
             [headerview addSubview:button];
             [headerview addSubview:button2];

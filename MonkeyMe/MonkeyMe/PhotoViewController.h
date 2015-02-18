@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoViewController : UIViewController
+@interface PhotoViewController : UIViewController <UICollectionViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *imageListArray;
 @end
