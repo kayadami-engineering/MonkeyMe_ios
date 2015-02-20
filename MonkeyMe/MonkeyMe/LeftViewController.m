@@ -102,7 +102,7 @@
     switch (indexPath.row)
     {
         case 0:
-            vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"MainViewController"];
+            vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"ProfileViewController"];
             break;
             
         case 1:

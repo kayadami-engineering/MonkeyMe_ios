@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
 
-@interface SelectFriendView : UIViewController<SlideNavigationControllerDelegate>
+@interface SelectFriendView : UIViewController<SlideNavigationControllerDelegate,UICollectionViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *imageListArray;
 
 @end

@@ -71,14 +71,12 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+
     
     ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
     UIImage *image = [UIImage imageNamed:gList.imageName];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    
-    [imageView setFrame:CGRectMake(0, 0, [cell contentView].frame.size.width, [cell contentView].frame.size.height)];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [[cell contentView] addSubview:imageView];
+    UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
+    imageView.image = image;
     
     
     return cell;

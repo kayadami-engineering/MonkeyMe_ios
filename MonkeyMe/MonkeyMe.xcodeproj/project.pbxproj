@@ -89,6 +89,14 @@
 		88BB5BDF1A935E7200385C04 /* phog.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BD91A935E7200385C04 /* phog.png */; };
 		88BB5BE21A94981500385C04 /* ProfileImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */; };
 		88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BE41A94AD7000385C04 /* SelectFriendView.m */; };
+		88D969471A971F4B007EE2E3 /* monkeywords.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969461A971F4B007EE2E3 /* monkeywords.png */; };
+		88D969491A97208E007EE2E3 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969481A97208E007EE2E3 /* refresh.png */; };
+		88D9694B1A9720DC007EE2E3 /* refreshbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D9694A1A9720DC007EE2E3 /* refreshbox.png */; };
+		88D9694E1A97235E007EE2E3 /* SelectWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D9694D1A97235E007EE2E3 /* SelectWordView.m */; };
+		88D969511A974F9D007EE2E3 /* HintVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D969501A974F9D007EE2E3 /* HintVIewController.m */; };
+		88D969531A97508A007EE2E3 /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969521A97508A007EE2E3 /* ok.png */; };
+		88D969551A976228007EE2E3 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88D969541A976228007EE2E3 /* test.jpg */; };
+		88D969581A9763B9007EE2E3 /* FinishPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +224,17 @@
 		88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageItemCell.m; sourceTree = "<group>"; };
 		88BB5BE31A94AD7000385C04 /* SelectFriendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendView.h; sourceTree = "<group>"; };
 		88BB5BE41A94AD7000385C04 /* SelectFriendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendView.m; sourceTree = "<group>"; };
+		88D969461A971F4B007EE2E3 /* monkeywords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkeywords.png; sourceTree = "<group>"; };
+		88D969481A97208E007EE2E3 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
+		88D9694A1A9720DC007EE2E3 /* refreshbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshbox.png; sourceTree = "<group>"; };
+		88D9694C1A97235E007EE2E3 /* SelectWordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectWordView.h; sourceTree = "<group>"; };
+		88D9694D1A97235E007EE2E3 /* SelectWordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWordView.m; sourceTree = "<group>"; };
+		88D9694F1A974F9D007EE2E3 /* HintVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HintVIewController.h; sourceTree = "<group>"; };
+		88D969501A974F9D007EE2E3 /* HintVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HintVIewController.m; sourceTree = "<group>"; };
+		88D969521A97508A007EE2E3 /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
+		88D969541A976228007EE2E3 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
+		88D969561A9763B9007EE2E3 /* FinishPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishPopupViewController.h; sourceTree = "<group>"; };
+		88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishPopupViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +328,11 @@
 		883BA7F01A7FA2F100B0DDA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				88D969541A976228007EE2E3 /* test.jpg */,
+				88D969521A97508A007EE2E3 /* ok.png */,
+				88D9694A1A9720DC007EE2E3 /* refreshbox.png */,
+				88D969481A97208E007EE2E3 /* refresh.png */,
+				88D969461A971F4B007EE2E3 /* monkeywords.png */,
 				88BB5BD41A935E7200385C04 /* achb.png */,
 				88BB5BD51A935E7200385C04 /* achg.png */,
 				88BB5BD61A935E7200385C04 /* gamb.png */,
@@ -391,6 +415,12 @@
 				88BB5BB51A91F16800385C04 /* ProfileViewController.m */,
 				88BB5BE31A94AD7000385C04 /* SelectFriendView.h */,
 				88BB5BE41A94AD7000385C04 /* SelectFriendView.m */,
+				88D9694C1A97235E007EE2E3 /* SelectWordView.h */,
+				88D9694D1A97235E007EE2E3 /* SelectWordView.m */,
+				88D9694F1A974F9D007EE2E3 /* HintVIewController.h */,
+				88D969501A974F9D007EE2E3 /* HintVIewController.m */,
+				88D969561A9763B9007EE2E3 /* FinishPopupViewController.h */,
+				88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */,
 			);
 			name = MainViewControllers;
 			sourceTree = "<group>";
@@ -574,6 +604,7 @@
 				883BA7EE1A7FA2EB00B0DDA1 /* signup_1_ic.png in Resources */,
 				883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */,
 				889CD0E81A861E4300580FB6 /* menu-button.png in Resources */,
+				88D969491A97208E007EE2E3 /* refresh.png in Resources */,
 				889CD0CC1A85EFEF00580FB6 /* myturn.png in Resources */,
 				883BA7EB1A7FA2EB00B0DDA1 /* background.jpg in Resources */,
 				889CD0C61A85EFEF00580FB6 /* friendslist.png in Resources */,
@@ -581,8 +612,10 @@
 				88BB5BB81A91F81500385C04 /* back.png in Resources */,
 				88A68FEB1A8A14B400DBA3CE /* medic.jpg in Resources */,
 				88B656D61A8E0A7000F73DB4 /* settings.png in Resources */,
+				88D969551A976228007EE2E3 /* test.jpg in Resources */,
 				88BB5BDE1A935E7200385C04 /* phob.png in Resources */,
 				889CD0CE1A85EFEF00580FB6 /* shop.png in Resources */,
+				88D969531A97508A007EE2E3 /* ok.png in Resources */,
 				88B656D51A8E0A7000F73DB4 /* ranking.png in Resources */,
 				889CD0E91A861E4300580FB6 /* menu-button@2x.png in Resources */,
 				88BB5BDF1A935E7200385C04 /* phog.png in Resources */,
@@ -591,10 +624,12 @@
 				889CD0CA1A85EFEF00580FB6 /* levc.png in Resources */,
 				88BB5BDC1A935E7200385C04 /* gamb.png in Resources */,
 				889CD0F81A86204000580FB6 /* animation.png in Resources */,
+				88D9694B1A9720DC007EE2E3 /* refreshbox.png in Resources */,
 				88BB5BDD1A935E7200385C04 /* gamg.png in Resources */,
 				88A68FE91A8A14B400DBA3CE /* yong.jpg in Resources */,
 				889CD0CB1A85EFEF00580FB6 /* menu.png in Resources */,
 				889CD0F71A86204000580FB6 /* leftMenu.jpg in Resources */,
+				88D969471A971F4B007EE2E3 /* monkeywords.png in Resources */,
 				889CD0F51A86204000580FB6 /* gear.png in Resources */,
 				88BB5BDA1A935E7200385C04 /* achb.png in Resources */,
 				88A68FEC1A8A14B400DBA3CE /* ky.png in Resources */,
@@ -634,6 +669,7 @@
 				883BA8061A7FA3C200B0DDA1 /* LoginPopupViewController.m in Sources */,
 				88BB5BD31A923DF400385C04 /* AchieveViewController.m in Sources */,
 				883BA8081A7FA3C200B0DDA1 /* RootViewController.m in Sources */,
+				88D9694E1A97235E007EE2E3 /* SelectWordView.m in Sources */,
 				889CD0FB1A8624A800580FB6 /* MainViewController.m in Sources */,
 				889CD0E61A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
@@ -645,6 +681,7 @@
 				883BA80B1A7FA3C200B0DDA1 /* SVProgressHUD.m in Sources */,
 				889CD0E31A861E4300580FB6 /* SlideNavigationContorllerAnimatorFade.m in Sources */,
 				88BB5BCD1A922EDD00385C04 /* PhotoViewController.m in Sources */,
+				88D969581A9763B9007EE2E3 /* FinishPopupViewController.m in Sources */,
 				883BA7C31A7FA28A00B0DDA1 /* main.m in Sources */,
 				88BB5BD01A922EF000385C04 /* GameViewController.m in Sources */,
 				883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */,
@@ -653,6 +690,7 @@
 				88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */,
 				883BA8051A7FA3C200B0DDA1 /* JoinPopupViewController.m in Sources */,
 				883BA80D1A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m in Sources */,
+				88D969511A974F9D007EE2E3 /* HintVIewController.m in Sources */,
 				889CD0E71A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				889CD0E41A861E4300580FB6 /* SlideNavigationContorllerAnimatorScale.m in Sources */,
 			);
