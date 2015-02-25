@@ -16,12 +16,7 @@
 }
 
 - (IBAction)okBtnPressed:(id)sender {
-    
-    [UIView animateWithDuration:1 animations:^{
-        self.view.alpha = 0;
-    } completion:^(BOOL b){
-        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-        self.view.alpha = 1;
-    }];
+       
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -30,6 +30,9 @@
 		883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */; };
 		883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */; };
 		883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */; };
+		887F2F731A9B60FF005E2F4F /* mleafbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 887F2F721A9B60FF005E2F4F /* mleafbutton.png */; };
+		887F2F761A9B657A005E2F4F /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 887F2F751A9B657A005E2F4F /* GuessViewController.m */; };
+		888043881A9E1D910092C7AC /* GuessRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888043871A9E1D910092C7AC /* GuessRightViewController.m */; };
 		889789D41A88BE1F00B2B8A6 /* profbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 889789D31A88BE1F00B2B8A6 /* profbox.png */; };
 		889CD0C41A85EFEF00580FB6 /* banana.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD0B81A85EFEF00580FB6 /* banana.png */; };
 		889CD0C51A85EFEF00580FB6 /* energy.png in Resources */ = {isa = PBXBuildFile; fileRef = 889CD0B91A85EFEF00580FB6 /* energy.png */; };
@@ -148,6 +151,11 @@
 		883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_launch_up.jpg; sourceTree = "<group>"; };
 		883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eg_launch.png; sourceTree = "<group>"; };
+		887F2F721A9B60FF005E2F4F /* mleafbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mleafbutton.png; sourceTree = "<group>"; };
+		887F2F741A9B657A005E2F4F /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
+		887F2F751A9B657A005E2F4F /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessViewController.m; sourceTree = "<group>"; };
+		888043861A9E1D910092C7AC /* GuessRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessRightViewController.h; sourceTree = "<group>"; };
+		888043871A9E1D910092C7AC /* GuessRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessRightViewController.m; sourceTree = "<group>"; };
 		889789D31A88BE1F00B2B8A6 /* profbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profbox.png; sourceTree = "<group>"; };
 		889CD0B81A85EFEF00580FB6 /* banana.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = banana.png; sourceTree = "<group>"; };
 		889CD0B91A85EFEF00580FB6 /* energy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = energy.png; sourceTree = "<group>"; };
@@ -328,6 +336,7 @@
 		883BA7F01A7FA2F100B0DDA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				887F2F721A9B60FF005E2F4F /* mleafbutton.png */,
 				88D969541A976228007EE2E3 /* test.jpg */,
 				88D969521A97508A007EE2E3 /* ok.png */,
 				88D9694A1A9720DC007EE2E3 /* refreshbox.png */,
@@ -421,6 +430,10 @@
 				88D969501A974F9D007EE2E3 /* HintVIewController.m */,
 				88D969561A9763B9007EE2E3 /* FinishPopupViewController.h */,
 				88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */,
+				887F2F741A9B657A005E2F4F /* GuessViewController.h */,
+				887F2F751A9B657A005E2F4F /* GuessViewController.m */,
+				888043861A9E1D910092C7AC /* GuessRightViewController.h */,
+				888043871A9E1D910092C7AC /* GuessRightViewController.m */,
 			);
 			name = MainViewControllers;
 			sourceTree = "<group>";
@@ -618,6 +631,7 @@
 				88D969531A97508A007EE2E3 /* ok.png in Resources */,
 				88B656D51A8E0A7000F73DB4 /* ranking.png in Resources */,
 				889CD0E91A861E4300580FB6 /* menu-button@2x.png in Resources */,
+				887F2F731A9B60FF005E2F4F /* mleafbutton.png in Resources */,
 				88BB5BDF1A935E7200385C04 /* phog.png in Resources */,
 				889CD0CD1A85EFEF00580FB6 /* puzzlemode.png in Resources */,
 				889CD0C81A85EFEF00580FB6 /* goprof.png in Resources */,
@@ -665,6 +679,7 @@
 			files = (
 				889CD0EA1A861E4300580FB6 /* SlideNavigationController.m in Sources */,
 				889CD1011A86346200580FB6 /* RightViewController.m in Sources */,
+				887F2F761A9B657A005E2F4F /* GuessViewController.m in Sources */,
 				88BB5BE21A94981500385C04 /* ProfileImageItemCell.m in Sources */,
 				883BA8061A7FA3C200B0DDA1 /* LoginPopupViewController.m in Sources */,
 				88BB5BD31A923DF400385C04 /* AchieveViewController.m in Sources */,
@@ -687,6 +702,7 @@
 				883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */,
 				889CD0E51A861E4300580FB6 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				883BA8071A7FA3C200B0DDA1 /* NetworkController.m in Sources */,
+				888043881A9E1D910092C7AC /* GuessRightViewController.m in Sources */,
 				88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */,
 				883BA8051A7FA3C200B0DDA1 /* JoinPopupViewController.m in Sources */,
 				883BA80D1A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m in Sources */,

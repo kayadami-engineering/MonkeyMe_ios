@@ -10,6 +10,7 @@
 
 @implementation RightViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -21,10 +22,10 @@
 }
 
 #pragma mark - UITableView Delegate & Datasrouce -
-
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
@@ -39,20 +40,21 @@
     
     return headerview;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 6;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 60;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RightCell"];
+   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RightCell"];
     UIImageView *profile = (UIImageView *)[cell viewWithTag:100];
     profile.image = [UIImage imageNamed:@"ky"];
     
@@ -92,7 +94,7 @@
     profile.layer.masksToBounds = YES;
     profile.layer.borderWidth = 0;
     
-    return cell;
+    return cell;;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
