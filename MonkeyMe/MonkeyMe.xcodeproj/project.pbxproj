@@ -30,6 +30,12 @@
 		883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */; };
 		883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */; };
 		883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */; };
+		8862FF431A9F2EB200A1E7A9 /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8862FF421A9F2EB200A1E7A9 /* EditProfileViewController.m */; };
+		8862FF461A9F2EC100A1E7A9 /* EditPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8862FF451A9F2EC100A1E7A9 /* EditPhotoViewController.m */; };
+		8862FF481A9F379000A1E7A9 /* phoedic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8862FF471A9F379000A1E7A9 /* phoedic.png */; };
+		8862FF4B1A9F37B600A1E7A9 /* SharePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8862FF4A1A9F37B600A1E7A9 /* SharePopupViewController.m */; };
+		8862FF4D1A9F517200A1E7A9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 8862FF4C1A9F517200A1E7A9 /* share.png */; };
+		8862FF4F1A9F53B400A1E7A9 /* mleaf.png in Resources */ = {isa = PBXBuildFile; fileRef = 8862FF4E1A9F53B400A1E7A9 /* mleaf.png */; };
 		887F2F731A9B60FF005E2F4F /* mleafbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 887F2F721A9B60FF005E2F4F /* mleafbutton.png */; };
 		887F2F761A9B657A005E2F4F /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 887F2F751A9B657A005E2F4F /* GuessViewController.m */; };
 		888043881A9E1D910092C7AC /* GuessRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888043871A9E1D910092C7AC /* GuessRightViewController.m */; };
@@ -151,6 +157,15 @@
 		883BA80F1A7FA3E700B0DDA1 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		883BA8111A7FA4EA00B0DDA1 /* eg_launch_up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_launch_up.jpg; sourceTree = "<group>"; };
 		883BA8121A7FA4EA00B0DDA1 /* eg_launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eg_launch.png; sourceTree = "<group>"; };
+		8862FF411A9F2EB200A1E7A9 /* EditProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		8862FF421A9F2EB200A1E7A9 /* EditProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		8862FF441A9F2EC100A1E7A9 /* EditPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPhotoViewController.h; sourceTree = "<group>"; };
+		8862FF451A9F2EC100A1E7A9 /* EditPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPhotoViewController.m; sourceTree = "<group>"; };
+		8862FF471A9F379000A1E7A9 /* phoedic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phoedic.png; sourceTree = "<group>"; };
+		8862FF491A9F37B600A1E7A9 /* SharePopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharePopupViewController.h; sourceTree = "<group>"; };
+		8862FF4A1A9F37B600A1E7A9 /* SharePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopupViewController.m; sourceTree = "<group>"; };
+		8862FF4C1A9F517200A1E7A9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		8862FF4E1A9F53B400A1E7A9 /* mleaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mleaf.png; sourceTree = "<group>"; };
 		887F2F721A9B60FF005E2F4F /* mleafbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mleafbutton.png; sourceTree = "<group>"; };
 		887F2F741A9B657A005E2F4F /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		887F2F751A9B657A005E2F4F /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessViewController.m; sourceTree = "<group>"; };
@@ -336,6 +351,9 @@
 		883BA7F01A7FA2F100B0DDA1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				8862FF4E1A9F53B400A1E7A9 /* mleaf.png */,
+				8862FF4C1A9F517200A1E7A9 /* share.png */,
+				8862FF471A9F379000A1E7A9 /* phoedic.png */,
 				887F2F721A9B60FF005E2F4F /* mleafbutton.png */,
 				88D969541A976228007EE2E3 /* test.jpg */,
 				88D969521A97508A007EE2E3 /* ok.png */,
@@ -427,6 +445,10 @@
 				88D9694C1A97235E007EE2E3 /* SelectWordView.h */,
 				88D9694D1A97235E007EE2E3 /* SelectWordView.m */,
 				88D9694F1A974F9D007EE2E3 /* HintVIewController.h */,
+				8862FF411A9F2EB200A1E7A9 /* EditProfileViewController.h */,
+				8862FF421A9F2EB200A1E7A9 /* EditProfileViewController.m */,
+				8862FF441A9F2EC100A1E7A9 /* EditPhotoViewController.h */,
+				8862FF451A9F2EC100A1E7A9 /* EditPhotoViewController.m */,
 				88D969501A974F9D007EE2E3 /* HintVIewController.m */,
 				88D969561A9763B9007EE2E3 /* FinishPopupViewController.h */,
 				88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */,
@@ -443,6 +465,8 @@
 			children = (
 				88BB5BD11A923DF400385C04 /* AchieveViewController.h */,
 				88BB5BD21A923DF400385C04 /* AchieveViewController.m */,
+				8862FF491A9F37B600A1E7A9 /* SharePopupViewController.h */,
+				8862FF4A1A9F37B600A1E7A9 /* SharePopupViewController.m */,
 				88BB5BCE1A922EF000385C04 /* GameViewController.h */,
 				88BB5BCF1A922EF000385C04 /* GameViewController.m */,
 				88BB5BCB1A922EDD00385C04 /* PhotoViewController.h */,
@@ -605,6 +629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				889789D41A88BE1F00B2B8A6 /* profbox.png in Resources */,
+				8862FF4D1A9F517200A1E7A9 /* share.png in Resources */,
 				889CD0C51A85EFEF00580FB6 /* energy.png in Resources */,
 				883BA7CC1A7FA28A00B0DDA1 /* Main.storyboard in Resources */,
 				883BA8131A7FA4EA00B0DDA1 /* eg_launch_up.jpg in Resources */,
@@ -616,6 +641,7 @@
 				883BA7ED1A7FA2EB00B0DDA1 /* pinkLine.png in Resources */,
 				883BA7EE1A7FA2EB00B0DDA1 /* signup_1_ic.png in Resources */,
 				883BA8141A7FA4EA00B0DDA1 /* eg_launch.png in Resources */,
+				8862FF481A9F379000A1E7A9 /* phoedic.png in Resources */,
 				889CD0E81A861E4300580FB6 /* menu-button.png in Resources */,
 				88D969491A97208E007EE2E3 /* refresh.png in Resources */,
 				889CD0CC1A85EFEF00580FB6 /* myturn.png in Resources */,
@@ -644,6 +670,7 @@
 				889CD0CB1A85EFEF00580FB6 /* menu.png in Resources */,
 				889CD0F71A86204000580FB6 /* leftMenu.jpg in Resources */,
 				88D969471A971F4B007EE2E3 /* monkeywords.png in Resources */,
+				8862FF4F1A9F53B400A1E7A9 /* mleaf.png in Resources */,
 				889CD0F51A86204000580FB6 /* gear.png in Resources */,
 				88BB5BDA1A935E7200385C04 /* achb.png in Resources */,
 				88A68FEC1A8A14B400DBA3CE /* ky.png in Resources */,
@@ -688,6 +715,7 @@
 				889CD0FB1A8624A800580FB6 /* MainViewController.m in Sources */,
 				889CD0E61A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
+				8862FF461A9F2EC100A1E7A9 /* EditPhotoViewController.m in Sources */,
 				883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */,
 				88BB5BB61A91F16800385C04 /* ProfileViewController.m in Sources */,
 				883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */,
@@ -700,12 +728,14 @@
 				883BA7C31A7FA28A00B0DDA1 /* main.m in Sources */,
 				88BB5BD01A922EF000385C04 /* GameViewController.m in Sources */,
 				883BA8101A7FA3E700B0DDA1 /* LoginViewController.m in Sources */,
+				8862FF431A9F2EB200A1E7A9 /* EditProfileViewController.m in Sources */,
 				889CD0E51A861E4300580FB6 /* SlideNavigationContorllerAnimatorScaleAndFade.m in Sources */,
 				883BA8071A7FA3C200B0DDA1 /* NetworkController.m in Sources */,
 				888043881A9E1D910092C7AC /* GuessRightViewController.m in Sources */,
 				88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */,
 				883BA8051A7FA3C200B0DDA1 /* JoinPopupViewController.m in Sources */,
 				883BA80D1A7FA3C200B0DDA1 /* WYStoryboardPopoverSegue.m in Sources */,
+				8862FF4B1A9F37B600A1E7A9 /* SharePopupViewController.m in Sources */,
 				88D969511A974F9D007EE2E3 /* HintVIewController.m in Sources */,
 				889CD0E71A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlideAndFade.m in Sources */,
 				889CD0E41A861E4300580FB6 /* SlideNavigationContorllerAnimatorScale.m in Sources */,

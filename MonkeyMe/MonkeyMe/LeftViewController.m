@@ -55,7 +55,7 @@
     switch (indexPath.row)
     {
         case 0:
-            text.text = @"Shop";
+            text.text = @"Home";
             image.image = [UIImage imageNamed:@"shop"];
             break;
             
@@ -74,8 +74,8 @@
             image.image = [UIImage imageNamed:@"word"];
             break;
         case 4 :
-            text.text = @"Achievements";
-            image.image = [UIImage imageNamed:@"achieve"];
+            text.text = @"Shop";
+            image.image = [UIImage imageNamed:@"shop"];
             break;
         case 5 :
             text.text = @"Settings";
@@ -95,8 +95,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                                             bundle: nil];
-    
+                                        bundle: nil];
+
     UIViewController *vc ;
     
     switch (indexPath.row)
@@ -123,7 +123,6 @@
     [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
                                                              withSlideOutAnimation:self.slideOutAnimationEnabled
                                                                      andCompletion:nil];
-
 }
 
 

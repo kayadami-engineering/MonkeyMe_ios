@@ -14,8 +14,9 @@
 #import "SlideNavigationContorllerAnimatorScaleAndFade.h"
 #import "SlideNavigationContorllerAnimatorSlideAndFade.h"
 
-@interface RightViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface RightViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UISearchBar *headerSearch;
 
 @end

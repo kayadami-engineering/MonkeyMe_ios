@@ -7,9 +7,10 @@
 //
 
 #import "ProfileViewController.h"
-#import "RightViewController.h"
+#import "EditPhotoViewController.h"
 
-
+@interface ProfileViewController() <PhotoViewDelegate>
+@end
 
 @implementation ProfileViewController
 @synthesize profileImage;
@@ -20,6 +21,7 @@
 @synthesize myView;
 @synthesize achieveView;
 @synthesize currentView;
+@synthesize curImage;
 
 - (void)viewDidLoad {
     
@@ -40,16 +42,12 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     photoView = (PhotoViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"PhotoViewController"];
+    photoView.delegate = self;
     gameView = (GameViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"GameViewController"];
     achieveView = (AchieveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"AchieveViewController"];
     self.currentView = photoView.view;
     [myView addSubview:self.currentView];
     
-    
-    RightViewController *rightMenu = (RightViewController*)[mainStoryboard
-                                                            instantiateViewControllerWithIdentifier: @"RightViewController"];
-    
-    [SlideNavigationController sharedInstance].rightMenu = rightMenu;
     
     UIButton *buttonLeft  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [buttonLeft setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -57,28 +55,29 @@
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonLeft];
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
-    UIButton *button  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [button setImage:[UIImage imageNamed:@"friendslist"] forState:UIControlStateNormal];
-    [button addTarget:[SlideNavigationController sharedInstance] action:@selector(toggleRightMenu) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    [SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
+    UIButton *buttonRight  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [buttonRight setImage:[UIImage imageNamed:@"share.png"] forState:UIControlStateNormal];
+    //[buttonRight addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    
 }
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - SlideNavigationController Methods -
-
-- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    return NO;
+    if ([segue.identifier isEqualToString:@"EditPhotoSegue"])
+    {
+        EditPhotoViewController *vc = [segue destinationViewController];
+        vc.currentImage = curImage;
+    }
+
 }
 
-- (BOOL)slideNavigationControllerShouldDisplayRightMenu
-{
-    return YES;
-}
 
+#pragma tab bar tocuh event
 - (IBAction)photoBtnTouch:(id)sender {
     
     [currentView removeFromSuperview];
@@ -88,6 +87,7 @@
 
     currentView = photoView.view;
     [myView addSubview:currentView];
+    
 }
 
 - (IBAction)gameBtnTouch:(id)sender {
@@ -110,5 +110,13 @@
     currentView = achieveView.view;
     [myView addSubview:currentView];
 }
+
+#pragma mark - PhotoView Delegate
+
+- (void)selectImage:(UIImage*)selectedImage {
+    self.curImage = selectedImage;
+    [self performSegueWithIdentifier:@"EditPhotoSegue" sender:self];
+}
+
 @end
 

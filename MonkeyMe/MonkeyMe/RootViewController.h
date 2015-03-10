@@ -10,14 +10,10 @@
 #import "NetworkController.h"
 
 @interface RootViewController : UIViewController {
-
-    NetworkController *networkController;
     
 }
 -(void) myTask;
 -(void) initialSetup;
-
-@property (strong, nonatomic)NetworkController *networkController;
 
 
 @end

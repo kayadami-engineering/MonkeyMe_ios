@@ -11,6 +11,7 @@
 
 @implementation PhotoViewController
 @synthesize imageListArray;
+@synthesize delegate;
 
 - (void)viewDidLoad
 {
@@ -63,7 +64,7 @@
 }
 
 
-#pragma Collection View Delegate
+#pragma mark Collection View Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.imageListArray count];
 }
@@ -71,7 +72,6 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-
     
     ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
     UIImage *image = [UIImage imageNamed:gList.imageName];
@@ -81,5 +81,13 @@
     
     return cell;
 }
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
+    UIImage *image = [UIImage imageNamed:gList.imageName];
+
+    [self.delegate selectImage:image];
+}
+
 
 @end

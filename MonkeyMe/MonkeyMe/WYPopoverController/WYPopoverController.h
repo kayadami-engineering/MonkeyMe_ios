@@ -28,6 +28,7 @@
 #import <QuartzCore/QuartzCore.h>
 #define LOGINPOP 0
 #define JOINPOP  1
+#define SHAREPOP 2
 
 @protocol WYPopoverControllerDelegate;
 @class WYPopoverTheme;

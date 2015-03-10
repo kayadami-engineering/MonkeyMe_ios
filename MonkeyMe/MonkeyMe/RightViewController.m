@@ -10,6 +10,7 @@
 
 @implementation RightViewController
 
+@synthesize headerSearch;
 
 - (void)viewDidLoad
 {
@@ -19,6 +20,19 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rightMenu.jpg"]];
     self.tableView.backgroundView = imageView;
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    // add self
+    [self hideKeyboard];
+}
+
+-(void)hideKeyboard {
+    
+    if(self.headerSearch)
+        [self.headerSearch resignFirstResponder];
 }
 
 #pragma mark - UITableView Delegate & Datasrouce -
@@ -30,7 +44,8 @@
 {
     
     UIView *headerview = [[UIView alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-70, 40)];
-    UISearchBar *headerSearch = [[UISearchBar alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-80, 35)];
+    headerSearch = [[UISearchBar alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-80, 35)];
+    headerSearch.delegate = self;
     headerSearch.backgroundColor = [UIColor whiteColor];
     headerSearch.backgroundImage = [[UIImage alloc] init];
     headerSearch.placeholder = @"Search";
@@ -130,6 +145,8 @@
         default:
             return;
     }
+    
+    [self hideKeyboard];
     
     [[SlideNavigationController sharedInstance] closeMenuWithCompletion:^{
         [SlideNavigationController sharedInstance].menuRevealAnimator = revealAnimator;

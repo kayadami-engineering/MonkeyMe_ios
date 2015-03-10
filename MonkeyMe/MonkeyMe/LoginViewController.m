@@ -11,6 +11,7 @@
 #import "JoinPopupViewController.h"
 #import "WYStoryboardPopoverSegue.h"
 #import "SVProgressHUD.h"
+#import "NetworkController.h"
 
 @interface LoginViewController () <LoginViewControllerDelegate, JoinViewControllerDelegate, WYPopoverControllerDelegate> {
    
@@ -19,10 +20,14 @@
 @implementation LoginViewController
 @synthesize loginBtn;
 @synthesize popoverController;
-
+@synthesize networkController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    networkController = [NetworkController sharedInstance];
+    [networkController initNetwork];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -101,12 +106,15 @@
     [self closePopup];
 }
 
-- (void)loginRequest:(LoginPopupViewController *)controller {
+- (void)loginRequest:(LoginPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password; {
     
     [self closePopupLogin:controller];
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
+    
+    [networkController loginRequest:email Password:(NSString*)password]; //request login
+    
     [self performSelector:@selector(loginOk)withObject:nil afterDelay:1.0];
     
 }

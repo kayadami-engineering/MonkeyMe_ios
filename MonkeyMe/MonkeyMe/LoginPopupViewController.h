@@ -15,6 +15,8 @@
 }
 - (IBAction)loginBtnTouch:(id)sender;
 - (IBAction)closeBtnTouch:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *email;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 
 @property (weak, nonatomic) id<LoginViewControllerDelegate> delegate;
 @end
@@ -24,6 +26,6 @@
 @optional
 
 - (void)closePopupLogin:(LoginPopupViewController *)controller;
-- (void)loginRequest:(LoginPopupViewController *)controller;
+- (void)loginRequest:(LoginPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password;
 
 @end

@@ -13,7 +13,9 @@
 }
 
 - (void)initNetwork;
+- (void)loginRequest:(NSString*)email Password:(NSString*)password;
 - (void)postToServer:(NSString *)postString;
++ (NetworkController *)sharedInstance;
 
 @property (strong, nonatomic) NSURL *serverURL;
 @property (strong, nonatomic) NSMutableURLRequest *request;

@@ -43,7 +43,7 @@
 
 - (IBAction)loginBtnTouch:(id)sender {
     
-    [self.delegate loginRequest:self];
+    [self.delegate loginRequest:self Email:self.email.text Password:self.password.text];
     
 }
 

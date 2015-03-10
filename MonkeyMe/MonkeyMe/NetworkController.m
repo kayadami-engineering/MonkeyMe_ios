@@ -15,9 +15,23 @@
 @synthesize request;
 @synthesize responseData;
 
+static NetworkController *singletonInstance;
+
+#pragma mark - Initialization -
+
++ (NetworkController *)sharedInstance
+{
+    if (!singletonInstance) {
+        NSLog(@"NetworkController has not been initialized. Either place one in your storyboard or initialize one in code");
+        singletonInstance = [[NetworkController alloc]init];
+    }
+    
+    return singletonInstance;
+}
+
 -(void)initNetwork {
     
-    serverURL = [NSURL URLWithString:@"http://www.happinuss.com/happinus_app_server/RequestHandleServer.php"];
+    serverURL = [NSURL URLWithString:@"http://175.211.100.229/monkeyme/monkeyme_server/RequestHandleServer.php"];
     request = [[NSMutableURLRequest alloc]init];
     [request setURL:serverURL];
     [request setHTTPMethod:@"POST"];
@@ -37,7 +51,24 @@
     [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
-#pragma Parser Delegate
+#pragma mark - Request Command Methods-
+
+-(void)joinRequest {
+    
+}
+
+-(void)loginRequest:(NSString*)email Password:(NSString*)password {
+    
+    NSString *string = [NSString stringWithFormat:@"command=login&email=%@",email];
+    [self postToServer:string];
+}
+
+-(void)updateMainRequest:(NSInteger)myIndex {
+    NSString *string = [NSString stringWithFormat:@"command=updateMain&index=%d",myIndex];;
+    [self postToServer:string];
+}
+
+#pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
 }
