@@ -14,12 +14,16 @@
 
 - (void)initNetwork;
 - (void)loginRequest:(NSString*)email Password:(NSString*)password;
+- (void)updateMainRequest;
 - (void)postToServer:(NSString *)postString;
 + (NetworkController *)sharedInstance;
 
+@property (assign, nonatomic) NSInteger myMemberIndex;
 @property (strong, nonatomic) NSURL *serverURL;
 @property (strong, nonatomic) NSMutableURLRequest *request;
 @property (strong, nonatomic) NSXMLParser *myParser;
 @property (strong, nonatomic) NSMutableString *currentElementValue;
+@property (strong, nonatomic) NSString *currentCommand;
+@property (strong, nonatomic) NSString *currentElementName;
 @property (strong, nonatomic) NSMutableData *responseData;
 @end

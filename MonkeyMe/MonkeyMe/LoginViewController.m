@@ -24,9 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self registerNotification];
     
     networkController = [NetworkController sharedInstance];
-    [networkController initNetwork];
     
     // Do any additional setup after loading the view.
 }
@@ -35,17 +35,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -78,11 +67,36 @@
     }
 }
 
-- (void)loginOk {
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(loginProcess:) name:@"loginProcess" object:nil];
+}
+
+- (void)loginProcess:(NSNotification *)notification { //network notify the result of login request
     
     //do something..
     [SVProgressHUD dismiss];
-    [self performSegueWithIdentifier:@"MainViewSegue" sender:self];
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if login failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        NSString *index = (NSString*)dict[@"memberIndex"];
+        NSLog(@"index=%@",index);
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [self performSegueWithIdentifier:@"MainViewSegue" sender:self];
+    }
 }
 
 - (void)joinOk {
@@ -115,8 +129,7 @@
     
     [networkController loginRequest:email Password:(NSString*)password]; //request login
     
-    [self performSelector:@selector(loginOk)withObject:nil afterDelay:1.0];
-    
+    //[self performSelector:@selector(loginOk)withObject:nil afterDelay:1.0];
 }
 
 #pragma mark - Join popup View Delegate
@@ -136,4 +149,5 @@
     [self performSelector:@selector(joinOk)withObject:nil afterDelay:1.0];
     
 }
+
 @end

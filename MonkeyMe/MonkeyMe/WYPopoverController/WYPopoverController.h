@@ -108,6 +108,7 @@ typedef NS_OPTIONS(NSUInteger, WYPopoverAnimationOptions) {
 
 @property (nonatomic, strong) WYPopoverTheme                   *theme;
 @property (nonatomic, assign) int                               popupMode;
+
 + (void)setDefaultTheme:(WYPopoverTheme *)theme;
 + (WYPopoverTheme *)defaultTheme;
 
@@ -252,6 +253,7 @@ typedef NS_OPTIONS(NSUInteger, WYPopoverAnimationOptions) {
 @property (nonatomic, assign) UIEdgeInsets viewContentInsets;
 
 @property (nonatomic, strong) UIColor *overlayColor;
+
 
 + (instancetype)theme;
 + (instancetype)themeForIOS6;

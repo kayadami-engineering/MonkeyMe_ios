@@ -8,12 +8,18 @@
 
 #import "NetworkController.h"
 
+#define JOIN    0
+#define LOGIN   1
+
 @implementation NetworkController
 @synthesize currentElementValue;
 @synthesize serverURL;
 @synthesize myParser;
 @synthesize request;
 @synthesize responseData;
+@synthesize currentCommand;
+@synthesize currentElementName;
+@synthesize myMemberIndex;
 
 static NetworkController *singletonInstance;
 
@@ -24,6 +30,7 @@ static NetworkController *singletonInstance;
     if (!singletonInstance) {
         NSLog(@"NetworkController has not been initialized. Either place one in your storyboard or initialize one in code");
         singletonInstance = [[NetworkController alloc]init];
+        [singletonInstance initNetwork];
     }
     
     return singletonInstance;
@@ -63,9 +70,13 @@ static NetworkController *singletonInstance;
     [self postToServer:string];
 }
 
--(void)updateMainRequest:(NSInteger)myIndex {
-    NSString *string = [NSString stringWithFormat:@"command=updateMain&index=%d",myIndex];;
-    [self postToServer:string];
+-(void)updateMainRequest {
+    
+    myMemberIndex = 1;
+    if(myMemberIndex) {
+        NSString *string = [NSString stringWithFormat:@"command=updateMain&memberIndex=%d",myMemberIndex];
+        [self postToServer:string];
+    }
 }
 
 #pragma mark Parser Delegate
@@ -75,16 +86,35 @@ static NetworkController *singletonInstance;
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     
-    if([elementName isEqualToString:@"Books"]) {
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    currentElementName = [NSString stringWithString:elementName];
+    
+    if([elementName isEqualToString:@"infohead"]) { //information header
         //Initialize the array.
+        currentCommand = [attributeDict objectForKey:@"command"];
+        NSString *result = [attributeDict objectForKey:@"result"];
+        NSString *message = [attributeDict objectForKey:@"message"];
+        
+        [dict setValue:result forKey:@"result"];
+        [dict setValue:message forKey:@"message"];
+       
+        if([result isEqualToString:@"error"]) { //when error encountered
+            
+            if([currentCommand isEqualToString:@"login"]) { //if login failed
+                [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:dict];
+            }
+        }
     }
-    else if([elementName isEqualToString:@"Book"]) {
+    
+    else if([elementName isEqualToString:@"state"]) { //My state
         
-        //Initialize the book.
-        
-        //Extract the attribute here.
-        
-        NSLog(@"Reading id value :%i", [[attributeDict objectForKey:@"id"] integerValue]);
+        if([currentCommand isEqualToString:@"login"]) { //if login succeeed
+            NSString *index = [attributeDict objectForKey:@"idx"];
+            
+            [dict setValue:index forKey:@"memberIndex"];
+            [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:dict];
+        }
     }
     
     NSLog(@"Processing Element: %@", elementName);

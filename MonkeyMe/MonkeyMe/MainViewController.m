@@ -16,10 +16,9 @@
 @synthesize scrollView;
 @synthesize gameListArray;
 @synthesize profileImage;
-
+@synthesize networkController;
 
 - (void)viewDidLoad {
-    
     
     [super viewDidLoad];
     [self setNavigationItem];
@@ -30,27 +29,8 @@
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.borderWidth = 0;
     
-    //[self GetUTF8String:@"안녕하세요"];
-    
-}
-
-- (NSString *)GetUTF8String:(NSString *)hanggulString {
-    NSArray *chosung = [[NSArray alloc] initWithObjects:@"ㄱ",@"ㄲ",@"ㄴ",@"ㄷ",@"ㄸ",@"ㄹ",@"ㅁ",@"ㅂ",@"ㅃ",@"ㅅ",@"ㅆ",@"ㅇ",@"ㅈ",@"ㅉ",@"ㅊ",@"ㅋ",@"ㅌ",@"ㅍ",@"ㅎ",nil];
-    NSArray *jungsung = [[NSArray alloc] initWithObjects:@"ㅏ",@"ㅐ",@"ㅑ",@"ㅒ",@"ㅓ",@"ㅔ",@"ㅕ",@"ㅖ",@"ㅗ",@"ㅘ",@"ㅙ",@"ㅚ",@"ㅛ",@"ㅜ",@"ㅝ",@"ㅞ",@"ㅟ",@"ㅠ",@"ㅡ",@"ㅢ",@"ㅣ",nil];
-    NSArray *jongsung = [[NSArray alloc] initWithObjects:@"",@"ㄱ",@"ㄲ",@"ㄳ",@"ㄴ",@"ㄵ",@"ㄶ",@"ㄷ",@"ㄹ",@"ㄺ",@"ㄻ",@"ㄼ",@"ㄽ",@"ㄾ",@"ㄿ",@"ㅀ",@"ㅁ",@"ㅂ",@"ㅄ",@"ㅅ",@"ㅆ",@"ㅇ",@"ㅈ",@"ㅊ",@"ㅋ",@" ㅌ",@"ㅍ",@"ㅎ",nil];
-    NSString *textResult = @"";
-    for (int i=0;i<[hanggulString length];i++) {
-        NSInteger code = [hanggulString characterAtIndex:i];
-        if (code >= 44032 && code <= 55203) {
-            NSInteger uniCode = code - 44032;
-            NSInteger chosungIndex = uniCode / 21 / 28;
-            NSInteger jungsungIndex = uniCode % (21 * 28) / 28;
-            NSInteger jongsungIndex = uniCode % 28;
-            textResult = [NSString stringWithFormat:@"%@%@%@%@", textResult, [chosung objectAtIndex:chosungIndex], [jungsung objectAtIndex:jungsungIndex], [jongsung objectAtIndex:jongsungIndex]];
-            NSLog(@"%@",[chosung objectAtIndex:chosungIndex]);
-        }
-    }
-    return textResult;
+    networkController = [NetworkController sharedInstance];
+    [networkController updateMainRequest];
 }
 
 - (void)setNavigationItem {
@@ -80,22 +60,6 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     [SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
     
-    /*
-     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidClose object:nil queue:nil usingBlock:^(NSNotification *note) {
-     NSString *menu = note.userInfo[@"menu"];
-     NSLog(@"Closed %@", menu);
-     }];
-     
-     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidOpen object:nil queue:nil usingBlock:^(NSNotification *note) {
-     NSString *menu = note.userInfo[@"menu"];
-     NSLog(@"Opened %@", menu);
-     }];
-     
-     [[NSNotificationCenter defaultCenter] addObserverForName:SlideNavigationControllerDidReveal object:nil queue:nil usingBlock:^(NSNotification *note) {
-     NSString *menu = note.userInfo[@"menu"];
-     NSLog(@"Revealed %@", menu);
-     }];
-     */
 }
 - (void)setGameList {
     

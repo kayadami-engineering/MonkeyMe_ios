@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
 #import "MainTableViewCell.h"
+#import "NetworkController.h"
 
 @interface MainViewController : UIViewController <SlideNavigationControllerDelegate,UITableViewDataSource, UITableViewDelegate>
 
@@ -16,5 +17,5 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *gameListArray;
-
+@property (nonatomic, strong) NetworkController *networkController;
 @end

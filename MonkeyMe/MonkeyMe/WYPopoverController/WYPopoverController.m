@@ -270,16 +270,19 @@ static char const * const UINavigationControllerEmbedInPopoverTagKey = "UINaviga
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @interface UIViewController (WYPopover)
+@property (nonatomic, assign) bool blocked;
 @end
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation UIViewController (WYPopover)
-
+@dynamic blocked;
 
 + (void)load
 {
     Method original, swizzle;
+    NSLog(@"load");
+    
     
 #pragma clang diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated"
@@ -985,6 +988,7 @@ static float edgeSizeFromCornerRadius(float cornerRadius) {
         self.layer.contentsScale = [UIScreen mainScreen].scale;
         //self.layer.edgeAntialiasingMask = kCALayerLeftEdge | kCALayerRightEdge | kCALayerBottomEdge | kCALayerTopEdge;
         self.layer.delegate = self;
+
     }
     
     return self;
@@ -1688,6 +1692,7 @@ static WYPopoverTheme *defaultTheme_ = nil;
         themeUpdatesEnabled = YES;
         
         popoverContentSize_ = CGSizeZero;
+        
     }
     
     return self;
