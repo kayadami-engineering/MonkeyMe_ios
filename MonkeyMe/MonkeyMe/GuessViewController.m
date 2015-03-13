@@ -8,10 +8,19 @@
 
 #import "GuessViewController.h"
 
+#import "GiveUpPopupVIewController.h"
+#import "WYStoryboardPopoverSegue.h"
+
+@interface GuessViewController() <GiveUpPopupDelegate,WYPopoverControllerDelegate>
+
+@end
+
 @implementation GuessViewController
 @synthesize hintCount;
 @synthesize keyboardHeight;
 @synthesize answerText;
+@synthesize popoverController;
+
 
 - (void)viewDidLoad {
     
@@ -155,6 +164,23 @@
     self.view.frame = rect;
     
     [UIView commitAnimations];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"GiveUpSegue"])
+    {
+        GiveUpPopupVIewController *giveUpPopupViewController = segue.destinationViewController;
+        giveUpPopupViewController.delegate = self;
+        
+        WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
+        popoverController = [popoverSegue popoverControllerWithSender:sender
+                                             permittedArrowDirections:WYPopoverArrowDirectionUp
+                                                             animated:YES
+                                                              options:WYPopoverAnimationOptionFadeWithScale
+                                                                 mode:3];
+        popoverController.delegate = self;
+    }
 }
 
 - (NSString *)GetUTF8String:(NSString *)hanggulString {

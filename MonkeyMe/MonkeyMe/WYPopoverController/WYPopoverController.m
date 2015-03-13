@@ -2241,6 +2241,9 @@ static WYPopoverTheme *defaultTheme_ = nil;
     else if(self.popupMode==SHAREPOP) {
         contentViewSize = CGSizeMake(300, 150);
     }
+    else if(self.popupMode==GiveUpPop) {
+        contentViewSize = CGSizeMake(300, 100);
+    }
 
     CGSize minContainerSize = WY_POPOVER_MIN_SIZE;
     

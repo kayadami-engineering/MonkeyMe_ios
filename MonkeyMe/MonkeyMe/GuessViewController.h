@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "WYPopoverController.h"
 
 @interface GuessViewController : UIViewController <SlideNavigationControllerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *HintView;
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIView *WordViewFrame;
 @property (assign, nonatomic) int hintCount;
 @property (assign, nonatomic)CGSize keyboardHeight;
+@property (strong, nonatomic) WYPopoverController *popoverController;
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
 

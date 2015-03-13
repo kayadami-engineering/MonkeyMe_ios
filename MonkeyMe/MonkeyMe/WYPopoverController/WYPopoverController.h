@@ -26,9 +26,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#define LOGINPOP 0
-#define JOINPOP  1
-#define SHAREPOP 2
+#define LOGINPOP    0
+#define JOINPOP     1
+#define SHAREPOP    2
+#define GiveUpPop   3
 
 @protocol WYPopoverControllerDelegate;
 @class WYPopoverTheme;

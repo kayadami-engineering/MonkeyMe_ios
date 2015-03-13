@@ -106,6 +106,7 @@
 		88D969531A97508A007EE2E3 /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969521A97508A007EE2E3 /* ok.png */; };
 		88D969551A976228007EE2E3 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 88D969541A976228007EE2E3 /* test.jpg */; };
 		88D969581A9763B9007EE2E3 /* FinishPopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */; };
+		88FEF90B1AB1CCCE001F1116 /* GiveUpPopupVIewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88FEF90A1AB1CCCE001F1116 /* GiveUpPopupVIewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -258,6 +259,8 @@
 		88D969541A976228007EE2E3 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		88D969561A9763B9007EE2E3 /* FinishPopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinishPopupViewController.h; sourceTree = "<group>"; };
 		88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinishPopupViewController.m; sourceTree = "<group>"; };
+		88FEF9091AB1CCCE001F1116 /* GiveUpPopupVIewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GiveUpPopupVIewController.h; sourceTree = "<group>"; };
+		88FEF90A1AB1CCCE001F1116 /* GiveUpPopupVIewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GiveUpPopupVIewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -465,6 +468,8 @@
 			children = (
 				88BB5BD11A923DF400385C04 /* AchieveViewController.h */,
 				88BB5BD21A923DF400385C04 /* AchieveViewController.m */,
+				88FEF9091AB1CCCE001F1116 /* GiveUpPopupVIewController.h */,
+				88FEF90A1AB1CCCE001F1116 /* GiveUpPopupVIewController.m */,
 				8862FF491A9F37B600A1E7A9 /* SharePopupViewController.h */,
 				8862FF4A1A9F37B600A1E7A9 /* SharePopupViewController.m */,
 				88BB5BCE1A922EF000385C04 /* GameViewController.h */,
@@ -713,6 +718,7 @@
 				883BA8081A7FA3C200B0DDA1 /* RootViewController.m in Sources */,
 				88D9694E1A97235E007EE2E3 /* SelectWordView.m in Sources */,
 				889CD0FB1A8624A800580FB6 /* MainViewController.m in Sources */,
+				88FEF90B1AB1CCCE001F1116 /* GiveUpPopupVIewController.m in Sources */,
 				889CD0E61A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
 				8862FF461A9F2EC100A1E7A9 /* EditPhotoViewController.m in Sources */,
