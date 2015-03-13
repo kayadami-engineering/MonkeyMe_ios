@@ -98,6 +98,7 @@
 		88BB5BDF1A935E7200385C04 /* phog.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BD91A935E7200385C04 /* phog.png */; };
 		88BB5BE21A94981500385C04 /* ProfileImageItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */; };
 		88BB5BE51A94AD7000385C04 /* SelectFriendView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BE41A94AD7000385C04 /* SelectFriendView.m */; };
+		88CA96E11AB30EB7008B72BE /* GuessGiveupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CA96E01AB30EB7008B72BE /* GuessGiveupViewController.m */; };
 		88D969471A971F4B007EE2E3 /* monkeywords.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969461A971F4B007EE2E3 /* monkeywords.png */; };
 		88D969491A97208E007EE2E3 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969481A97208E007EE2E3 /* refresh.png */; };
 		88D9694B1A9720DC007EE2E3 /* refreshbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D9694A1A9720DC007EE2E3 /* refreshbox.png */; };
@@ -248,6 +249,8 @@
 		88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageItemCell.m; sourceTree = "<group>"; };
 		88BB5BE31A94AD7000385C04 /* SelectFriendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFriendView.h; sourceTree = "<group>"; };
 		88BB5BE41A94AD7000385C04 /* SelectFriendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFriendView.m; sourceTree = "<group>"; };
+		88CA96DF1AB30EB7008B72BE /* GuessGiveupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessGiveupViewController.h; sourceTree = "<group>"; };
+		88CA96E01AB30EB7008B72BE /* GuessGiveupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessGiveupViewController.m; sourceTree = "<group>"; };
 		88D969461A971F4B007EE2E3 /* monkeywords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkeywords.png; sourceTree = "<group>"; };
 		88D969481A97208E007EE2E3 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		88D9694A1A9720DC007EE2E3 /* refreshbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshbox.png; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				887F2F751A9B657A005E2F4F /* GuessViewController.m */,
 				888043861A9E1D910092C7AC /* GuessRightViewController.h */,
 				888043871A9E1D910092C7AC /* GuessRightViewController.m */,
+				88CA96DF1AB30EB7008B72BE /* GuessGiveupViewController.h */,
+				88CA96E01AB30EB7008B72BE /* GuessGiveupViewController.m */,
 			);
 			name = MainViewControllers;
 			sourceTree = "<group>";
@@ -602,6 +607,7 @@
 				TargetAttributes = {
 					883BA7BC1A7FA28A00B0DDA1 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = 4CRUHPW36L;
 					};
 					883BA7D51A7FA28B00B0DDA1 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -721,6 +727,7 @@
 				88FEF90B1AB1CCCE001F1116 /* GiveUpPopupVIewController.m in Sources */,
 				889CD0E61A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,
 				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
+				88CA96E11AB30EB7008B72BE /* GuessGiveupViewController.m in Sources */,
 				8862FF461A9F2EC100A1E7A9 /* EditPhotoViewController.m in Sources */,
 				883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */,
 				88BB5BB61A91F16800385C04 /* ProfileViewController.m in Sources */,

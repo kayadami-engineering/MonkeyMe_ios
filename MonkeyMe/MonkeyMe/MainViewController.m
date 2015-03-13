@@ -29,8 +29,8 @@
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.borderWidth = 0;
     
-    networkController = [NetworkController sharedInstance];
-    [networkController updateMainRequest];
+    //networkController = [NetworkController sharedInstance];
+    //[networkController updateMainRequest];
 }
 
 - (void)setNavigationItem {

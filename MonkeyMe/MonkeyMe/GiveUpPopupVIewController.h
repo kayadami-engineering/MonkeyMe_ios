@@ -13,11 +13,13 @@
 @interface GiveUpPopupVIewController : UIViewController
 
 @property (weak, nonatomic) id<GiveUpPopupDelegate> delegate;
+- (IBAction)giveupPressed:(id)sender;
 @end
 
 @protocol GiveUpPopupDelegate <NSObject>
 
 @optional
 
+- (void)giveupProcess;
 
 @end

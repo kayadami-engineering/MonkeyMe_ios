@@ -92,7 +92,6 @@
     if(hintCount==1) {
         self.HintView.hidden = NO;
     }
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -201,5 +200,29 @@
     }
     return textResult;
 }
+- (void)closePopup {
+    [popoverController dismissPopoverAnimated:YES];
+    popoverController.delegate = nil;
+    popoverController = nil;
+}
 
+#pragma mark Giveup popup delegate
+
+- (void)giveupProcess {
+    
+    [self.view endEditing:YES];
+    [self closePopup];
+    
+    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+                                                  bundle:nil];
+    UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessGiveupViewController"];
+    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    [self presentViewController:vc animated:YES completion:nil];
+    vc.view.alpha = 0;
+    [UIView animateWithDuration:1 animations:^{
+        vc.view.alpha = 1;
+    }];
+    
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+}
 @end

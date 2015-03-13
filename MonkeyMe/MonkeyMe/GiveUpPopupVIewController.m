@@ -13,4 +13,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }
+- (IBAction)giveupPressed:(id)sender {
+
+    [self.delegate giveupProcess];
+}
 @end
