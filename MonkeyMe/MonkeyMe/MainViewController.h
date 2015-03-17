@@ -13,6 +13,11 @@
 
 @interface MainViewController : UIViewController <SlideNavigationControllerDelegate,UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *stateCount_light;
+@property (weak, nonatomic) IBOutlet UILabel *stateCount_banana;
+@property (weak, nonatomic) IBOutlet UILabel *stateCount_leaf;
+@property (weak, nonatomic) IBOutlet UILabel *myName;
+@property (weak, nonatomic) IBOutlet UILabel *myLevel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;

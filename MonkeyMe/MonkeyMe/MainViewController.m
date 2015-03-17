@@ -11,6 +11,8 @@
 #import "RightViewController.h"
 #import "NetworkController.h"
 
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 @implementation MainViewController
 @synthesize tableView;
 @synthesize scrollView;
@@ -22,15 +24,112 @@
     
     [super viewDidLoad];
     [self setNavigationItem];
-    [self setGameList];
+    //[self setGameList];
+    [self registerNotification];
     
-    [self.profileImage setImage:[UIImage imageNamed:@"ky"]];
-    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
-    self.profileImage.layer.masksToBounds = YES;
-    self.profileImage.layer.borderWidth = 0;
     
-    //networkController = [NetworkController sharedInstance];
-    //[networkController updateMainRequest];
+    
+    networkController = [NetworkController sharedInstance];
+    [networkController updateMainRequest];
+    
+}
+
+- (void)setProfileImageFromURL:(NSString*)profileUrl {
+    
+    NSURL *url = [NSURL URLWithString:profileUrl];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    if(data) {
+        UIImage *image = [[UIImage alloc]initWithData:data];
+        
+        [self.profileImage setImage:image];
+        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
+        self.profileImage.layer.masksToBounds = YES;
+        self.profileImage.layer.borderWidth = 0;
+    }
+    
+    else {
+        NSLog(@"failed to load image");
+    }
+}
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(updateProcess:) name:@"updateMainProcess" object:nil];
+}
+
+- (void)updateProcess:(NSNotification *)notification { //network notify the result of login request
+    
+    //do something..
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if login failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        NSString *memberID = (NSString*)dict[@"memberID"];
+        NSString *name = (NSString*)dict[@"name"];
+        NSString *level = (NSString*)dict[@"level"];
+        NSString *profileUrl = (NSString*)dict[@"profileUrl"];
+        NSString *lightCount = (NSString*)dict[@"lightCount"];
+        NSString *bananaCount = (NSString*)dict[@"bananaCount"];
+        NSString *leafCount = (NSString*)dict[@"leafCount"];
+        
+        NSMutableArray *gameListMyturn = (NSMutableArray*)dict[@"gamelist_myturn"];
+        NSMutableArray *gameListFriendsTurn = (NSMutableArray*)dict[@"gamelist_friendsturn"];
+        
+        gameListArray = [[NSMutableArray alloc]init];
+        NSMutableArray *myTurnList = [[NSMutableArray alloc]init];
+        NSMutableArray *friendTurnList = [[NSMutableArray alloc]init];
+        
+        [self.myName setText:name];
+        [self.myLevel setText:level];
+        [self.stateCount_light setText:lightCount];
+        [self.stateCount_banana setText:bananaCount];
+        [self.stateCount_leaf setText:leafCount];
+        
+        
+        for(int i=0;i<[gameListMyturn count];i++) {
+            NSMutableDictionary *dict = [gameListMyturn objectAtIndex:i];
+            
+            MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
+            
+            listItem.profileUrl = (NSString*)dict[@"profileUrl"];
+            listItem.name = (NSString*)dict[@"name"];
+            listItem.level = (NSString*)dict[@"level"];
+            listItem.roundName = [NSString stringWithFormat:@"Round %@",(NSString*)dict[@"round"]];
+            [myTurnList addObject:listItem];
+        }
+        [gameListArray addObject:myTurnList];
+        
+
+        for(int i=0;i<[gameListFriendsTurn count];i++) {
+            NSMutableDictionary *dict = [gameListFriendsTurn objectAtIndex:i];
+            
+            MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
+            
+            listItem.profileUrl = (NSString*)dict[@"profileUrl"];
+            listItem.name = (NSString*)dict[@"name"];
+            listItem.level = (NSString*)dict[@"level"];
+            listItem.roundName = [NSString stringWithFormat:@"Round %@",(NSString*)dict[@"round"]];
+            [friendTurnList addObject:listItem];
+        }
+        [gameListArray addObject:friendTurnList];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        [self setProfileImageFromURL:profileUrl];
+        [self.tableView reloadData];
+        
+    }
 }
 
 - (void)setNavigationItem {
@@ -61,68 +160,12 @@
     [SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
     
 }
-- (void)setGameList {
-    
-    gameListArray = [[NSMutableArray alloc]init];
-    NSMutableArray *newTempList = [[NSMutableArray alloc]init];
-    NSMutableArray *newTempList2 = [[NSMutableArray alloc]init];
-    
-    MainTableViewCell *ky = [[MainTableViewCell alloc]init];
-    
-    ky.imageName = @"ky.png";
-    ky.name = @"Kaya";
-    ky.level = @"5";
-    ky.roundName = @"Round 5";
-    
-    MainTableViewCell *yong = [[MainTableViewCell alloc]init];
-    
-    yong.imageName = @"yong.jpg";
-    yong.name = @"Developer of Majesty";
-    yong.level = @"6";
-    yong.roundName = @"Round 4";
-    
-    MainTableViewCell *medic = [[MainTableViewCell alloc]init];
-    
-    medic.imageName = @"medic.jpg";
-    medic.name = @"Medic";
-    medic.level = @"2";
-    medic.roundName = @"Round 4";
-    
-    MainTableViewCell *chole = [[MainTableViewCell alloc]init];
-    
-    chole.imageName = @"chole.jpg";
-    chole.name = @"Chole Moretz";
-    chole.level = @"15";
-    chole.roundName = @"Round 7";
-    
-    [newTempList addObject:ky];
-    [newTempList addObject:yong];
-    [newTempList addObject:medic];
-    [newTempList addObject:chole];
-    [newTempList addObject:ky];
-    [newTempList addObject:yong];
-    [newTempList addObject:medic];
-    [newTempList addObject:chole];
-    
-    [newTempList2 addObject:ky];
-    [newTempList2 addObject:yong];
-    [newTempList2 addObject:medic];
-    [newTempList2 addObject:chole];
-    [newTempList2 addObject:ky];
-    [newTempList2 addObject:yong];
-    [newTempList2 addObject:medic];
-    [newTempList2 addObject:chole];
-    
-    [gameListArray addObject:newTempList];
-    [gameListArray addObject:newTempList2];
-    
-    
-}
 
 - (IBAction)playWithFriend:(id)sender {
     
     [self performSegueWithIdentifier:@"SelectFriendSegue" sender:self];
 }
+
 #pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
@@ -215,7 +258,27 @@
     
         MainTableViewCell *gList = [tempArray objectAtIndex:indexPath.row];
         UIImageView *profile = (UIImageView *)[cell viewWithTag:100];
-        profile.image = [UIImage imageNamed:gList.imageName];
+        
+        dispatch_async(kBgQueue, ^{
+            
+            NSURL *url = [NSURL URLWithString:gList.profileUrl];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            
+            if(data) {
+                UIImage *image = [[UIImage alloc]initWithData:data];
+            
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        
+                        if (updateCell) {
+                            profile.image = image;
+                        }
+                    });
+                }
+            }
+        });
+        
     
         UILabel *name = (UILabel *)[cell viewWithTag:101];
         name.text = gList.name;

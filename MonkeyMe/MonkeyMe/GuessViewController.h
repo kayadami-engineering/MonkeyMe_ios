@@ -19,7 +19,10 @@
 @property (assign, nonatomic) int hintCount;
 @property (assign, nonatomic)CGSize keyboardHeight;
 @property (strong, nonatomic) WYPopoverController *popoverController;
+@property (weak, nonatomic) IBOutlet UIView *hintCloseView;
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
+- (IBAction)hintClose:(id)sender;
+- (IBAction)hintOpen:(id)sender;
 
 @end

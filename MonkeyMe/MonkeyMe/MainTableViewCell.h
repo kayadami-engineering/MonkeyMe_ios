@@ -11,16 +11,18 @@
 
 @interface MainTableViewCell : NSObject
 {
-    NSString *imageName;
+    NSString *profileUrl;
     NSString *name;
+    NSString *memberID;
     NSString *roundName;
     NSString *level;
 }
 
-@property (copy, nonatomic) NSString *imageName;
+@property (copy, nonatomic) NSString *profileUrl;
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *roundName;
 @property (copy, nonatomic) NSString *level;
+@property (copy, nonatomic) NSString *memberID;
 
 
 

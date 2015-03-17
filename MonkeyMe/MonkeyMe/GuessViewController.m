@@ -10,6 +10,7 @@
 
 #import "GiveUpPopupVIewController.h"
 #import "WYStoryboardPopoverSegue.h"
+#import "MainViewController.h"
 
 @interface GuessViewController() <GiveUpPopupDelegate,WYPopoverControllerDelegate>
 
@@ -29,6 +30,7 @@
     [self setNavigationItem];
     
 }
+
 
 - (void)initView {
     self.hintCount = 0;
@@ -92,6 +94,16 @@
     if(hintCount==1) {
         self.HintView.hidden = NO;
     }
+}
+
+- (IBAction)hintClose:(id)sender {
+    self.HintView.hidden = true;
+    self.hintCloseView.hidden = false;
+}
+
+- (IBAction)hintOpen:(id)sender {
+    self.HintView.hidden = false;
+    self.hintCloseView.hidden = true;
 }
 
 -(void)viewWillAppear:(BOOL)animated {

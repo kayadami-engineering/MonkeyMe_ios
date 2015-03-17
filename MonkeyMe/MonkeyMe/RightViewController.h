@@ -18,5 +18,6 @@
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UISearchBar *headerSearch;
+@property (nonatomic, strong) NSMutableSet *collapsedSections;
 
 @end

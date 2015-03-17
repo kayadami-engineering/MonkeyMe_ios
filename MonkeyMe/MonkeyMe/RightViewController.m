@@ -11,6 +11,7 @@
 @implementation RightViewController
 
 @synthesize headerSearch;
+@synthesize collapsedSections;
 
 - (void)viewDidLoad
 {
@@ -21,6 +22,7 @@
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"rightMenu.jpg"]];
     self.tableView.backgroundView = imageView;
     
+    collapsedSections = [NSMutableSet new];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -35,35 +37,85 @@
         [self.headerSearch resignFirstResponder];
 }
 
+-(void)sectionButtonTouchUpInside:(UIButton*)sender {
+
+    [self.tableView beginUpdates];
+    int section = sender.tag;
+    bool shouldCollapse = [collapsedSections containsObject:@(section)];
+    if (shouldCollapse) {
+        int numOfRows = [self.tableView numberOfRowsInSection:section];
+        NSArray* indexPaths = [self indexPathsForSection:section withNumberOfRows:numOfRows];
+        [self.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+        [collapsedSections removeObject:@(section)];
+    }
+    else {
+        int numOfRows = 6;
+        NSArray* indexPaths = [self indexPathsForSection:section withNumberOfRows:numOfRows];
+        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+        [collapsedSections addObject:@(section)];
+    }
+    [self.tableView endUpdates];
+    //[_tableView reloadData];
+}
+
+-(NSArray*) indexPathsForSection:(int)section withNumberOfRows:(int)numberOfRows {
+    NSMutableArray* indexPaths = [NSMutableArray new];
+    for (int i = 0; i < numberOfRows; i++) {
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:section];
+        [indexPaths addObject:indexPath];
+    }
+    return indexPaths;
+}
+
 #pragma mark - UITableView Delegate & Datasrouce -
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    UIView *headerview;
     
-    UIView *headerview = [[UIView alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-70, 40)];
-    headerSearch = [[UISearchBar alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-80, 35)];
-    headerSearch.delegate = self;
-    headerSearch.backgroundColor = [UIColor whiteColor];
-    headerSearch.backgroundImage = [[UIImage alloc] init];
-    headerSearch.placeholder = @"Search";
-    headerSearch.layer.cornerRadius = 5;
-    headerSearch.clipsToBounds = YES;
-    [headerview addSubview:headerSearch];
+    if(section==0) {
+        headerview = [[UIView alloc] initWithFrame:CGRectMake(60, 20, self.view.frame.size.width-60, 40)];
+        
+        headerSearch = [[UISearchBar alloc] initWithFrame:CGRectMake(70, 20, self.view.frame.size.width-80, 35)];
+        headerSearch.delegate = self;
+        headerSearch.backgroundColor = [UIColor whiteColor];
+        headerSearch.backgroundImage = [[UIImage alloc] init];
+        headerSearch.placeholder = @"Search";
+        headerSearch.layer.cornerRadius = 5;
+        headerSearch.clipsToBounds = YES;
+        [headerview addSubview:headerSearch];
     
+        
+    }
+    else {
+        headerview = [[UIView alloc] initWithFrame:CGRectMake(60, 0, self.view.frame.size.width-60, 40)];
+        //UIButton* result = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *result = [[UIButton alloc]initWithFrame:CGRectMake(60,0,self.view.frame.size.width-60, 40)];
+        
+        [result addTarget:self action:@selector(sectionButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        result.backgroundColor = [UIColor colorWithRed:23.0/255.0 green:165.0/255.0 blue:184.0/255.0 alpha:1.0];
+        NSString *temp = section==1 ? @"페이스북 친구" : @"서로 이웃 몽키";
+        [result setTitle:temp forState:UIControlStateNormal];
+        result.tag = section;
+        [headerview addSubview:result];
+        
+    }
     return headerview;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    if(section == 0)
+        return 0;
+    return ![collapsedSections containsObject:@(section)] ? 0 : 6;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 60;
+    return section>0 ? 40 : 60;
 
 }
 

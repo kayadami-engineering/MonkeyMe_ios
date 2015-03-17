@@ -9,9 +9,10 @@
 #import "MainTableViewCell.h"
 
 @implementation MainTableViewCell
-@synthesize imageName;
+@synthesize profileUrl;
 @synthesize name;
 @synthesize roundName;
 @synthesize level;
+@synthesize memberID;
 
 @end
