@@ -10,11 +10,17 @@
 
 @interface ProfileImageItemCell : NSObject
 {
-    NSString *imageName;
-    NSString *content;
+    NSString *imageUrl;
+    NSString *keyword;
+    NSString *hint;
+    NSString *date;
+    NSData *imageData;
 }
 
-@property (copy, nonatomic) NSString *imageName;
-@property (copy, nonatomic) NSString *content;
+@property (copy, nonatomic) NSString *imageUrl;
+@property (copy, nonatomic) NSString *keyword;
+@property (copy, nonatomic) NSString *hint;
+@property (copy, nonatomic) NSString *date;
+@property (copy, nonatomic) NSData *imageData;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "EditPhotoViewController.h"
+#import "NetworkController.h"
 
 @interface ProfileViewController() <PhotoViewDelegate>
 @end
@@ -21,26 +22,46 @@
 @synthesize myView;
 @synthesize achieveView;
 @synthesize currentView;
-@synthesize curImage;
+@synthesize selectedItem;
+@synthesize userStateInfo;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self setNavigationItem];
+    [self setProfile];
+}
+
+- (void)setProfile {
     
-    [self.profileImage setImage:[UIImage imageNamed:@"ky"]];
+    NSString *memberID = (NSString*)userStateInfo[@"memberID"];
+    NSString *name = (NSString*)userStateInfo[@"name"];
+    NSString *level = (NSString*)userStateInfo[@"level"];
+    UIImage *image = (UIImage*)userStateInfo[@"profileImage"];
+    NSString *lightCount = (NSString*)userStateInfo[@"lightCount"];
+    NSString *bananaCount = (NSString*)userStateInfo[@"bananaCount"];
+    NSString *leafCount = (NSString*)userStateInfo[@"leafCount"];
+    NSString *friends = (NSString*)userStateInfo[@"friendCount"];
+    
+    [self.profileImage setImage:image];
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.borderWidth = 0;
     
+    self.myName.text = name;
+    self.myID.text = memberID;
+    self.myLevel.text = level;
+    self.friendCount.text = friends;
+    self.stateCount_banana.text = bananaCount;
+    self.stateCount_leaf.text = leafCount;
+    self.stateCount_light.text = lightCount;
+    
     self.currentTabBtn = self.photoBtn;
     [self.currentTabBtn setSelected:true];
-
     
 }
 - (void)setNavigationItem {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                                             bundle: nil];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     photoView = (PhotoViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"PhotoViewController"];
     photoView.delegate = self;
     gameView = (GameViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"GameViewController"];
@@ -71,11 +92,9 @@
     if ([segue.identifier isEqualToString:@"EditPhotoSegue"])
     {
         EditPhotoViewController *vc = [segue destinationViewController];
-        vc.currentImage = curImage;
+        vc.item = selectedItem;
     }
-
 }
-
 
 #pragma tab bar tocuh event
 - (IBAction)photoBtnTouch:(id)sender {
@@ -113,8 +132,10 @@
 
 #pragma mark - PhotoView Delegate
 
-- (void)selectImage:(UIImage*)selectedImage {
-    self.curImage = selectedImage;
+- (void)selectItem:(ProfileImageItemCell *)item{
+    
+    self.selectedItem = item;
+    
     [self performSegueWithIdentifier:@"EditPhotoSegue" sender:self];
 }
 

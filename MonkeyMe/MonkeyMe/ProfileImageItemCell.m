@@ -10,7 +10,10 @@
 
 @implementation ProfileImageItemCell
 
-@synthesize imageName;
-@synthesize content;
+@synthesize imageUrl;
+@synthesize keyword;
+@synthesize hint;
+@synthesize date;
+@synthesize imageData;
 
 @end

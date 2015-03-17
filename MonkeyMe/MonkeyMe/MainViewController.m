@@ -10,6 +10,7 @@
 #import "LeftViewController.h"
 #import "RightViewController.h"
 #import "NetworkController.h"
+#import "ProfileViewController.h"
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -19,19 +20,21 @@
 @synthesize gameListArray;
 @synthesize profileImage;
 @synthesize networkController;
+@synthesize userStateInfo;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self setNavigationItem];
-    //[self setGameList];
     [self registerNotification];
-    
-    
     
     networkController = [NetworkController sharedInstance];
     [networkController updateMainRequest];
     
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setProfileImageFromURL:(NSString*)profileUrl {
@@ -46,6 +49,8 @@
         self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
         self.profileImage.layer.masksToBounds = YES;
         self.profileImage.layer.borderWidth = 0;
+        
+        [userStateInfo setValue:image forKey:@"profileImage"];
     }
     
     else {
@@ -59,16 +64,17 @@
     [sendNotification addObserver:self selector:@selector(updateProcess:) name:@"updateMainProcess" object:nil];
 }
 
-- (void)updateProcess:(NSNotification *)notification { //network notify the result of login request
+- (void)updateProcess:(NSNotification *)notification { //network notify the result of update request
     
     //do something..
     
     NSDictionary* dict = notification.userInfo;
     
+    
     NSString *result = (NSString*)dict[@"result"];
     NSString *message = (NSString*)dict[@"message"];
     
-    if([result isEqualToString:@"error"]) { // if login failed
+    if([result isEqualToString:@"error"]) { // if update failed
         
         //show pop up
         
@@ -76,21 +82,16 @@
     }
     else {
         
-        NSString *memberID = (NSString*)dict[@"memberID"];
-        NSString *name = (NSString*)dict[@"name"];
-        NSString *level = (NSString*)dict[@"level"];
-        NSString *profileUrl = (NSString*)dict[@"profileUrl"];
-        NSString *lightCount = (NSString*)dict[@"lightCount"];
-        NSString *bananaCount = (NSString*)dict[@"bananaCount"];
-        NSString *leafCount = (NSString*)dict[@"leafCount"];
-        
-        NSMutableArray *gameListMyturn = (NSMutableArray*)dict[@"gamelist_myturn"];
-        NSMutableArray *gameListFriendsTurn = (NSMutableArray*)dict[@"gamelist_friendsturn"];
-        
-        gameListArray = [[NSMutableArray alloc]init];
-        NSMutableArray *myTurnList = [[NSMutableArray alloc]init];
-        NSMutableArray *friendTurnList = [[NSMutableArray alloc]init];
-        
+        userStateInfo = (NSMutableDictionary*)dict[@"userInfo"];
+        // Get user profile info
+
+        NSString *name = (NSString*)userStateInfo[@"name"];
+        NSString *level = (NSString*)userStateInfo[@"level"];
+        NSString *profileUrl = (NSString*)userStateInfo[@"profileUrl"];
+        NSString *lightCount = (NSString*)userStateInfo[@"lightCount"];
+        NSString *bananaCount = (NSString*)userStateInfo[@"bananaCount"];
+        NSString *leafCount = (NSString*)userStateInfo[@"leafCount"];
+    
         [self.myName setText:name];
         [self.myLevel setText:level];
         [self.stateCount_light setText:lightCount];
@@ -98,8 +99,17 @@
         [self.stateCount_leaf setText:leafCount];
         
         
+        //get game list
+        NSMutableArray *gameListMyturn = (NSMutableArray*)dict[@"gamelist_myturn"];
+        NSMutableArray *gameListFriendsTurn = (NSMutableArray*)dict[@"gamelist_friendsturn"];
+        
+        gameListArray = [[NSMutableArray alloc]init];
+        NSMutableArray *myTurnList = [[NSMutableArray alloc]init];
+        NSMutableArray *friendTurnList = [[NSMutableArray alloc]init];
+        
+        //get game list my turn
         for(int i=0;i<[gameListMyturn count];i++) {
-            NSMutableDictionary *dict = [gameListMyturn objectAtIndex:i];
+            dict = [gameListMyturn objectAtIndex:i];
             
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
@@ -111,9 +121,9 @@
         }
         [gameListArray addObject:myTurnList];
         
-
+        //get game list friends turn
         for(int i=0;i<[gameListFriendsTurn count];i++) {
-            NSMutableDictionary *dict = [gameListFriendsTurn objectAtIndex:i];
+            dict = [gameListFriendsTurn objectAtIndex:i];
             
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
@@ -166,6 +176,15 @@
     [self performSegueWithIdentifier:@"SelectFriendSegue" sender:self];
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"ProfileViewSegue"]) {
+        
+        ProfileViewController *profileView = (ProfileViewController*)segue.destinationViewController;
+        profileView.userStateInfo = self.userStateInfo;
+        
+    }
+}
 #pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu

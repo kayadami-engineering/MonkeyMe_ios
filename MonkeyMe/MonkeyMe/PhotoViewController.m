@@ -7,7 +7,9 @@
 //
 
 #import "PhotoViewController.h"
-#import "ProfileImageItemCell.h"
+
+#import "NetworkController.h"
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 @implementation PhotoViewController
 @synthesize imageListArray;
@@ -15,52 +17,66 @@
 
 - (void)viewDidLoad
 {
-    [self setCollection];
+    //[self setCollection];
     [super viewDidLoad];
+    [self registerNotification];
+    
+    NetworkController *networkController = [NetworkController sharedInstance];
+    [networkController getProfileGameListRequest];
 }
 
-- (void)setCollection {
+- (void)registerNotification {
     
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(updateList:) name:@"profileGameListProcess" object:nil];
+}
+- (void)updateList:(NSNotification *)notification {
+
     imageListArray = [[NSMutableArray alloc]init];
     
-    ProfileImageItemCell *ky = [[ProfileImageItemCell alloc]init];
+    NSDictionary* dict = notification.userInfo;
     
-    ky.imageName = @"ky.png";
-    ky.content = @"Kaya";
     
-    ProfileImageItemCell *yong = [[ProfileImageItemCell alloc]init];
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
     
-    yong.imageName = @"yong.jpg";
-    yong.content = @"Developer of Majesty";
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        NSMutableArray *items = (NSMutableArray*)dict[@"items"];
+        // Get user profile info
     
-    ProfileImageItemCell *medic = [[ProfileImageItemCell alloc]init];
+        for(int i=0;i<[items count];i++) {
+            
+            NSMutableDictionary *item = (NSMutableDictionary*)[items objectAtIndex:i];
+            
+            NSString *imageUrl = (NSString*)item[@"imageUrl"];
+            NSString *keyword = (NSString*)item[@"keyword"];
+            NSString *hint = (NSString*)item[@"hint"];
+            NSString *date = (NSString*)item[@"date"];
+            
+            ProfileImageItemCell *listItem = [[ProfileImageItemCell alloc]init];
+            
+            listItem.imageUrl = imageUrl;
+            listItem.keyword = keyword;
+            listItem.hint = hint;
+            listItem.date = date;
+
+            [imageListArray addObject:listItem];
+        }
+        [self.collectionView reloadData];
+    }
+
     
-    medic.imageName = @"medic.jpg";
-    medic.content = @"Medic";
-    
-    ProfileImageItemCell *chole = [[ProfileImageItemCell alloc]init];
-    
-    chole.imageName = @"chole.jpg";
-    chole.content = @"Chole Moretz";
-    
-    [imageListArray addObject:ky];
-    [imageListArray addObject:yong];
-    [imageListArray addObject:medic];
-    [imageListArray addObject:chole];
-    [imageListArray addObject:ky];
-    [imageListArray addObject:yong];
-    [imageListArray addObject:medic];
-    [imageListArray addObject:chole];
-    
-    [imageListArray addObject:ky];
-    [imageListArray addObject:yong];
-    [imageListArray addObject:medic];
-    [imageListArray addObject:chole];
-    [imageListArray addObject:ky];
-    [imageListArray addObject:yong];
-    [imageListArray addObject:medic];
-    [imageListArray addObject:chole];
-    
+}
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -74,19 +90,37 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
     ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
-    UIImage *image = [UIImage imageNamed:gList.imageName];
     UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
-    imageView.image = image;
     
+    dispatch_async(kBgQueue, ^{
+        
+        NSURL *url = [NSURL URLWithString:gList.imageUrl];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        gList.imageData = data;
+        
+        if(data) {
+            UIImage *image = [[UIImage alloc]initWithData:data];
+            
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UICollectionViewCell *updateCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+                    
+                    if (updateCell) {
+                        imageView.image = image;
+                        
+                    }
+                });
+            }
+        }
+    });
     
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
-    UIImage *image = [UIImage imageNamed:gList.imageName];
-
-    [self.delegate selectImage:image];
+    
+    [self.delegate selectItem:gList];
 }
 
 

@@ -15,12 +15,13 @@
 @end
 @implementation EditPhotoViewController
 @synthesize popoverController;
-@synthesize currentImage;
+@synthesize item;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavigationItem];
-    [self.profileImage setImage:currentImage];
+    UIImage *image = [[UIImage alloc]initWithData:item.imageData];
+    [self.profileImage setImage:image];
     self.answerView.layer.borderColor = [UIColor yellowColor].CGColor;
     self.answerView.layer.borderWidth = 1.0f;
 }

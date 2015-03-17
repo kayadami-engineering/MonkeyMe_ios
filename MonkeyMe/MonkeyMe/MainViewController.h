@@ -22,5 +22,6 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *gameListArray;
+@property (nonatomic, strong) NSMutableDictionary *userStateInfo;
 @property (nonatomic, strong) NetworkController *networkController;
 @end

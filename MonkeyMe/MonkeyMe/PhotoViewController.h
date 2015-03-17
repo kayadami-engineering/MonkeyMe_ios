@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileImageItemCell.h"
 @protocol PhotoViewDelegate;
 
 @interface PhotoViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -19,6 +20,6 @@
 @protocol PhotoViewDelegate <NSObject>
 
 @optional
-- (void)selectImage:(UIImage*)selectedImage;
+- (void)selectItem:(ProfileImageItemCell*)item;
 
 @end

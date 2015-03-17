@@ -25,23 +25,23 @@
     
     ProfileImageItemCell *ky = [[ProfileImageItemCell alloc]init];
     
-    ky.imageName = @"ky.png";
-    ky.content = @"Kaya";
+    ky.imageUrl = @"ky.png";
+    ky.keyword = @"Kaya";
     
     ProfileImageItemCell *yong = [[ProfileImageItemCell alloc]init];
     
-    yong.imageName = @"yong.jpg";
-    yong.content = @"Developer";
+    yong.imageUrl = @"yong.jpg";
+    yong.keyword = @"Developer";
     
     ProfileImageItemCell *medic = [[ProfileImageItemCell alloc]init];
     
-    medic.imageName = @"medic.jpg";
-    medic.content = @"Medic";
+    medic.imageUrl = @"medic.jpg";
+    medic.keyword = @"Medic";
     
     ProfileImageItemCell *chole = [[ProfileImageItemCell alloc]init];
     
-    chole.imageName = @"chole.jpg";
-    chole.content = @"Chole Moretz";
+    chole.imageUrl = @"chole.jpg";
+    chole.keyword = @"Chole Moretz";
     
     [imageListArray addObject:ky];
     [imageListArray addObject:yong];
@@ -100,7 +100,7 @@
     
     
     ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
-    UIImage *image = [UIImage imageNamed:gList.imageName];
+    UIImage *image = [UIImage imageNamed:gList.imageUrl];
     UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
     imageView.image = image;
     
@@ -109,7 +109,7 @@
     imageView.layer.borderWidth = 0;
     
     UILabel *title = (UILabel*)[cell viewWithTag:101];
-    title.text = gList.content;
+    title.text = gList.keyword;
     
     return cell;
 }

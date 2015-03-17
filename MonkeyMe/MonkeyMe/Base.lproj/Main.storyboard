@@ -312,7 +312,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="oBE-NL-imP" kind="show" id="uYZ-Wn-XGN"/>
+                                            <segue destination="oBE-NL-imP" kind="show" identifier="ProfileViewSegue" id="uYZ-Wn-XGN"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damee Yoon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHC-TR-pZb">
@@ -454,7 +454,7 @@
                                 <rect key="frame" x="0.0" y="104" width="320" height="145"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="13" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oTZ-i3-KPv">
-                                <rect key="frame" x="256" y="118" width="29" height="21"/>
+                                <rect key="frame" x="256" y="118" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -490,13 +490,13 @@
                                 <rect key="frame" x="32" y="113" width="60" height="60"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damee Yoon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yz-ri-DBI">
-                                <rect key="frame" x="16" y="175" width="138" height="21"/>
+                                <rect key="frame" x="16" y="175" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@damee.yoon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5h-t3-qre">
-                                <rect key="frame" x="16" y="199" width="138" height="21"/>
+                                <rect key="frame" x="16" y="199" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -555,16 +555,25 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="cXX-RX-YZr" kind="show" id="2Wn-b5-s0E"/>
+                                    <segue destination="cXX-RX-YZr" kind="show" identifier="EditProfileSegue" id="2Wn-b5-s0E"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="mleaf.png" translatesAutoresizingMaskIntoConstraints="NO" id="nNa-Dl-vzV">
                                 <rect key="frame" x="245" y="67" width="35" height="35"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="11" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Opo-qx-ngO">
-                                <rect key="frame" x="184" y="118" width="29" height="21"/>
+                                <rect key="frame" x="184" y="118" width="36" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="levc.png" translatesAutoresizingMaskIntoConstraints="NO" id="M2p-bW-OIA">
+                                <rect key="frame" x="77" y="156" width="20" height="20"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3EF-hB-1nt">
+                                <rect key="frame" x="75" y="155" width="25" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -577,10 +586,18 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="achieveBtn" destination="3MJ-EW-BBt" id="vt8-4K-9ks"/>
+                        <outlet property="friendCount" destination="Opo-qx-ngO" id="XQa-km-7wq"/>
                         <outlet property="gameBtn" destination="rG8-Iv-3A6" id="1HW-nJ-9oW"/>
+                        <outlet property="myID" destination="q5h-t3-qre" id="I87-z1-ZAj"/>
+                        <outlet property="myLevel" destination="3EF-hB-1nt" id="zZQ-Hp-IZa"/>
+                        <outlet property="myName" destination="5yz-ri-DBI" id="g1S-UJ-rek"/>
                         <outlet property="myView" destination="KHy-kM-lFn" id="Y0T-84-xkm"/>
                         <outlet property="photoBtn" destination="P8d-3w-8YA" id="iOg-CF-l1R"/>
+                        <outlet property="photoCount" destination="oTZ-i3-KPv" id="Z7g-z5-8gm"/>
                         <outlet property="profileImage" destination="ebM-31-8cX" id="rxr-cs-OBp"/>
+                        <outlet property="stateCount_banana" destination="43v-1i-kRw" id="VCj-6i-RWf"/>
+                        <outlet property="stateCount_leaf" destination="BDx-k4-5Zb" id="hus-xH-fig"/>
+                        <outlet property="stateCount_light" destination="00k-6n-lxc" id="LNr-We-8zC"/>
                         <segue destination="3Bw-ZC-81K" kind="show" identifier="EditPhotoSegue" id="NeP-3i-cyc"/>
                     </connections>
                 </viewController>

@@ -24,7 +24,7 @@
 @synthesize tempArray;
 @synthesize tempArray2;
 
-@synthesize myID;
+@synthesize myMemberNumber;
 
 static NetworkController *singletonInstance;
 
@@ -55,13 +55,14 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
+    myMemberNumber = 1;
+    
 }
 
 -(void)postToServer:(NSString *)postString {
     
     NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-    
+    NSString *postLength = [NSString stringWithFormat:@"%i", [postData length]];
     
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
@@ -82,21 +83,25 @@ static NetworkController *singletonInstance;
 
 -(void)updateMainRequest {
     
-    myID = @"damee.yoon";
-    
-    if(myID) {
-        NSString *string = [NSString stringWithFormat:@"command=updateMain&memberID=%@",myID];
+    if(myMemberNumber) {
+        NSString *string = [NSString stringWithFormat:@"command=updateMain&memberNumber=%i",myMemberNumber];
         [self postToServer:string];
     }
 }
 
+-(void)getProfileGameListRequest {
+    
+    if(myMemberNumber) {
+        NSString *string = [NSString stringWithFormat:@"command=pastList&memberNumber=%i",myMemberNumber];
+        [self postToServer:string];
+    }
+}
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
-    
     
     
     currentElementName = [NSString stringWithString:elementName];
@@ -124,16 +129,16 @@ static NetworkController *singletonInstance;
     else if([elementName isEqualToString:@"state"]) { //My state
         
         if([currentCommand isEqualToString:@"login"]) { //if login succeeed
-            NSString *index = [attributeDict objectForKey:@"idx"];
+            NSString *memberNo = [attributeDict objectForKey:@"m_no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             
-            [tempDictionary setValue:index forKey:@"memberIndex"];
+            [tempDictionary setValue:memberNo forKey:@"memberNo"];
             [tempDictionary setValue:memberID forKey:@"memberID"];
             
             [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:tempDictionary];
         }
         else if([currentCommand isEqualToString:@"updateMain"]) { //if update main succeed
-            NSString *index = [attributeDict objectForKey:@"idx"];
+            NSString *memberNo = [attributeDict objectForKey:@"m_no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             NSString *name = [attributeDict objectForKey:@"name"];
             NSString *level = [attributeDict objectForKey:@"level"];
@@ -141,17 +146,21 @@ static NetworkController *singletonInstance;
             NSString *lightCount = [attributeDict objectForKey:@"light"];
             NSString *bananaCount = [attributeDict objectForKey:@"banana"];
             NSString *leafCount = [attributeDict objectForKey:@"leaf"];
+            NSString *friendCount = [attributeDict objectForKey:@"friends"];
             
-            [tempDictionary setValue:index forKey:@"memberIndex"];
-            [tempDictionary setValue:memberID forKey:@"memberID"];
-            [tempDictionary setValue:name forKey:@"name"];
-            [tempDictionary setValue:level forKey:@"level"];
-            [tempDictionary setValue:lightCount forKey:@"lightCount"];
-            [tempDictionary setValue:bananaCount forKey:@"bananaCount"];
-            [tempDictionary setValue:leafCount forKey:@"leafCount"];
-            [tempDictionary setValue:profileUrl forKey:@"profileUrl"];
+            NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
             
+            [userInfo setValue:memberNo forKey:@"memberNo"];
+            [userInfo setValue:memberID forKey:@"memberID"];
+            [userInfo setValue:name forKey:@"name"];
+            [userInfo setValue:level forKey:@"level"];
+            [userInfo setValue:lightCount forKey:@"lightCount"];
+            [userInfo setValue:bananaCount forKey:@"bananaCount"];
+            [userInfo setValue:leafCount forKey:@"leafCount"];
+            [userInfo setValue:friendCount forKey:@"friendCount"];
+            [userInfo setValue:profileUrl forKey:@"profileUrl"];
             
+            [tempDictionary setValue:userInfo forKey:@"userInfo"];
             
         }
     }
@@ -168,13 +177,15 @@ static NetworkController *singletonInstance;
     else if([elementName isEqualToString:@"friend"]) {
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
-            
+        
+        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
         NSString *memberID = [attributeDict objectForKey:@"id"];
         NSString *name = [attributeDict objectForKey:@"name"];
         NSString *level = [attributeDict objectForKey:@"level"];
         NSString *profileUrl = [attributeDict objectForKey:@"profile"];
         NSString *round = [attributeDict objectForKey:@"round"];
         
+        [list setValue:memberNo forKey:@"memberNo"];
         [list setValue:memberID forKey:@"memberID"];
         [list setValue:name forKey:@"name"];
         [list setValue:level forKey:@"level"];
@@ -187,6 +198,23 @@ static NetworkController *singletonInstance;
             [tempArray2 addObject:list];
     }
     
+    else if([elementName isEqualToString:@"item"]) {
+        
+        NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
+        
+        NSString *game_no = [attributeDict objectForKey:@"no"];
+        NSString *imageUrl = [attributeDict objectForKey:@"imageUrl"];
+        NSString *keyword = [attributeDict objectForKey:@"keyword"];
+        NSString *hint = [attributeDict objectForKey:@"hint"];
+        NSString *date = [attributeDict objectForKey:@"date"];
+        
+        [list setValue:game_no forKey:@"gameNo"];
+        [list setValue:imageUrl forKey:@"imageUrl"];
+        [list setValue:keyword forKey:@"keyword"];
+        [list setValue:hint forKey:@"hint"];
+        [list setValue:date forKey:@"date"];
+        [tempArray addObject:list];
+    }
     NSLog(@"Processing Element: %@", elementName);
     
 }
@@ -215,6 +243,11 @@ static NetworkController *singletonInstance;
         else if([currentCommand isEqualToString:@"updateMain_friendsturn"]) {
             [tempDictionary setValue:tempArray2 forKey:@"gamelist_friendsturn"];
             [notificationCenter postNotificationName:@"updateMainProcess" object:self userInfo:tempDictionary];
+        }
+        
+        else if([currentCommand isEqualToString:@"pastList"]) {
+            [tempDictionary setValue:tempArray forKey:@"items"];
+            [notificationCenter postNotificationName:@"profileGameListProcess" object:self userInfo:tempDictionary];
         }
     }
     

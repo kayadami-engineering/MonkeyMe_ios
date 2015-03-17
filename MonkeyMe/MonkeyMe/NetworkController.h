@@ -15,10 +15,11 @@
 - (void)initNetwork;
 - (void)loginRequest:(NSString*)email Password:(NSString*)password;
 - (void)updateMainRequest;
+- (void)getProfileGameListRequest;
 - (void)postToServer:(NSString *)postString;
 + (NetworkController *)sharedInstance;
 
-@property (strong, nonatomic) NSString *myID;
+@property (assign, nonatomic) NSInteger myMemberNumber;
 @property (strong, nonatomic) NSURL *serverURL;
 @property (strong, nonatomic) NSMutableURLRequest *request;
 @property (strong, nonatomic) NSXMLParser *myParser;
