@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "EditPhotoViewController.h"
+#import "EditProfileViewController.h"
 #import "NetworkController.h"
 
 @interface ProfileViewController() <PhotoViewDelegate>
@@ -93,6 +94,10 @@
     {
         EditPhotoViewController *vc = [segue destinationViewController];
         vc.item = selectedItem;
+    }
+    else if([segue.identifier isEqualToString:@"EditProfileSegue"]) {
+        EditProfileViewController *vc = [segue destinationViewController];
+        vc.userStateInfo = self.userStateInfo;
     }
 }
 

@@ -28,12 +28,18 @@
     [self setNavigationItem];
     [self registerNotification];
     
+}
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    
     networkController = [NetworkController sharedInstance];
     [networkController updateMainRequest];
     
+    
 }
-
 - (void)dealloc {
+
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -67,7 +73,7 @@
 - (void)updateProcess:(NSNotification *)notification { //network notify the result of update request
     
     //do something..
-    
+
     NSDictionary* dict = notification.userInfo;
     
     
@@ -84,7 +90,7 @@
         
         userStateInfo = (NSMutableDictionary*)dict[@"userInfo"];
         // Get user profile info
-
+        
         NSString *name = (NSString*)userStateInfo[@"name"];
         NSString *level = (NSString*)userStateInfo[@"level"];
         NSString *profileUrl = (NSString*)userStateInfo[@"profileUrl"];
@@ -135,7 +141,6 @@
         }
         [gameListArray addObject:friendTurnList];
         
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [self setProfileImageFromURL:profileUrl];
         [self.tableView reloadData];
         

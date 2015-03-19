@@ -16,6 +16,7 @@
 - (void)loginRequest:(NSString*)email Password:(NSString*)password;
 - (void)updateMainRequest;
 - (void)getProfileGameListRequest;
+- (void)updateProfile:(NSString*)name Id:(NSString*)myID;
 - (void)postToServer:(NSString *)postString;
 + (NetworkController *)sharedInstance;
 

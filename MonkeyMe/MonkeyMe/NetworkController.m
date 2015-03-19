@@ -23,7 +23,6 @@
 @synthesize tempDictionary;
 @synthesize tempArray;
 @synthesize tempArray2;
-
 @synthesize myMemberNumber;
 
 static NetworkController *singletonInstance;
@@ -96,6 +95,14 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
+
+-(void)updateProfile:(NSString*)name Id:(NSString*)myID {
+    
+    if(myMemberNumber) {
+        NSString *string = [NSString stringWithFormat:@"command=updateProfile&memberNumber=%i&name=%@&id=%@",myMemberNumber,name,myID];
+        [self postToServer:string];
+    }
+}
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
@@ -141,7 +148,9 @@ static NetworkController *singletonInstance;
             NSString *memberNo = [attributeDict objectForKey:@"m_no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             NSString *name = [attributeDict objectForKey:@"name"];
+            
             NSString *level = [attributeDict objectForKey:@"level"];
+            NSString *email = [attributeDict objectForKey:@"email"];
             NSString *profileUrl = [attributeDict objectForKey:@"profile"];
             NSString *lightCount = [attributeDict objectForKey:@"light"];
             NSString *bananaCount = [attributeDict objectForKey:@"banana"];
@@ -154,6 +163,7 @@ static NetworkController *singletonInstance;
             [userInfo setValue:memberID forKey:@"memberID"];
             [userInfo setValue:name forKey:@"name"];
             [userInfo setValue:level forKey:@"level"];
+            [userInfo setValue:email forKey:@"email"];
             [userInfo setValue:lightCount forKey:@"lightCount"];
             [userInfo setValue:bananaCount forKey:@"bananaCount"];
             [userInfo setValue:leafCount forKey:@"leafCount"];
@@ -215,7 +225,7 @@ static NetworkController *singletonInstance;
         [list setValue:date forKey:@"date"];
         [tempArray addObject:list];
     }
-    NSLog(@"Processing Element: %@", elementName);
+    //NSLog(@"Processing Element: %@", elementName);
     
 }
 
@@ -234,7 +244,6 @@ static NetworkController *singletonInstance;
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
     if([elementName isEqualToString:@"list"]) {
-        
         if([currentCommand isEqualToString:@"updateMain_myturn"]) {
             [tempDictionary setValue:tempArray forKey:@"gamelist_myturn"];
             
@@ -248,6 +257,14 @@ static NetworkController *singletonInstance;
         else if([currentCommand isEqualToString:@"pastList"]) {
             [tempDictionary setValue:tempArray forKey:@"items"];
             [notificationCenter postNotificationName:@"profileGameListProcess" object:self userInfo:tempDictionary];
+        }
+    }
+
+    if([elementName isEqualToString:@"data"]) {
+        
+        if([currentCommand isEqualToString:@"updateProfile"]) {
+            
+            [notificationCenter postNotificationName:@"updateProfileProcess" object:self userInfo:tempDictionary];
         }
     }
     
@@ -300,7 +317,7 @@ static NetworkController *singletonInstance;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"error received = %@", error);
+    NSLog(@"Error received = %@", error);
 }
 
 @end
