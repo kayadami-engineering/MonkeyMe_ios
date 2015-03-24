@@ -7,11 +7,16 @@
 //
 
 #import "RightViewController.h"
+#import "MainTableViewCell.h"
 
 @implementation RightViewController
 
 @synthesize headerSearch;
 @synthesize collapsedSections;
+@synthesize monkeyFriendList;
+@synthesize facebookFriendList;
+@synthesize networkController;
+@synthesize blockUpdate;
 
 - (void)viewDidLoad
 {
@@ -23,8 +28,76 @@
     self.tableView.backgroundView = imageView;
     
     collapsedSections = [NSMutableSet new];
+    
+    networkController = [NetworkController sharedInstance];
+    monkeyFriendList = [[NSMutableArray alloc] init];
+    facebookFriendList = [[NSMutableArray alloc] init];
+    
+    self.blockUpdate = false;
+    [self registerNotification];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+}
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(monkeyFriendListUpdate:) name:@"m_friendListProcess" object:nil];
+}
+
+- (void)monkeyFriendListUpdate:(NSNotification *)notification {
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        NSMutableArray *friendList = (NSMutableArray*)dict[@"friendList"];
+        
+        //get game list my turn
+        
+        for(int i=0;i<[friendList count];i++) {
+            dict = [friendList objectAtIndex:i];
+            
+            MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
+            
+            listItem.memberNo = (NSString*)dict[@"memberNo"];
+            listItem.profileUrl = (NSString*)dict[@"profileUrl"];
+            listItem.name = (NSString*)dict[@"name"];
+            [monkeyFriendList addObject:listItem];
+        }
+        
+        [self.tableView beginUpdates];
+        int numOfRows = [monkeyFriendList count];
+        
+        if(numOfRows!=0) {
+            NSArray* indexPaths = [self indexPathsForSection:2 withNumberOfRows:numOfRows];
+            [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [collapsedSections addObject:@(2)];
+        }
+        [self.tableView endUpdates];
+    }
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
+}
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     // add self
@@ -42,6 +115,7 @@
     [self.tableView beginUpdates];
     int section = sender.tag;
     bool shouldCollapse = [collapsedSections containsObject:@(section)];
+    
     if (shouldCollapse) {
         int numOfRows = [self.tableView numberOfRowsInSection:section];
         NSArray* indexPaths = [self indexPathsForSection:section withNumberOfRows:numOfRows];
@@ -49,11 +123,36 @@
         [collapsedSections removeObject:@(section)];
     }
     else {
-        int numOfRows = 6;
-        NSArray* indexPaths = [self indexPathsForSection:section withNumberOfRows:numOfRows];
-        [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-        [collapsedSections addObject:@(section)];
+        
+        if(!blockUpdate) { //first update
+            
+            if(section==1) { //facebook friend
+                
+            }
+            else if(section==2) { //monkey me friend
+                
+                [self.networkController getMonkeyFriendList];
+            }
+            blockUpdate = true;
+        }
+        else { //already update!
+            int numOfRows;
+            
+            if(section==1) {
+                numOfRows = [facebookFriendList count];
+            }
+            else if(section==2) {
+                numOfRows = [monkeyFriendList count];
+            }
+            
+            if(numOfRows!=0) {
+                NSArray* indexPaths = [self indexPathsForSection:2 withNumberOfRows:numOfRows];
+                [self.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+                [collapsedSections addObject:@(section)];
+            }
+        }
     }
+    
     [self.tableView endUpdates];
     //[_tableView reloadData];
 }
@@ -88,7 +187,6 @@
         headerSearch.clipsToBounds = YES;
         [headerview addSubview:headerSearch];
     
-        
     }
     else {
         headerview = [[UIView alloc] initWithFrame:CGRectMake(60, 0, self.view.frame.size.width-60, 40)];
@@ -107,9 +205,16 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(section == 0)
+    if(section == 0 || ![collapsedSections containsObject:@(section)])
         return 0;
-    return ![collapsedSections containsObject:@(section)] ? 0 : 6;
+    
+    else {
+        
+        if(section==1)
+            return [facebookFriendList count];
+        else
+            return [monkeyFriendList count];
+    }
 }
 
 
@@ -122,36 +227,47 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"RightCell"];
+
     UIImageView *profile = (UIImageView *)[cell viewWithTag:100];
-    profile.image = [UIImage imageNamed:@"ky"];
-    
     UILabel *name = (UILabel *)[cell viewWithTag:101];
     
-    switch (indexPath.row)
-    {
-        case 0:
-            name.text = @"Kaya lee";
-            break;
+    NSMutableArray *tempArray;
+    
+    if(indexPath.section==1)
+        tempArray = facebookFriendList;
+    else
+        tempArray = monkeyFriendList;
+    
+    MainTableViewCell *gList = [tempArray objectAtIndex:indexPath.row];
+    
+    name.text = gList.name;
+    
+    if(!gList.imageData) { //first update
+        dispatch_async(kBgQueue, ^{
+        
+            NSURL *url = [NSURL URLWithString:gList.profileUrl];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            gList.imageData = data;
             
-        case 1:
-            name.text = @"sy";
-            break;
+            if(data) {
+                UIImage *image = [[UIImage alloc]initWithData:data];
             
-        case 2:
-            name.text = @"kj";
-            break;
-            
-        case 3:
-            name.text = @"qwe";
-            break;
-            
-        case 4:
-            name.text = @"123";
-            break;
-            
-        case 5:
-            name.text = @"asd";
-            break;
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        
+                        if (updateCell) {
+                            profile.image = image;
+                        }
+                        
+                    });
+                }
+            }
+        });
+    }
+    else { //already updated
+        UIImage *image = [[UIImage alloc]initWithData:gList.imageData];
+        profile.image = image;
     }
     
     cell.backgroundColor = [UIColor clearColor];
@@ -161,7 +277,7 @@
     profile.layer.masksToBounds = YES;
     profile.layer.borderWidth = 0;
     
-    return cell;;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

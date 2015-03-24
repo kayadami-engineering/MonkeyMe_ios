@@ -14,5 +14,7 @@
 @synthesize roundName;
 @synthesize level;
 @synthesize memberID;
+@synthesize memberNo;
+@synthesize imageData;
 
 @end

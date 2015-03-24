@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "NetworkController.h"
 
-@interface SelectFriendView : UIViewController<SlideNavigationControllerDelegate,UICollectionViewDataSource>
+@interface SelectFriendView : UIViewController<SlideNavigationControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, strong) NSMutableArray *imageListArray;
+@property (nonatomic, strong) NSMutableArray *friendList;
+@property (nonatomic, strong) NetworkController *networkController;
 
 @end

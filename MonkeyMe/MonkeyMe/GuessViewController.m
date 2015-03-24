@@ -28,9 +28,7 @@
     [super viewDidLoad];
     [self initView];
     [self setNavigationItem];
-    
 }
-
 
 - (void)initView {
     self.hintCount = 0;

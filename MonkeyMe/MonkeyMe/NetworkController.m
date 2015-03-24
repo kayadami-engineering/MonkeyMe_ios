@@ -103,6 +103,17 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
+
+-(void)getMonkeyFriendList {
+    
+    if(myMemberNumber) {
+        
+        NSString *string = [NSString stringWithFormat:@"command=friendlist_monkey&memberNumber=%i",myMemberNumber];
+        [self postToServer:string];
+    }
+}
+
+
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
@@ -225,6 +236,21 @@ static NetworkController *singletonInstance;
         [list setValue:date forKey:@"date"];
         [tempArray addObject:list];
     }
+    
+    else if([elementName isEqualToString:@"friendinfo"]) {
+        
+        NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
+        
+        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+        NSString *name = [attributeDict objectForKey:@"name"];
+        NSString *profileUrl = [attributeDict objectForKey:@"profile"];
+        
+        [list setValue:memberNo forKey:@"memberNo"];
+        [list setValue:name forKey:@"name"];
+        [list setValue:profileUrl forKey:@"profileUrl"];
+        
+        [tempArray addObject:list];
+    }
     //NSLog(@"Processing Element: %@", elementName);
     
 }
@@ -258,9 +284,14 @@ static NetworkController *singletonInstance;
             [tempDictionary setValue:tempArray forKey:@"items"];
             [notificationCenter postNotificationName:@"profileGameListProcess" object:self userInfo:tempDictionary];
         }
+        
+        else if([currentCommand isEqualToString:@"friendlist_monkey"]) {
+            [tempDictionary setValue:tempArray forKey:@"friendList"];
+            [notificationCenter postNotificationName:@"m_friendListProcess" object:self userInfo:tempDictionary];
+        }
     }
 
-    if([elementName isEqualToString:@"data"]) {
+    else if([elementName isEqualToString:@"data"]) {
         
         if([currentCommand isEqualToString:@"updateProfile"]) {
             
@@ -268,7 +299,7 @@ static NetworkController *singletonInstance;
         }
     }
     
-    if([elementName isEqualToString:@"xml"]) {
+    else if([elementName isEqualToString:@"xml"]) {
         
         //empty all temporary container objects
         [tempDictionary removeAllObjects];
@@ -317,7 +348,7 @@ static NetworkController *singletonInstance;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     // The request has failed for some reason!
     // Check the error var
-    NSLog(@"Error received = %@", error);
+    NSLog(@"Network Error received = %@", error);
 }
 
 @end

@@ -621,9 +621,8 @@
                                 <rect key="frame" x="16" y="72" width="288" height="29"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
+                                    <segment title="몽키 친구"/>
                                     <segment title="페이스북 친구"/>
-                                    <segment title="팔로잉"/>
-                                    <segment title="팔로워"/>
                                 </segments>
                                 <color key="tintColor" red="0.086274509799999996" green="0.64705882349999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                             </segmentedControl>
@@ -652,7 +651,7 @@
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wfx-IH-gzY">
                                                             <rect key="frame" x="0.0" y="105" width="106" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -1695,7 +1694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cye-tl-QO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2632" y="1532"/>
+            <point key="canvasLocation" x="2642" y="1532"/>
         </scene>
     </scenes>
     <resources>

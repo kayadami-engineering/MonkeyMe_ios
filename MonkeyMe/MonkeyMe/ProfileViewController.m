@@ -144,5 +144,11 @@
     [self performSegueWithIdentifier:@"EditPhotoSegue" sender:self];
 }
 
+- (void)setPhotoCountValue:(NSInteger)count {
+    
+    self.photoCount.text = [NSString stringWithFormat:@"%d",count];
+    
+}
+
 @end
 

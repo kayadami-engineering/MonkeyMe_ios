@@ -12,8 +12,6 @@
 #import "NetworkController.h"
 #import "ProfileViewController.h"
 
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
 @implementation MainViewController
 @synthesize tableView;
 @synthesize scrollView;
@@ -143,7 +141,6 @@
         
         [self setProfileImageFromURL:profileUrl];
         [self.tableView reloadData];
-        
     }
 }
 

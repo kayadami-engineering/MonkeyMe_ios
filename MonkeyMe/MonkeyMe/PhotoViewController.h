@@ -21,5 +21,6 @@
 
 @optional
 - (void)selectItem:(ProfileImageItemCell*)item;
+- (void)setPhotoCountValue:(NSInteger)count;
 
 @end

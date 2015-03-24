@@ -9,7 +9,6 @@
 #import "PhotoViewController.h"
 
 #import "NetworkController.h"
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 @implementation PhotoViewController
 @synthesize imageListArray;
@@ -36,7 +35,6 @@
     imageListArray = [[NSMutableArray alloc]init];
     
     NSDictionary* dict = notification.userInfo;
-    
     
     NSString *result = (NSString*)dict[@"result"];
     NSString *message = (NSString*)dict[@"message"];
@@ -70,6 +68,7 @@
 
             [imageListArray addObject:listItem];
         }
+        [self.delegate setPhotoCountValue:[imageListArray count]];
         [self.collectionView reloadData];
     }
 

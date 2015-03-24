@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 @interface NetworkController : NSObject<NSXMLParserDelegate, NSURLConnectionDataDelegate> {
     
@@ -18,6 +19,7 @@
 - (void)getProfileGameListRequest;
 - (void)updateProfile:(NSString*)name Id:(NSString*)myID;
 - (void)postToServer:(NSString *)postString;
+- (void)getMonkeyFriendList;
 + (NetworkController *)sharedInstance;
 
 @property (assign, nonatomic) NSInteger myMemberNumber;
