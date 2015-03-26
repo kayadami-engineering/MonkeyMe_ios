@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 

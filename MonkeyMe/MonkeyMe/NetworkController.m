@@ -47,7 +47,6 @@ static NetworkController *singletonInstance;
     [request setURL:serverURL];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"Mozilla/4.0 (compatible;)" forHTTPHeaderField:@"User-Agent"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
     notificationCenter = [NSNotificationCenter defaultCenter];
     tempDictionary = [[NSMutableDictionary alloc] init];
@@ -60,12 +59,51 @@ static NetworkController *singletonInstance;
 
 -(void)postToServer:(NSString *)postString {
     
-    NSData *postData = [postString dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%i", [postData length]];
-    
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+-(void)postToServerWithData:(NSData *)fileData Filename:(NSString*)filename Data:(NSDictionary*)params {
+    
+    request = [[NSMutableURLRequest alloc]init];
+    [request setURL:serverURL];
+    [request setHTTPMethod:@"POST"];
+    
+    NSString *boundary = @"0xKhTmLbOuNdArY";  // important!!!
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    
+    NSMutableData *body = [NSMutableData data];
+    
+    for (NSString *param in params) {
+        
+        [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary]dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",param]dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"%@\r\n", [params objectForKey:param]]dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@\"\r\n",filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[NSData dataWithData:fileData]];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:body];
+    
+    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    responseData = [[NSMutableData alloc] init];
+    [responseData appendData:returnData];
+    
+    myParser = [[NSXMLParser alloc]initWithData:responseData];
+    myParser.delegate = self;
+    
+    [myParser parse];
+    
 }
 
 #pragma mark - Request Command Methods-
@@ -76,14 +114,16 @@ static NetworkController *singletonInstance;
 
 -(void)loginRequest:(NSString*)email Password:(NSString*)password {
     
-    NSString *string = [NSString stringWithFormat:@"command=login&email=%@",email];
+    currentCommand = @"login";
+    NSString *string = [NSString stringWithFormat:@"command=%@&email=%@",currentCommand,email];
     [self postToServer:string];
 }
 
 -(void)updateMainRequest {
     
     if(myMemberNumber) {
-        NSString *string = [NSString stringWithFormat:@"command=updateMain&memberNumber=%i",myMemberNumber];
+        currentCommand = @"updateMain";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
@@ -91,7 +131,8 @@ static NetworkController *singletonInstance;
 -(void)getProfileGameListRequest {
     
     if(myMemberNumber) {
-        NSString *string = [NSString stringWithFormat:@"command=pastList&memberNumber=%i",myMemberNumber];
+        currentCommand = @"pastList";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
@@ -99,7 +140,8 @@ static NetworkController *singletonInstance;
 -(void)updateProfile:(NSString*)name Id:(NSString*)myID {
     
     if(myMemberNumber) {
-        NSString *string = [NSString stringWithFormat:@"command=updateProfile&memberNumber=%i&name=%@&id=%@",myMemberNumber,name,myID];
+        currentCommand = @"updateProfile";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&name=%@&id=%@",currentCommand,myMemberNumber,name,myID];
         [self postToServer:string];
     }
 }
@@ -107,12 +149,20 @@ static NetworkController *singletonInstance;
 -(void)getMonkeyFriendList {
     
     if(myMemberNumber) {
-        
-        NSString *string = [NSString stringWithFormat:@"command=friendlist_monkey&memberNumber=%i",myMemberNumber];
+        currentCommand = @"friendlist_monkey";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
 
+-(void)uploadGameData:(NSData*)data {
+    
+    if(myMemberNumber) {
+        currentCommand = @"uploadGameData";
+        NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%i",myMemberNumber]};
+        [self postToServerWithData:data Filename:@"file.jpeg" Data:params];
+    }
+}
 
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
@@ -140,6 +190,17 @@ static NetworkController *singletonInstance;
             }
             else if([currentCommand isEqualToString:@"updateMain"]) {
                 [notificationCenter postNotificationName:@"updateMainProcess" object:self userInfo:tempDictionary];
+            }
+            else if([currentCommand isEqualToString:@"uploadGameData"]) {
+
+                [notificationCenter postNotificationName:@"uploadGameDataProcess" object:self userInfo:tempDictionary];
+            }
+        }
+        else { //success
+            
+            if([currentCommand isEqualToString:@"uploadGameData"]) {
+
+                [notificationCenter postNotificationName:@"uploadGameDataProcess" object:self userInfo:tempDictionary];
             }
         }
     }
@@ -262,7 +323,7 @@ static NetworkController *singletonInstance;
     else
         [currentElementValue appendString:string];
     
-    NSLog(@"Processing Value: %@", currentElementValue);
+    //NSLog(@"Processing Value: %@", currentElementValue);
 }
 
 

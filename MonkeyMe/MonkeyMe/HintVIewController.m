@@ -8,13 +8,24 @@
 
 #import "HintVIewController.h"
 #import "FinishPopupViewController.h"
+#import "NetworkController.h"
 @implementation HintVIewController
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self setNavigationItem];
+    [self registerNotification];
+    [self setNavigationItemLeft];
     
+    [self performSelector:@selector(showCameraView) withObject:nil afterDelay:0.5f];
+}
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) showCameraView {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     [imagePickerController setDelegate:self];
     [imagePickerController setAllowsEditing:YES];
@@ -22,15 +33,7 @@
     [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
-
-
-- (void)setNavigationItem {
-    
-    UIButton *buttonRight  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [buttonRight setImage:[UIImage imageNamed:@"ok.png"] forState:UIControlStateNormal];
-    [buttonRight addTarget:self action:@selector(ok) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+- (void)setNavigationItemLeft {
     
     UIButton *buttonLeft  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
     [buttonLeft setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
@@ -39,33 +42,92 @@
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
 }
+
+- (void)setNavigationItemRight {
+    
+    UIButton *buttonRight  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [buttonRight setImage:[UIImage imageNamed:@"ok.png"] forState:UIControlStateNormal];
+    [buttonRight addTarget:self action:@selector(ok) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+}
+
 - (void)back {
+    [self.view endEditing:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(transferOkProcess:) name:@"uploadGameDataProcess" object:nil];
+}
 - (void)ok {
+    [self.view endEditing:YES];
+    NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 90);
     
+    NetworkController *networkController = [NetworkController sharedInstance];
     
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+    [networkController uploadGameData:imageData];
+    //[self uploadImage:imageData Filename:@"testFile.jpeg"];
+
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+- (void) transferOkProcess:(NSNotification*)notification { //network notify the result of update request
+    
+    //do something..
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
                                                   bundle:nil];
-    UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
-    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:vc animated:YES completion:nil];
-    vc.view.alpha = 0;
-    [UIView animateWithDuration:1 animations:^{
-        vc.view.alpha = 1;
-    }];
+        UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
+        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:vc animated:YES completion:nil];
+        vc.view.alpha = 0;
+        [UIView animateWithDuration:1 animations:^{
+            vc.view.alpha = 1;
+        }];
     
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    }
+}
+
+- (UIImage*) ImageResize:(UIImage*)image Size:(CGSize)size
+{
     
+    UIGraphicsBeginImageContext(size);
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
     
+    UIImage*scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;
 }
 
 #pragma UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
     self.imageView.image = [info objectForKey:UIImagePickerControllerEditedImage];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self setNavigationItemRight];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

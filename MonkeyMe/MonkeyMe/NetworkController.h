@@ -20,6 +20,7 @@
 - (void)updateProfile:(NSString*)name Id:(NSString*)myID;
 - (void)postToServer:(NSString *)postString;
 - (void)getMonkeyFriendList;
+- (void)uploadGameData:(NSData*)data;
 + (NetworkController *)sharedInstance;
 
 @property (assign, nonatomic) NSInteger myMemberNumber;
