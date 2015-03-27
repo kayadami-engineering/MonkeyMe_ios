@@ -1236,6 +1236,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="hintText" destination="0Qf-tJ-xdd" id="kme-Iv-AEU"/>
                         <outlet property="imageView" destination="ghm-8l-pwY" id="Wva-xw-kDC"/>
                     </connections>
                 </viewController>

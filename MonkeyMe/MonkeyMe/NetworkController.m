@@ -155,12 +155,13 @@ static NetworkController *singletonInstance;
     }
 }
 
--(void)uploadGameData:(NSData*)data {
+-(void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint {
     
     if(myMemberNumber) {
         currentCommand = @"uploadGameData";
-        NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%i",myMemberNumber]};
-        [self postToServerWithData:data Filename:@"file.jpeg" Data:params];
+        NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%i",myMemberNumber],
+                                 @"keyword":keyword,@"hint":hint};
+        [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
     }
 }
 
@@ -208,7 +209,7 @@ static NetworkController *singletonInstance;
     else if([elementName isEqualToString:@"state"]) { //My state
         
         if([currentCommand isEqualToString:@"login"]) { //if login succeeed
-            NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+            NSString *memberNo = [attributeDict objectForKey:@"no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             
             [tempDictionary setValue:memberNo forKey:@"memberNo"];
@@ -217,7 +218,7 @@ static NetworkController *singletonInstance;
             [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:tempDictionary];
         }
         else if([currentCommand isEqualToString:@"updateMain"]) { //if update main succeed
-            NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+            NSString *memberNo = [attributeDict objectForKey:@"no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             NSString *name = [attributeDict objectForKey:@"name"];
             
@@ -260,7 +261,7 @@ static NetworkController *singletonInstance;
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
         
-        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+        NSString *memberNo = [attributeDict objectForKey:@"no"];
         NSString *memberID = [attributeDict objectForKey:@"id"];
         NSString *name = [attributeDict objectForKey:@"name"];
         NSString *level = [attributeDict objectForKey:@"level"];
@@ -302,7 +303,7 @@ static NetworkController *singletonInstance;
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
         
-        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+        NSString *memberNo = [attributeDict objectForKey:@"no"];
         NSString *name = [attributeDict objectForKey:@"name"];
         NSString *profileUrl = [attributeDict objectForKey:@"profile"];
         

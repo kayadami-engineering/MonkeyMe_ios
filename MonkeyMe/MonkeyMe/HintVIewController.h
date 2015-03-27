@@ -11,6 +11,7 @@
 @interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-
+@property (weak, nonatomic) IBOutlet UITextField *hintText;
+@property (strong, nonatomic) NSString *keyword;
 
 @end

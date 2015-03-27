@@ -10,6 +10,7 @@
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
 @implementation HintVIewController
+@synthesize keyword;
 
 - (void)viewDidLoad {
     
@@ -69,7 +70,7 @@
     
     NetworkController *networkController = [NetworkController sharedInstance];
     
-    [networkController uploadGameData:imageData];
+    [networkController uploadGameData:imageData Keyword:keyword Hint:self.hintText.text];
     //[self uploadImage:imageData Filename:@"testFile.jpeg"];
 
 }

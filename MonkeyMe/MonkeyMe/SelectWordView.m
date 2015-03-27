@@ -78,6 +78,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     [self performSegueWithIdentifier:@"HintSegue" sender:self];
 }
 @end
