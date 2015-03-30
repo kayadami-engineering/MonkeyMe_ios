@@ -60,7 +60,7 @@ static NetworkController *singletonInstance;
 -(void)postToServer:(NSString *)postString {
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%i", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
@@ -85,10 +85,11 @@ static NetworkController *singletonInstance;
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary]dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",param]dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"%@\r\n", [params objectForKey:param]]dataUsingEncoding:NSUTF8StringEncoding]];
+        NSLog(@"param = %@",param);
     }
     
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"userfile\"; filename=\"%@\"\r\n",filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\r\n",filename] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:fileData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -155,12 +156,14 @@ static NetworkController *singletonInstance;
     }
 }
 
--(void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint {
+-(void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
+           GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round{
     
     if(myMemberNumber) {
         currentCommand = @"uploadGameData";
         NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%i",myMemberNumber],
-                                 @"keyword":keyword,@"hint":hint};
+                                 @"keyword":keyword,@"hint":hint,@"g_no":g_no,@"targetNumber":targetNumber,
+                                 @"b_count":b_count,@"round":round};
         [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
     }
 }
@@ -209,7 +212,7 @@ static NetworkController *singletonInstance;
     else if([elementName isEqualToString:@"state"]) { //My state
         
         if([currentCommand isEqualToString:@"login"]) { //if login succeeed
-            NSString *memberNo = [attributeDict objectForKey:@"no"];
+            NSString *memberNo = [attributeDict objectForKey:@"m_no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             
             [tempDictionary setValue:memberNo forKey:@"memberNo"];
@@ -218,7 +221,7 @@ static NetworkController *singletonInstance;
             [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:tempDictionary];
         }
         else if([currentCommand isEqualToString:@"updateMain"]) { //if update main succeed
-            NSString *memberNo = [attributeDict objectForKey:@"no"];
+            NSString *memberNo = [attributeDict objectForKey:@"m_no"];
             NSString *memberID = [attributeDict objectForKey:@"id"];
             NSString *name = [attributeDict objectForKey:@"name"];
             
@@ -257,11 +260,12 @@ static NetworkController *singletonInstance;
         }
     }
     
-    else if([elementName isEqualToString:@"friend"]) {
+    else if([elementName isEqualToString:@"friendgame"]) {
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
         
-        NSString *memberNo = [attributeDict objectForKey:@"no"];
+        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+        NSString *gameNo = [attributeDict objectForKey:@"g_no"];
         NSString *memberID = [attributeDict objectForKey:@"id"];
         NSString *name = [attributeDict objectForKey:@"name"];
         NSString *level = [attributeDict objectForKey:@"level"];
@@ -269,6 +273,7 @@ static NetworkController *singletonInstance;
         NSString *round = [attributeDict objectForKey:@"round"];
         
         [list setValue:memberNo forKey:@"memberNo"];
+        [list setValue:gameNo forKey:@"gameNo"];
         [list setValue:memberID forKey:@"memberID"];
         [list setValue:name forKey:@"name"];
         [list setValue:level forKey:@"level"];
@@ -285,7 +290,7 @@ static NetworkController *singletonInstance;
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
         
-        NSString *game_no = [attributeDict objectForKey:@"no"];
+        NSString *game_no = [attributeDict objectForKey:@"g_no"];
         NSString *imageUrl = [attributeDict objectForKey:@"imageUrl"];
         NSString *keyword = [attributeDict objectForKey:@"keyword"];
         NSString *hint = [attributeDict objectForKey:@"hint"];
@@ -303,7 +308,7 @@ static NetworkController *singletonInstance;
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
         
-        NSString *memberNo = [attributeDict objectForKey:@"no"];
+        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
         NSString *name = [attributeDict objectForKey:@"name"];
         NSString *profileUrl = [attributeDict objectForKey:@"profile"];
         

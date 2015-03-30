@@ -10,7 +10,8 @@
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
 @implementation HintVIewController
-@synthesize keyword;
+@synthesize wordItem;
+@synthesize targetNumber;
 
 - (void)viewDidLoad {
     
@@ -70,9 +71,8 @@
     
     NetworkController *networkController = [NetworkController sharedInstance];
     
-    [networkController uploadGameData:imageData Keyword:keyword Hint:self.hintText.text];
-    //[self uploadImage:imageData Filename:@"testFile.jpeg"];
-
+    [networkController uploadGameData:imageData Keyword:wordItem.keyword Hint:self.hintText.text GameNumber:@"0" TargetNumber:targetNumber BananaCount:wordItem.b_count Round:@"1"];
+    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -81,6 +81,7 @@
 - (void) transferOkProcess:(NSNotification*)notification { //network notify the result of update request
     
     //do something..
+    NSLog(@"received somthing");
     
     NSDictionary* dict = notification.userInfo;
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8831DDF41AC9556A00394AC7 /* WordItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831DDF31AC9556A00394AC7 /* WordItemCell.m */; };
 		883BA7C31A7FA28A00B0DDA1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7C21A7FA28A00B0DDA1 /* main.m */; };
 		883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 883BA7C51A7FA28A00B0DDA1 /* AppDelegate.m */; };
 		883BA7CC1A7FA28A00B0DDA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883BA7CA1A7FA28A00B0DDA1 /* Main.storyboard */; };
@@ -123,6 +124,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8831DDF21AC9556A00394AC7 /* WordItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordItemCell.h; sourceTree = "<group>"; };
+		8831DDF31AC9556A00394AC7 /* WordItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordItemCell.m; sourceTree = "<group>"; };
 		883BA7BD1A7FA28A00B0DDA1 /* MonkeyMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MonkeyMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		883BA7C11A7FA28A00B0DDA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883BA7C21A7FA28A00B0DDA1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -292,6 +295,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8831DDF11AC954FA00394AC7 /* ClassObjects */ = {
+			isa = PBXGroup;
+			children = (
+				88A68FE11A8A0DDD00DBA3CE /* MainTableViewCell.h */,
+				88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */,
+				88BB5BE01A94981500385C04 /* ProfileImageItemCell.h */,
+				88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */,
+				8831DDF21AC9556A00394AC7 /* WordItemCell.h */,
+				8831DDF31AC9556A00394AC7 /* WordItemCell.m */,
+			);
+			name = ClassObjects;
+			sourceTree = "<group>";
+		};
 		883BA7B41A7FA28A00B0DDA1 = {
 			isa = PBXGroup;
 			children = (
@@ -320,8 +336,9 @@
 				883BA8001A7FA3C200B0DDA1 /* WYPopoverController */,
 				883BA8151A7FA7CE00B0DDA1 /* MainViewControllers */,
 				889CD0D01A86153200580FB6 /* SupportViewControllers */,
-				883BA7F61A7FA3C100B0DDA1 /* NetworkController.m */,
+				8831DDF11AC954FA00394AC7 /* ClassObjects */,
 				883BA7F51A7FA3C100B0DDA1 /* NetworkController.h */,
+				883BA7F61A7FA3C100B0DDA1 /* NetworkController.m */,
 				883BA7C41A7FA28A00B0DDA1 /* AppDelegate.h */,
 				883BA7C51A7FA28A00B0DDA1 /* AppDelegate.m */,
 				883BA7CA1A7FA28A00B0DDA1 /* Main.storyboard */,
@@ -495,10 +512,6 @@
 				889CD0FC1A86345600580FB6 /* LeftViewController.h */,
 				889CD0FF1A86346200580FB6 /* RightViewController.h */,
 				889CD1001A86346200580FB6 /* RightViewController.m */,
-				88A68FE11A8A0DDD00DBA3CE /* MainTableViewCell.h */,
-				88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */,
-				88BB5BE01A94981500385C04 /* ProfileImageItemCell.h */,
-				88BB5BE11A94981500385C04 /* ProfileImageItemCell.m */,
 			);
 			name = SupportViewControllers;
 			sourceTree = "<group>";
@@ -731,6 +744,7 @@
 				88BB5BD31A923DF400385C04 /* AchieveViewController.m in Sources */,
 				883BA8081A7FA3C200B0DDA1 /* RootViewController.m in Sources */,
 				88D9694E1A97235E007EE2E3 /* SelectWordView.m in Sources */,
+				8831DDF41AC9556A00394AC7 /* WordItemCell.m in Sources */,
 				889CD0FB1A8624A800580FB6 /* MainViewController.m in Sources */,
 				88FEF90B1AB1CCCE001F1116 /* GiveUpPopupVIewController.m in Sources */,
 				889CD0E61A861E4300580FB6 /* SlideNavigationContorllerAnimatorSlide.m in Sources */,

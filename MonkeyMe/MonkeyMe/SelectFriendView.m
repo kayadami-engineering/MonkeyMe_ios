@@ -7,11 +7,13 @@
 //
 
 #import "SelectFriendView.h"
+#import "SelectWordView.h"
 #import "MainTableViewCell.h"
 
 @implementation SelectFriendView
 @synthesize friendList;
 @synthesize networkController;
+@synthesize targetNumber;
 
 - (void)viewDidLoad {
     
@@ -91,6 +93,16 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"SelectWordSegue"]) {
+        
+        SelectWordView *wordView = (SelectWordView*)segue.destinationViewController;
+        wordView.targetNumber = targetNumber;
+        
+    }
+}
+
 #pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
@@ -151,6 +163,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    MainTableViewCell *gList = [friendList objectAtIndex:indexPath.row];
+    targetNumber = gList.memberNo;
+    
     [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
 }
 

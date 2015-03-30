@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WordItemCell.h"
 
 @interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *hintText;
-@property (strong, nonatomic) NSString *keyword;
+@property (strong, nonatomic) WordItemCell *wordItem;
+@property (strong, nonatomic) NSString* targetNumber;
 
 @end

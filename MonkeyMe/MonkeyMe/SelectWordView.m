@@ -7,13 +7,19 @@
 //
 
 #import "SelectWordView.h"
+#import "HintVIewController.h"
 
 @implementation SelectWordView
+@synthesize targetNumber;
+@synthesize wordItemList;
+@synthesize selectedItem;
+
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self setNavigationItem];
+    [self setWordItem];
 }
 
 - (void)setNavigationItem {
@@ -25,10 +31,50 @@
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
 }
+
+- (void)setWordItem {
+    
+    wordItemList = [[NSMutableArray alloc] init];
+    
+    WordItemCell *easy = [[WordItemCell alloc]init];
+    easy.difficulty = @"쉬움";
+    easy.keyword = @"코";
+    easy.b_count = @"1";
+    
+    WordItemCell *medium = [[WordItemCell alloc]init];
+    medium.difficulty = @"보통";
+    medium.keyword = @"고양이";
+    medium.b_count = @"2";
+    
+    WordItemCell *hard = [[WordItemCell alloc]init];
+    hard.difficulty = @"어려움";
+    hard.keyword = @"외계인";
+    hard.b_count = @"3";
+    
+    WordItemCell *crazy = [[WordItemCell alloc]init];
+    crazy.difficulty = @"지옥";
+    crazy.keyword = @"해바라기씨";
+    crazy.b_count = @"4";
+    
+    [wordItemList addObject:easy];
+    [wordItemList addObject:medium];
+    [wordItemList addObject:hard];
+    [wordItemList addObject:crazy];
+    
+}
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"HintSegue"]) {
+        
+        HintVIewController *hintView = (HintVIewController*)segue.destinationViewController;
+        hintView.targetNumber = targetNumber;
+        hintView.wordItem = selectedItem;
+    }
+}
 
 #pragma mark - UITableView Delegate & Datasrouce -
 
@@ -37,6 +83,7 @@
     return 4;
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
     return 1;
 }
 
@@ -53,31 +100,20 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     UILabel *difficulty = (UILabel *)[cell viewWithTag:100];
-    UILabel *title = (UILabel *)[cell viewWithTag:101];
+    UILabel *keyword = (UILabel *)[cell viewWithTag:101];
     
-    switch(indexPath.row) {
-        case 0 :
-            difficulty.text = @"쉬움";
-            title.text = @"코";
-            break;
-        case 1 :
-            difficulty.text = @"보통";
-            title.text = @"고양이";
-            break;
-        case 2 :
-            difficulty.text = @"어려움";
-            title.text = @"외계인";
-            break;
-        case 3 :
-            difficulty.text = @"지옥";
-            title.text = @"해바라기씨";
-            break;
-    }
+    WordItemCell *wordItemCell = [wordItemList objectAtIndex:indexPath.row];
+    
+    difficulty.text = wordItemCell.difficulty;
+    keyword.text = wordItemCell.keyword;
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    WordItemCell *wordItemCell = [wordItemList objectAtIndex:indexPath.row];
+    selectedItem = wordItemCell;
     
     [self performSegueWithIdentifier:@"HintSegue" sender:self];
 }

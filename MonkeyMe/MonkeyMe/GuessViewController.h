@@ -20,9 +20,13 @@
 @property (assign, nonatomic)CGSize keyboardHeight;
 @property (strong, nonatomic) WYPopoverController *popoverController;
 @property (weak, nonatomic) IBOutlet UIView *hintCloseView;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *textWordCollection;
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *underBarCollection;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
 - (IBAction)hintClose:(id)sender;
 - (IBAction)hintOpen:(id)sender;
+
 
 @end

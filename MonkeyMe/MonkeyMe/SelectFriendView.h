@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *friendList;
 @property (nonatomic, strong) NetworkController *networkController;
+@property (nonatomic, strong) NSString *targetNumber;
 
 @end

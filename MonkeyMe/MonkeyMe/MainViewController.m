@@ -11,6 +11,7 @@
 #import "RightViewController.h"
 #import "NetworkController.h"
 #import "ProfileViewController.h"
+#import "SVProgressHUD.h"
 
 @implementation MainViewController
 @synthesize tableView;
@@ -300,7 +301,6 @@
             }
         });
         
-    
         UILabel *name = (UILabel *)[cell viewWithTag:101];
         name.text = gList.name;
     
@@ -320,8 +320,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.section==1)
+    if(indexPath.section==1) {
+
+        [SVProgressHUD setViewForExtension:self.view];
+        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+        [SVProgressHUD show];
+        
         [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
+    }
 }
 
 
