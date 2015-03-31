@@ -28,15 +28,14 @@
     [super viewDidLoad];
     [self setNavigationItem];
     [self registerNotification];
+    networkController = [NetworkController sharedInstance];
     
 }
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
     
-    networkController = [NetworkController sharedInstance];
     [networkController updateMainRequest];
-    
     
 }
 - (void)dealloc {
@@ -115,8 +114,7 @@
         NSMutableArray *friendTurnList = [[NSMutableArray alloc]init];
         
         //get game list my turn
-        for(int i=0;i<[gameListMyturn count];i++) {
-            dict = [gameListMyturn objectAtIndex:i];
+        for(NSDictionary *dict in gameListMyturn) {
             
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
@@ -133,8 +131,7 @@
         [gameListArray addObject:myTurnList];
         
         //get game list friends turn
-        for(int i=0;i<[gameListFriendsTurn count];i++) {
-            dict = [gameListFriendsTurn objectAtIndex:i];
+        for(NSDictionary *dict in gameListFriendsTurn) {
             
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             

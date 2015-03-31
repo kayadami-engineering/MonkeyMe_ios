@@ -13,15 +13,75 @@
 @synthesize targetNumber;
 @synthesize wordItemList;
 @synthesize selectedItem;
+@synthesize networkController;
 
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self setNavigationItem];
-    [self setWordItem];
+    [self registerNotification];
+    networkController = [NetworkController sharedInstance];
+    [networkController getWordList];
+    
 }
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(getWordlistProcess:) name:@"getWordlistProcess" object:nil];
+    
+}
+- (void)getWordlistProcess:(NSNotification*)notification {
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        wordItemList = [[NSMutableArray alloc] init];
+        
+        NSMutableArray *wordList = (NSMutableArray*)dict[@"wordList"];
 
+        // Get user profile info
+        for(NSDictionary *wordDict in wordList) {
+            WordItemCell *item = [[WordItemCell alloc]init];
+            NSNumber *level = (NSNumber*)wordDict[@"level"];
+            
+            switch ([level intValue]) {
+                case 0:
+                    item.difficulty = @"쉬움";
+                    break;
+                case 1:
+                    item.difficulty = @"보통";
+                    break;
+                case 2:
+                    item.difficulty = @"어려움";
+                    break;
+                case 3:
+                    item.difficulty = @"지옥";
+                    break;
+                    
+                default:
+                    break;
+            }
+            item.keyword = (NSString*)wordDict[@"keyword"];
+            item.b_count = (NSString*)[NSString stringWithFormat:@"%@",level];
+            
+            [wordItemList addObject:item];
+        }
+        
+        [self.tableView reloadData];
+    }
+    
+}
 - (void)setNavigationItem {
     
     UIButton *buttonLeft  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -32,36 +92,6 @@
     
 }
 
-- (void)setWordItem {
-    
-    wordItemList = [[NSMutableArray alloc] init];
-    
-    WordItemCell *easy = [[WordItemCell alloc]init];
-    easy.difficulty = @"쉬움";
-    easy.keyword = @"코";
-    easy.b_count = @"1";
-    
-    WordItemCell *medium = [[WordItemCell alloc]init];
-    medium.difficulty = @"보통";
-    medium.keyword = @"고양이";
-    medium.b_count = @"2";
-    
-    WordItemCell *hard = [[WordItemCell alloc]init];
-    hard.difficulty = @"어려움";
-    hard.keyword = @"외계인";
-    hard.b_count = @"3";
-    
-    WordItemCell *crazy = [[WordItemCell alloc]init];
-    crazy.difficulty = @"지옥";
-    crazy.keyword = @"해바라기씨";
-    crazy.b_count = @"4";
-    
-    [wordItemList addObject:easy];
-    [wordItemList addObject:medium];
-    [wordItemList addObject:hard];
-    [wordItemList addObject:crazy];
-    
-}
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }

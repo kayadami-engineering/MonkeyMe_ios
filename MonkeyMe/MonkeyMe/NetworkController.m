@@ -53,7 +53,7 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = 1;
+    myMemberNumber = 1 ;
     
 }
 
@@ -152,6 +152,15 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentCommand = @"friendlist_monkey";
         NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
+        [self postToServer:string];
+    }
+}
+
+-(void)getWordList {
+    
+    if(myMemberNumber) {
+        currentCommand = @"wordList";
+        NSString *string = [NSString stringWithFormat:@"command=%@",currentCommand];
         [self postToServer:string];
     }
 }
@@ -324,6 +333,18 @@ static NetworkController *singletonInstance;
         
         [tempArray addObject:list];
     }
+    else if([elementName isEqualToString:@"wordinfo"]) {
+        
+        NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
+        
+        NSNumber *level = [attributeDict objectForKey:@"level"];
+        NSString *keyword = [attributeDict objectForKey:@"keyword"];
+        
+        [list setValue:level forKey:@"level"];
+        [list setValue:keyword forKey:@"keyword"];
+        
+        [tempArray addObject:list];
+    }
     //NSLog(@"Processing Element: %@", elementName);
     
 }
@@ -361,6 +382,10 @@ static NetworkController *singletonInstance;
         else if([currentCommand isEqualToString:@"friendlist_monkey"]) {
             [tempDictionary setValue:tempArray forKey:@"friendList"];
             [notificationCenter postNotificationName:@"m_friendListProcess" object:self userInfo:tempDictionary];
+        }
+        else if([currentCommand isEqual:@"wordList"]) {
+            [tempDictionary setValue:tempArray forKey:@"wordList"];
+            [notificationCenter postNotificationName:@"getWordlistProcess" object:self userInfo:tempDictionary];
         }
     }
 

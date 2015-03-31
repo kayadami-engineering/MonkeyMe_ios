@@ -20,6 +20,7 @@
 - (void)updateProfile:(NSString*)name Id:(NSString*)myID;
 - (void)postToServer:(NSString *)postString;
 - (void)getMonkeyFriendList;
+- (void)getWordList;
 
 - (void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
             GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round;

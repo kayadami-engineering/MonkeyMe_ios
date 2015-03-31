@@ -33,12 +33,15 @@
 }
 
 - (void)initView {
+    
+    //init subviews
     self.hintCount = 0;
     self.HintView.hidden = YES;
     self.AgainView.hidden = YES;
     self.WordViewFrame.layer.borderColor = [UIColor yellowColor].CGColor;
     self.WordViewFrame.layer.borderWidth = 1.0f;
     
+    //load image from url
     NSURL *url = [NSURL URLWithString:gameItem.imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];
     
@@ -47,6 +50,7 @@
         self.imageView.image = image;
     }
     
+    //set profile image
     [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
     self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
     self.profile.layer.masksToBounds = YES;
@@ -55,6 +59,16 @@
     self.name.text = gameItem.name;
     self.hintText.text = gameItem.hint;
     
+    //init hint label
+    
+    if(gameItem.keyword.length <= [self.underBarCollection count]) {
+        for(int i=0; i<gameItem.keyword.length; i++) {
+            UILabel *underbar = [self.underBarCollection objectAtIndex:i];
+            UILabel *text = [self.textWordCollection objectAtIndex:i];
+            underbar.hidden = FALSE;
+            text.text = [NSString stringWithFormat:@"%C",[gameItem.keyword characterAtIndex:i]];
+        }
+    }
 }
 
 - (void)setNavigationItem {
@@ -76,7 +90,7 @@
 {
     [self.view endEditing:YES];
     
-    if ([[answerText text] isEqualToString:@"ans"]) { //answer right
+    if ([[answerText text] isEqualToString:gameItem.keyword]) { //answer right
         
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
                                                       bundle:nil];
