@@ -12,6 +12,10 @@
 @interface MainTableViewCell : NSObject
 {
     NSString *memberNo;
+    NSString *gameNo;
+    NSString *keyword;
+    NSString *hint;
+    NSString *imageUrl;
     NSString *profileUrl;
     NSString *name;
     NSString *memberID;
@@ -21,11 +25,16 @@
 }
 
 @property (copy, nonatomic) NSString *memberNo;
+@property (copy, nonatomic) NSString *gameNo;
 @property (copy, nonatomic) NSString *profileUrl;
 @property (copy, nonatomic) NSString *name;
 @property (copy, nonatomic) NSString *roundName;
 @property (copy, nonatomic) NSString *level;
 @property (copy, nonatomic) NSString *memberID;
 @property (copy, nonatomic) NSData *imageData;
+@property (copy, nonatomic) NSString *keyword;
+@property (copy, nonatomic) NSString *hint;
+@property (copy, nonatomic) NSString *imageUrl;
+
 
 @end

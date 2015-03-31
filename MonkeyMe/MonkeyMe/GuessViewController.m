@@ -21,6 +21,7 @@
 @synthesize keyboardHeight;
 @synthesize answerText;
 @synthesize popoverController;
+@synthesize gameItem;
 
 
 - (void)viewDidLoad {
@@ -28,6 +29,7 @@
     [super viewDidLoad];
     [self initView];
     [self setNavigationItem];
+    
 }
 
 - (void)initView {
@@ -36,6 +38,22 @@
     self.AgainView.hidden = YES;
     self.WordViewFrame.layer.borderColor = [UIColor yellowColor].CGColor;
     self.WordViewFrame.layer.borderWidth = 1.0f;
+    
+    NSURL *url = [NSURL URLWithString:gameItem.imageUrl];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    
+    if(data) {
+        UIImage *image = [[UIImage alloc]initWithData:data];
+        self.imageView.image = image;
+    }
+    
+    [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
+    self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
+    self.profile.layer.masksToBounds = YES;
+    self.profile.layer.borderWidth = 0;
+    
+    self.name.text = gameItem.name;
+    self.hintText.text = gameItem.hint;
     
 }
 
@@ -94,15 +112,6 @@
     }
 }
 
-- (IBAction)hintClose:(id)sender {
-    self.HintView.hidden = true;
-    self.hintCloseView.hidden = false;
-}
-
-- (IBAction)hintOpen:(id)sender {
-    self.HintView.hidden = false;
-    self.hintCloseView.hidden = true;
-}
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -161,6 +170,7 @@
     {
         // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
         // 2. increase the size of the view so that the area behind the keyboard is covered up.
+
         rect.origin.y -= keyboardHeight.height;
         rect.size.height += keyboardHeight.height;
     }

@@ -12,14 +12,16 @@
 #import "NetworkController.h"
 #import "ProfileViewController.h"
 #import "SVProgressHUD.h"
+#import "GuessViewController.h"
 
 @implementation MainViewController
-@synthesize tableView;
+@synthesize myTableView;
 @synthesize scrollView;
 @synthesize gameListArray;
 @synthesize profileImage;
 @synthesize networkController;
 @synthesize userStateInfo;
+@synthesize gameItem;
 
 - (void)viewDidLoad {
     
@@ -67,6 +69,7 @@
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
     [sendNotification addObserver:self selector:@selector(updateProcess:) name:@"updateMainProcess" object:nil];
+
 }
 
 - (void)updateProcess:(NSNotification *)notification { //network notify the result of update request
@@ -74,7 +77,6 @@
     //do something..
 
     NSDictionary* dict = notification.userInfo;
-    
     
     NSString *result = (NSString*)dict[@"result"];
     NSString *message = (NSString*)dict[@"message"];
@@ -118,6 +120,10 @@
             
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
+            listItem.gameNo = (NSString*)dict[@"gameNo"];
+            listItem.imageUrl = (NSString*)dict[@"imageUrl"];
+            listItem.keyword = (NSString*)dict[@"keyword"];
+            listItem.hint = (NSString*)dict[@"hint"];
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
             listItem.level = (NSString*)dict[@"level"];
@@ -132,6 +138,7 @@
             
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
+            listItem.gameNo = (NSString*)dict[@"gameNo"];
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
             listItem.level = (NSString*)dict[@"level"];
@@ -141,7 +148,7 @@
         [gameListArray addObject:friendTurnList];
         
         [self setProfileImageFromURL:profileUrl];
-        [self.tableView reloadData];
+        [self.myTableView reloadData];
     }
 }
 
@@ -185,6 +192,12 @@
         
         ProfileViewController *profileView = (ProfileViewController*)segue.destinationViewController;
         profileView.userStateInfo = self.userStateInfo;
+        
+    }
+    else if([segue.identifier isEqualToString:@"GuessViewSegue"]) {
+        
+        GuessViewController *guessView = (GuessViewController*)segue.destinationViewController;
+        guessView.gameItem = gameItem;
         
     }
 }
@@ -285,6 +298,7 @@
             
             NSURL *url = [NSURL URLWithString:gList.profileUrl];
             NSData *data = [NSData dataWithContentsOfURL:url];
+            gList.imageData = data;
             
             if(data) {
                 UIImage *image = [[UIImage alloc]initWithData:data];
@@ -320,12 +334,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    //select game from friend
     if(indexPath.section==1) {
-
-        [SVProgressHUD setViewForExtension:self.view];
-        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
-        [SVProgressHUD show];
         
+        MainTableViewCell *gList = [[self.gameListArray objectAtIndex:0] objectAtIndex:indexPath.row];
+        gameItem = gList;
         [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
     }
 }

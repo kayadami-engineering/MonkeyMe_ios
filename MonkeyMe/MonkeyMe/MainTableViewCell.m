@@ -15,6 +15,10 @@
 @synthesize level;
 @synthesize memberID;
 @synthesize memberNo;
+@synthesize gameNo;
 @synthesize imageData;
+@synthesize keyword;
+@synthesize imageUrl;
+@synthesize hint;
 
 @end

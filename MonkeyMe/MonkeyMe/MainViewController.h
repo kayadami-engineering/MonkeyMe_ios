@@ -20,8 +20,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *myLevel;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *myTableView;
+
 @property (nonatomic, strong) NSMutableArray *gameListArray;
 @property (nonatomic, strong) NSMutableDictionary *userStateInfo;
 @property (nonatomic, strong) NetworkController *networkController;
+@property (nonatomic, strong) MainTableViewCell *gameItem;
 @end

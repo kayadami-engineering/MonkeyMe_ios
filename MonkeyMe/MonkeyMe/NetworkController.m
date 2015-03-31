@@ -271,6 +271,9 @@ static NetworkController *singletonInstance;
         NSString *level = [attributeDict objectForKey:@"level"];
         NSString *profileUrl = [attributeDict objectForKey:@"profile"];
         NSString *round = [attributeDict objectForKey:@"round"];
+        NSString *keyword = [attributeDict objectForKey:@"keyword"];
+        NSString *hint = [attributeDict objectForKey:@"hint"];
+        NSString *imageUrl = [attributeDict objectForKey:@"imageUrl"];
         
         [list setValue:memberNo forKey:@"memberNo"];
         [list setValue:gameNo forKey:@"gameNo"];
@@ -279,6 +282,9 @@ static NetworkController *singletonInstance;
         [list setValue:level forKey:@"level"];
         [list setValue:profileUrl forKey:@"profileUrl"];
         [list setValue:round forKey:@"round"];
+        [list setValue:keyword forKey:@"keyword"];
+        [list setValue:hint forKey:@"hint"];
+        [list setValue:imageUrl forKey:@"imageUrl"];
         
         if([currentCommand isEqualToString:@"updateMain_myturn"])
             [tempArray addObject:list];
