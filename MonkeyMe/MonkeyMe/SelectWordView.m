@@ -9,8 +9,10 @@
 #import "SelectWordView.h"
 #import "HintVIewController.h"
 
+#define OBSERVERNAME @"getWordlistProcess"
+
 @implementation SelectWordView
-@synthesize targetNumber;
+@synthesize gameInfo;
 @synthesize wordItemList;
 @synthesize selectedItem;
 @synthesize networkController;
@@ -22,14 +24,14 @@
     [self setNavigationItem];
     [self registerNotification];
     networkController = [NetworkController sharedInstance];
-    [networkController getWordList];
+    [networkController getWordList:OBSERVERNAME];
     
 }
 - (void)registerNotification {
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(getWordlistProcess:) name:@"getWordlistProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(getWordlistProcess:) name:OBSERVERNAME object:nil];
     
 }
 - (void)getWordlistProcess:(NSNotification*)notification {
@@ -101,7 +103,7 @@
     if([segue.identifier isEqualToString:@"HintSegue"]) {
         
         HintVIewController *hintView = (HintVIewController*)segue.destinationViewController;
-        hintView.targetNumber = targetNumber;
+        hintView.gameInfo = gameInfo;
         hintView.wordItem = selectedItem;
     }
 }

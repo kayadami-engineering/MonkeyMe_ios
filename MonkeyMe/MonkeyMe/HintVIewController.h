@@ -14,6 +14,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *hintText;
 @property (strong, nonatomic) WordItemCell *wordItem;
-@property (strong, nonatomic) NSString* targetNumber;
+@property (strong, nonatomic) NSDictionary* gameInfo;
 
 @end

@@ -10,6 +10,9 @@
 #import "SelectWordView.h"
 #import "MainTableViewCell.h"
 
+#define OBSERVERNAME_1 @"m_friendListProcess"
+#define OBSERVERNAME_2 @"f_friendListProcess"
+
 @implementation SelectFriendView
 @synthesize friendList;
 @synthesize networkController;
@@ -30,7 +33,7 @@
     [self registerNotification];
     friendList = [[NSMutableArray alloc]init];
     
-    [self.networkController getMonkeyFriendList];
+    [self.networkController getMonkeyFriendList:OBSERVERNAME_1];
     
 }
 - (void)dealloc {
@@ -42,7 +45,7 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(monkeyFriendListUpdate:) name:@"m_friendListProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(monkeyFriendListUpdate:) name:OBSERVERNAME_1 object:nil];
 }
 
 - (void)monkeyFriendListUpdate:(NSNotification *)notification {
@@ -98,7 +101,12 @@
     if([segue.identifier isEqualToString:@"SelectWordSegue"]) {
         
         SelectWordView *wordView = (SelectWordView*)segue.destinationViewController;
-        wordView.targetNumber = targetNumber;
+        NSDictionary *gameInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  targetNumber, @"targetNumber",
+                                  @"0",@"gameNumber",
+                                  @"1",@"round",
+                                  nil];
+        wordView.gameInfo = gameInfo;
         
     }
 }

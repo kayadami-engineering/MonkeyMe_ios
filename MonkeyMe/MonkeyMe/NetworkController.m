@@ -12,7 +12,6 @@
 #define LOGIN   1
 
 @implementation NetworkController
-@synthesize currentElementValue;
 @synthesize serverURL;
 @synthesize myParser;
 @synthesize request;
@@ -24,6 +23,7 @@
 @synthesize tempArray;
 @synthesize tempArray2;
 @synthesize myMemberNumber;
+@synthesize currentObserverName;
 
 static NetworkController *singletonInstance;
 
@@ -53,7 +53,7 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = 1 ;
+    myMemberNumber = 1;
     
 }
 
@@ -85,7 +85,6 @@ static NetworkController *singletonInstance;
         [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary]dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n",param]dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[[NSString stringWithFormat:@"%@\r\n", [params objectForKey:param]]dataUsingEncoding:NSUTF8StringEncoding]];
-        NSLog(@"param = %@",param);
     }
     
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -113,52 +112,58 @@ static NetworkController *singletonInstance;
     
 }
 
--(void)loginRequest:(NSString*)email Password:(NSString*)password {
+-(void)loginRequest:(NSString*)email Password:(NSString*)password ObserverName:(NSString *)observerName {
     
     currentCommand = @"login";
+    currentObserverName = observerName;
     NSString *string = [NSString stringWithFormat:@"command=%@&email=%@",currentCommand,email];
     [self postToServer:string];
 }
 
--(void)updateMainRequest {
+-(void)updateMainRequest:(NSString *)observerName{
     
     if(myMemberNumber) {
+        currentObserverName = observerName;
         currentCommand = @"updateMain";
         NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
 
--(void)getProfileGameListRequest {
+-(void)getProfileGameListRequest:(NSString *)observerName {
     
     if(myMemberNumber) {
+        currentObserverName = observerName;
         currentCommand = @"pastList";
         NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
 
--(void)updateProfile:(NSString*)name Id:(NSString*)myID {
+-(void)updateProfile:(NSString*)name Id:(NSString*)myID ObserverName:(NSString *)observerName {
     
     if(myMemberNumber) {
+        currentObserverName = observerName;
         currentCommand = @"updateProfile";
         NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&name=%@&id=%@",currentCommand,myMemberNumber,name,myID];
         [self postToServer:string];
     }
 }
 
--(void)getMonkeyFriendList {
+-(void)getMonkeyFriendList:(NSString *)observerName {
     
     if(myMemberNumber) {
+        currentObserverName = observerName;
         currentCommand = @"friendlist_monkey";
         NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
 
--(void)getWordList {
+-(void)getWordList:(NSString *)observerName {
     
     if(myMemberNumber) {
+        currentObserverName = observerName;
         currentCommand = @"wordList";
         NSString *string = [NSString stringWithFormat:@"command=%@",currentCommand];
         [self postToServer:string];
@@ -166,9 +171,10 @@ static NetworkController *singletonInstance;
 }
 
 -(void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
-           GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round{
+           GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round ObserverName:(NSString *)observerName{
     
     if(myMemberNumber) {
+        currentObserverName = observerName;
         currentCommand = @"uploadGameData";
         NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%i",myMemberNumber],
                                  @"keyword":keyword,@"hint":hint,@"g_no":g_no,@"targetNumber":targetNumber,
@@ -196,26 +202,6 @@ static NetworkController *singletonInstance;
         [tempDictionary setValue:result forKey:@"result"];
         [tempDictionary setValue:message forKey:@"message"];
        
-        if([result isEqualToString:@"error"]) { //when error encountered
-            
-            if([currentCommand isEqualToString:@"login"]) { //if login failed
-                [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:tempDictionary];
-            }
-            else if([currentCommand isEqualToString:@"updateMain"]) {
-                [notificationCenter postNotificationName:@"updateMainProcess" object:self userInfo:tempDictionary];
-            }
-            else if([currentCommand isEqualToString:@"uploadGameData"]) {
-
-                [notificationCenter postNotificationName:@"uploadGameDataProcess" object:self userInfo:tempDictionary];
-            }
-        }
-        else { //success
-            
-            if([currentCommand isEqualToString:@"uploadGameData"]) {
-
-                [notificationCenter postNotificationName:@"uploadGameDataProcess" object:self userInfo:tempDictionary];
-            }
-        }
     }
     
     else if([elementName isEqualToString:@"state"]) { //My state
@@ -227,7 +213,6 @@ static NetworkController *singletonInstance;
             [tempDictionary setValue:memberNo forKey:@"memberNo"];
             [tempDictionary setValue:memberID forKey:@"memberID"];
             
-            [notificationCenter postNotificationName:@"loginProcess" object:self userInfo:tempDictionary];
         }
         else if([currentCommand isEqualToString:@"updateMain"]) { //if update main succeed
             NSString *memberNo = [attributeDict objectForKey:@"m_no"];
@@ -351,12 +336,7 @@ static NetworkController *singletonInstance;
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     
-    if(!currentElementValue)
-        currentElementValue = [[NSMutableString alloc] initWithString:string];
-    else
-        [currentElementValue appendString:string];
     
-    //NSLog(@"Processing Value: %@", currentElementValue);
 }
 
 
@@ -371,43 +351,35 @@ static NetworkController *singletonInstance;
         
         else if([currentCommand isEqualToString:@"updateMain_friendsturn"]) {
             [tempDictionary setValue:tempArray2 forKey:@"gamelist_friendsturn"];
-            [notificationCenter postNotificationName:@"updateMainProcess" object:self userInfo:tempDictionary];
         }
         
         else if([currentCommand isEqualToString:@"pastList"]) {
             [tempDictionary setValue:tempArray forKey:@"items"];
-            [notificationCenter postNotificationName:@"profileGameListProcess" object:self userInfo:tempDictionary];
         }
         
         else if([currentCommand isEqualToString:@"friendlist_monkey"]) {
             [tempDictionary setValue:tempArray forKey:@"friendList"];
-            [notificationCenter postNotificationName:@"m_friendListProcess" object:self userInfo:tempDictionary];
         }
         else if([currentCommand isEqual:@"wordList"]) {
             [tempDictionary setValue:tempArray forKey:@"wordList"];
-            [notificationCenter postNotificationName:@"getWordlistProcess" object:self userInfo:tempDictionary];
-        }
-    }
-
-    else if([elementName isEqualToString:@"data"]) {
-        
-        if([currentCommand isEqualToString:@"updateProfile"]) {
-            
-            [notificationCenter postNotificationName:@"updateProfileProcess" object:self userInfo:tempDictionary];
         }
     }
     
     else if([elementName isEqualToString:@"xml"]) {
         
+        //notify the observer
+        if(currentObserverName.length>0) {
+            [notificationCenter postNotificationName:currentObserverName object:self userInfo:tempDictionary];
+        }
         //empty all temporary container objects
         [tempDictionary removeAllObjects];
         [tempArray removeAllObjects];
         [tempArray2 removeAllObjects];
         
+        currentObserverName = @"";
         currentCommand = @"";
     }
     
-    currentElementValue = nil;
 }
 
 #pragma URL Connection Delegate

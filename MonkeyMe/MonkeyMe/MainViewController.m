@@ -14,6 +14,8 @@
 #import "SVProgressHUD.h"
 #import "GuessViewController.h"
 
+#define OBSERVERNAME @"updateMainProcess"
+
 @implementation MainViewController
 @synthesize myTableView;
 @synthesize scrollView;
@@ -35,7 +37,7 @@
     
     [super viewWillAppear:animated];
     
-    [networkController updateMainRequest];
+    [networkController updateMainRequest:OBSERVERNAME];
     
 }
 - (void)dealloc {
@@ -67,7 +69,7 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(updateProcess:) name:@"updateMainProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(updateProcess:) name:OBSERVERNAME object:nil];
 
 }
 
@@ -119,13 +121,14 @@
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
             listItem.gameNo = (NSString*)dict[@"gameNo"];
+            listItem.memberNo = (NSString*)dict[@"memberNo"];
             listItem.imageUrl = (NSString*)dict[@"imageUrl"];
             listItem.keyword = (NSString*)dict[@"keyword"];
             listItem.hint = (NSString*)dict[@"hint"];
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
             listItem.level = (NSString*)dict[@"level"];
-            listItem.roundName = [NSString stringWithFormat:@"Round %@",(NSString*)dict[@"round"]];
+            listItem.round = [NSString stringWithFormat:@"%@",(NSString*)dict[@"round"]];
             [myTurnList addObject:listItem];
         }
         [gameListArray addObject:myTurnList];
@@ -136,10 +139,11 @@
             MainTableViewCell *listItem = [[MainTableViewCell alloc]init];
             
             listItem.gameNo = (NSString*)dict[@"gameNo"];
+            listItem.memberNo = (NSString*)dict[@"memberNo"];
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
             listItem.level = (NSString*)dict[@"level"];
-            listItem.roundName = [NSString stringWithFormat:@"Round %@",(NSString*)dict[@"round"]];
+            listItem.round = [NSString stringWithFormat:@"%@",(NSString*)dict[@"round"]];
             [friendTurnList addObject:listItem];
         }
         [gameListArray addObject:friendTurnList];
@@ -316,7 +320,7 @@
         name.text = gList.name;
     
         UILabel *round = (UILabel *)[cell viewWithTag:102];
-        round.text = gList.roundName;
+        round.text = gList.round;
     
         UILabel *level = (UILabel *)[cell viewWithTag:103];
         level.text = gList.level;

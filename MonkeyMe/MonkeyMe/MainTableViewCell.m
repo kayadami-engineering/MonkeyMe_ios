@@ -11,7 +11,7 @@
 @implementation MainTableViewCell
 @synthesize profileUrl;
 @synthesize name;
-@synthesize roundName;
+@synthesize round;
 @synthesize level;
 @synthesize memberID;
 @synthesize memberNo;

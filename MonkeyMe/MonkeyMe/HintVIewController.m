@@ -9,17 +9,24 @@
 #import "HintVIewController.h"
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
+
+#define OBSERVERNAME @"uploadGameDataProcess"
+
 @implementation HintVIewController
 @synthesize wordItem;
-@synthesize targetNumber;
+@synthesize gameInfo;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self registerNotification];
     [self setNavigationItemLeft];
     
     [self performSelector:@selector(showCameraView) withObject:nil afterDelay:0.5f];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self registerNotification];
 }
 
 - (void)dealloc {
@@ -63,7 +70,7 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(transferOkProcess:) name:@"uploadGameDataProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(transferOkProcess:) name:OBSERVERNAME object:nil];
 }
 - (void)ok {
     [self.view endEditing:YES];
@@ -71,7 +78,7 @@
     
     NetworkController *networkController = [NetworkController sharedInstance];
     
-    [networkController uploadGameData:imageData Keyword:wordItem.keyword Hint:self.hintText.text GameNumber:@"0" TargetNumber:targetNumber BananaCount:wordItem.b_count Round:@"1"];
+    [networkController uploadGameData:imageData Keyword:wordItem.keyword Hint:self.hintText.text GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:[gameInfo objectForKey:@"targetNumber"] BananaCount:wordItem.b_count Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME];
     
 }
 

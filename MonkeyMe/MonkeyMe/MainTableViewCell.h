@@ -19,7 +19,7 @@
     NSString *profileUrl;
     NSString *name;
     NSString *memberID;
-    NSString *roundName;
+    NSString *round;
     NSString *level;
     NSData *imageData;
 }
@@ -28,7 +28,7 @@
 @property (copy, nonatomic) NSString *gameNo;
 @property (copy, nonatomic) NSString *profileUrl;
 @property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *roundName;
+@property (copy, nonatomic) NSString *round;
 @property (copy, nonatomic) NSString *level;
 @property (copy, nonatomic) NSString *memberID;
 @property (copy, nonatomic) NSData *imageData;

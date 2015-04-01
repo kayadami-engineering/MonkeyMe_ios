@@ -349,12 +349,6 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crw-Ba-6n0">
-                                                            <rect key="frame" x="92" y="29" width="220" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="levc.png" translatesAutoresizingMaskIntoConstraints="NO" id="nPD-hU-Y7p">
                                                             <rect key="frame" x="64" y="33" width="20" height="20"/>
                                                         </imageView>
@@ -362,6 +356,18 @@
                                                             <rect key="frame" x="64" y="33" width="20" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Round" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91U-zc-C7L">
+                                                            <rect key="frame" x="92" y="30" width="51" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="crw-Ba-6n0">
+                                                            <rect key="frame" x="140" y="30" width="52" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -414,7 +420,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLH-U2-xuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1738" y="353"/>
+            <point key="canvasLocation" x="1738" y="352"/>
         </scene>
         <!--Slide Navigation Controller-->
         <scene sceneID="dYg-sz-DpC">
@@ -851,7 +857,7 @@
                     <navigationItem key="navigationItem" title="Guess!" id="a5v-qr-PXp">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="bRQ-dH-bMt">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Zcz-GC-yx2">
-                                <rect key="frame" x="294" y="12" width="8" height="20"/>
+                                <rect key="frame" x="294" y="12" width="9" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="phoedic.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -862,8 +868,8 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="AgainView" destination="dy0-fa-D16" id="VYj-of-y5o"/>
                         <outlet property="HintView" destination="Jim-Ud-yP5" id="T4i-iH-2IV"/>
@@ -884,6 +890,7 @@
                         <outletCollection property="textWordCollection" destination="yae-H1-69I" id="h8H-N4-s6I"/>
                         <outletCollection property="textWordCollection" destination="ypH-F6-gNS" id="bWW-bL-rAp"/>
                         <outletCollection property="textWordCollection" destination="E4d-SL-on8" id="c7F-iB-UOF"/>
+                        <segue destination="Mic-ca-Xr1" kind="show" identifier="SelectWordSegue" id="mrL-yp-HSX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Lq-zN-4rx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1738,7 +1745,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cye-tl-QO6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642" y="1532"/>
+            <point key="canvasLocation" x="2632" y="2000"/>
         </scene>
     </scenes>
     <resources>
@@ -1771,4 +1778,7 @@
         <image name="signup_e_ic.png" width="580" height="123"/>
         <image name="test.jpg" width="540" height="960"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="mrL-yp-HSX"/>
+    </inferredMetricsTieBreakers>
 </document>

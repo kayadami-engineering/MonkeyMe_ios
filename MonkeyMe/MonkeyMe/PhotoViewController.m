@@ -7,8 +7,9 @@
 //
 
 #import "PhotoViewController.h"
-
 #import "NetworkController.h"
+
+#define OBSERVERNAME @"profileGameListProcess"
 
 @implementation PhotoViewController
 @synthesize imageListArray;
@@ -21,14 +22,14 @@
     [self registerNotification];
     
     NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController getProfileGameListRequest];
+    [networkController getProfileGameListRequest:OBSERVERNAME];
 }
 
 - (void)registerNotification {
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(updateList:) name:@"profileGameListProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(updateList:) name:OBSERVERNAME object:nil];
 }
 - (void)updateList:(NSNotification *)notification {
 

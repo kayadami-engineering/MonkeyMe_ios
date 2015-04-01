@@ -10,6 +10,8 @@
 #import "NetworkController.h"
 #import "SVProgressHUD.h"
 
+#define OBSERVERNAME @"updateProfileProcess"
+
 @implementation EditProfileViewController
 @synthesize userStateInfo;
 
@@ -65,7 +67,7 @@
 
 - (void)ok {
     NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController updateProfile:self.myName.text Id:self.myID.text];
+    [networkController updateProfile:self.myName.text Id:self.myID.text ObserverName:OBSERVERNAME];
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
@@ -76,7 +78,7 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(updateProcess:) name:@"updateProfileProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(updateProcess:) name:OBSERVERNAME object:nil];
 }
 
 - (void)updateProcess:(NSNotification *)notification {

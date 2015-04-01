@@ -13,6 +13,8 @@
 #import "SVProgressHUD.h"
 #import "NetworkController.h"
 
+#define OBSERVERNAME @"loginProcess"
+
 @interface LoginViewController () <LoginViewControllerDelegate, JoinViewControllerDelegate, WYPopoverControllerDelegate> {
    
 }
@@ -71,7 +73,7 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(loginProcess:) name:@"loginProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(loginProcess:) name:OBSERVERNAME object:nil];
 }
 
 - (void)loginProcess:(NSNotification *)notification { //network notify the result of login request
@@ -127,7 +129,7 @@
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
     
-    [networkController loginRequest:email Password:(NSString*)password]; //request login
+    [networkController loginRequest:email Password:(NSString*)password ObserverName:OBSERVERNAME]; //request login
     
     //[self performSelector:@selector(loginOk)withObject:nil afterDelay:1.0];
 }

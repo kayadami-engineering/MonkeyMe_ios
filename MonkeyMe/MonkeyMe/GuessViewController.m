@@ -7,7 +7,7 @@
 //
 
 #import "GuessViewController.h"
-
+#import "SelectWordView.h"
 #import "GiveUpPopupVIewController.h"
 #import "WYStoryboardPopoverSegue.h"
 #import "MainViewController.h"
@@ -22,7 +22,6 @@
 @synthesize answerText;
 @synthesize popoverController;
 @synthesize gameItem;
-
 
 - (void)viewDidLoad {
     
@@ -102,7 +101,8 @@
             vc.view.alpha = 1;
         }];
         
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+        [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
 
     }
     else {
@@ -198,7 +198,6 @@
     
     [UIView commitAnimations];
 }
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"GiveUpSegue"])
@@ -213,6 +212,20 @@
                                                               options:WYPopoverAnimationOptionFadeWithScale
                                                                  mode:3];
         popoverController.delegate = self;
+    }
+    else if([segue.identifier isEqualToString:@"SelectWordSegue"]) {
+        
+        SelectWordView *wordView = (SelectWordView*)segue.destinationViewController;
+        
+        int newRound = [gameItem.round intValue];
+        newRound = newRound+1;
+        NSDictionary *gameInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  gameItem.memberNo, @"targetNumber",
+                                  gameItem.gameNo,@"gameNumber",
+                                  [NSString stringWithFormat:@"%d",newRound],@"round",
+                                  nil];
+        wordView.gameInfo = gameInfo;
+        
     }
 }
 

@@ -9,6 +9,9 @@
 #import "RightViewController.h"
 #import "MainTableViewCell.h"
 
+#define OBSERVERNAME_1 @"m_friendListProcess"
+#define OBSERVERNAME_2 @"f_friendListProcess"
+
 @implementation RightViewController
 
 @synthesize headerSearch;
@@ -51,7 +54,7 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(monkeyFriendListUpdate:) name:@"m_friendListProcess" object:nil];
+    [sendNotification addObserver:self selector:@selector(monkeyFriendListUpdate:) name:OBSERVERNAME_1 object:nil];
 }
 
 - (void)monkeyFriendListUpdate:(NSNotification *)notification {
@@ -131,7 +134,7 @@
             }
             else if(section==2) { //monkey me friend
                 
-                [self.networkController getMonkeyFriendList];
+                [self.networkController getMonkeyFriendList:OBSERVERNAME_1];
             }
             blockUpdate = true;
         }
