@@ -28,7 +28,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profile;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *hintText;
-
+@property (strong, nonatomic) NSNumber *resultType;
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
 

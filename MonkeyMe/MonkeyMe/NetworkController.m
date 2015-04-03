@@ -169,7 +169,24 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
-
+- (void)solveTheMonkey:(NSString*)g_no GameLevel:(NSString*)level ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"solveTheMonkey";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&g_no=%@&level=%@",currentCommand,myMemberNumber,g_no,level];
+        [self postToServer:string];
+    }
+}
+-(void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSNumber*)rate ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"gameEvaluate";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&g_no=%@&reply=%@&rate=%@",currentCommand,myMemberNumber,g_no,reply,rate];
+        [self postToServer:string];
+    }
+}
 -(void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
            GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round ObserverName:(NSString *)observerName{
     
@@ -268,6 +285,7 @@ static NetworkController *singletonInstance;
         NSString *keyword = [attributeDict objectForKey:@"keyword"];
         NSString *hint = [attributeDict objectForKey:@"hint"];
         NSString *imageUrl = [attributeDict objectForKey:@"imageUrl"];
+        NSNumber *isSolved = [attributeDict objectForKey:@"isSolved"];
         
         [list setValue:memberNo forKey:@"memberNo"];
         [list setValue:gameNo forKey:@"gameNo"];
@@ -279,6 +297,7 @@ static NetworkController *singletonInstance;
         [list setValue:keyword forKey:@"keyword"];
         [list setValue:hint forKey:@"hint"];
         [list setValue:imageUrl forKey:@"imageUrl"];
+        [list setValue:isSolved forKey:@"isSolved"];
         
         if([currentCommand isEqualToString:@"updateMain_myturn"])
             [tempArray addObject:list];
@@ -379,7 +398,6 @@ static NetworkController *singletonInstance;
         currentObserverName = @"";
         currentCommand = @"";
     }
-    
 }
 
 #pragma URL Connection Delegate
@@ -419,6 +437,18 @@ static NetworkController *singletonInstance;
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"Network Error received = %@", error);
+    
+    //notify the observer
+    if(currentObserverName.length>0) {
+        
+        NSString *result = @"error";
+        NSString *message = @"Connection Error";
+        
+        [tempDictionary setValue:result forKey:@"result"];
+        [tempDictionary setValue:message forKey:@"message"];
+        [notificationCenter postNotificationName:currentObserverName object:self userInfo:tempDictionary];
+    }
+
 }
 
 @end

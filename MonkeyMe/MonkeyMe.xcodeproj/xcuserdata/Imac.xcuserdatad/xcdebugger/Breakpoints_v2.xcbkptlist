@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/MainViewController.m"
-            timestampString = "449594478.875007"
+            timestampString = "449776090.932111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "-tableView:viewForHeaderInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/GuessViewController.m"
-            timestampString = "449581589.752204"
+            timestampString = "449778274.926576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "-okbtnPressed:"
             landmarkType = "5">
          </BreakpointContent>

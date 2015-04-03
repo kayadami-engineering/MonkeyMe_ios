@@ -18,13 +18,13 @@
 - (void)updateMainRequest:(NSString*)observerName;
 - (void)getProfileGameListRequest:(NSString*)name ;
 - (void)updateProfile:(NSString*)name Id:(NSString*)myID ObserverName:(NSString*)observerName;
-- (void)postToServer:(NSString *)postString ObserverName:(NSString*)observerName;
 - (void)getMonkeyFriendList:(NSString*)observerName;
 - (void)getWordList:(NSString*)observerName;
-
+- (void)solveTheMonkey:(NSString*)g_no GameLevel:(NSString*)level ObserverName:(NSString*)observerName;
+- (void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSNumber*)rate ObserverName:(NSString*)observerName;
 - (void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
             GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round
-          ObserverName:(NSString*)observerName ;
+          ObserverName:(NSString*)observerName;
 + (NetworkController *)sharedInstance;
 
 @property (assign, nonatomic) NSInteger myMemberNumber;

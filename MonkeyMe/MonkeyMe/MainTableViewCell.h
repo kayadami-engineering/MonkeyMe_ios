@@ -21,6 +21,7 @@
     NSString *memberID;
     NSString *round;
     NSString *level;
+    NSNumber *isSolved;
     NSData *imageData;
 }
 
@@ -35,6 +36,7 @@
 @property (copy, nonatomic) NSString *keyword;
 @property (copy, nonatomic) NSString *hint;
 @property (copy, nonatomic) NSString *imageUrl;
+@property (copy, nonatomic) NSNumber *isSolved;
 
 
 @end

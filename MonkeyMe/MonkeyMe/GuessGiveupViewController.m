@@ -9,15 +9,26 @@
 #import "GuessGiveupViewController.h"
 
 @implementation GuessGiveupViewController
+@synthesize gameItem;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self performSelector:@selector(dismiss)withObject:nil afterDelay:3.0];
+
+    //set profile image
+    [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
+    self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
+    self.profile.layer.masksToBounds = YES;
+    self.profile.layer.borderWidth = 0;
     
+    self.name.text = gameItem.name;
+}
+- (IBAction)goMyTurn:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)dismiss {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)viewDidLayoutSubviews {
+    self.scrollView.contentSize = CGSizeMake(320, 1136);
+    self.scrollView.scrollEnabled = TRUE;
 }
 
 @end

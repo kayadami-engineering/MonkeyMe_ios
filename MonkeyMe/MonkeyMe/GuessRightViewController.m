@@ -9,14 +9,31 @@
 #import "GuessRightViewController.h"
 
 @implementation GuessRightViewController
+@synthesize percent;
+@synthesize gameItem;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self performSelector:@selector(dismiss)withObject:nil afterDelay:3.0];
+    
+    [self.expBar setTransform:CGAffineTransformMakeScale(1.0, 12.0)];
+    percent = 33;
+    CGFloat curPercent = (CGFloat)self.percent/100;
+    [self.expBar setProgress:curPercent];
+    
+    //set profile image
+    [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
+    self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
+    self.profile.layer.masksToBounds = YES;
+    self.profile.layer.borderWidth = 0;
+    
+    self.name.text = gameItem.name;
     
 }
-
-- (void)dismiss {
+- (void)viewDidLayoutSubviews {
+    self.scrollView.contentSize = CGSizeMake(320, 1136);
+    self.scrollView.scrollEnabled = TRUE;
+}
+- (IBAction)goMyTurn:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

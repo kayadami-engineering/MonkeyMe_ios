@@ -20,5 +20,6 @@
 @synthesize keyword;
 @synthesize imageUrl;
 @synthesize hint;
+@synthesize isSolved;
 
 @end

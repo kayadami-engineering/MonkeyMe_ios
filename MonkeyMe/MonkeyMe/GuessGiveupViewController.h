@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "MainTableViewCell.h"
 @interface GuessGiveupViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIImageView *profile;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UIView *replyBg;
+@property (weak, nonatomic) IBOutlet UITextField *replyText;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong,nonatomic) MainTableViewCell *gameItem;
+- (IBAction)goMyTurn:(id)sender;
+
 
 @end

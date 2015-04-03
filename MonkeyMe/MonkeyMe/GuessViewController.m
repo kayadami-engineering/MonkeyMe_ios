@@ -9,9 +9,12 @@
 #import "GuessViewController.h"
 #import "SelectWordView.h"
 #import "GiveUpPopupVIewController.h"
+#import "NetworkController.h"
 #import "WYStoryboardPopoverSegue.h"
-#import "MainViewController.h"
+#import "GuessRightViewController.h"
+#import "GuessGiveupViewController.h"
 
+#define OBSERVERNAME @"solvedTheMonkeyProcess"
 @interface GuessViewController() <GiveUpPopupDelegate,WYPopoverControllerDelegate>
 
 @end
@@ -22,13 +25,18 @@
 @synthesize answerText;
 @synthesize popoverController;
 @synthesize gameItem;
+@synthesize resultType;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     [self initView];
     [self setNavigationItem];
-    
+    [self registerNotification];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)initView {
@@ -70,6 +78,59 @@
     }
 }
 
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(solvedTheMonkeyProcess:) name:OBSERVERNAME object:nil];
+    
+    
+}
+
+- (void)solvedTheMonkeyProcess:(NSNotification *)notification { //network notify the result of update request
+    
+    //do something..
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+                                                      bundle:nil];
+        
+        if([resultType intValue]==0) {// guess right
+            GuessRightViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessRightViewController"];
+            vc.gameItem = gameItem;
+            self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [self presentViewController:vc animated:YES completion:nil];
+            vc.view.alpha = 0;
+            [UIView animateWithDuration:1 animations:^{
+                vc.view.alpha = 1;
+            }];
+        }
+        else { //give up
+            GuessGiveupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessGiveupViewController"];
+            vc.gameItem = gameItem;
+            self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [self presentViewController:vc animated:YES completion:nil];
+            vc.view.alpha = 0;
+            [UIView animateWithDuration:1 animations:^{
+                vc.view.alpha = 1;
+            }];
+        }
+        
+        [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+    }
+}
+
 - (void)setNavigationItem {
     
     UIButton *buttonLeft  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -82,7 +143,6 @@
 
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 - (IBAction)okbtnPressed:(id)sender
@@ -91,19 +151,9 @@
     
     if ([[answerText text] isEqualToString:gameItem.keyword]) { //answer right
         
-        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
-                                                      bundle:nil];
-        UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessRightViewController"];
-        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:vc animated:YES completion:nil];
-        vc.view.alpha = 0;
-        [UIView animateWithDuration:1 animations:^{
-            vc.view.alpha = 1;
-        }];
-        
-        //[self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
-        [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
-
+        self.resultType = [NSNumber numberWithInt:0];
+        NetworkController *networkController = [NetworkController sharedInstance];
+        [networkController solveTheMonkey:gameItem.gameNo GameLevel:gameItem.level ObserverName:OBSERVERNAME];
     }
     else {
         if(self.AgainView.hidden==YES) {
@@ -219,7 +269,7 @@
         
         int newRound = [gameItem.round intValue];
         newRound = newRound+1;
-        NSDictionary *gameInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+        NSMutableDictionary *gameInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   gameItem.memberNo, @"targetNumber",
                                   gameItem.gameNo,@"gameNumber",
                                   [NSString stringWithFormat:@"%d",newRound],@"round",
@@ -260,16 +310,9 @@
     [self.view endEditing:YES];
     [self closePopup];
     
-    UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
-                                                  bundle:nil];
-    UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessGiveupViewController"];
-    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-    [self presentViewController:vc animated:YES completion:nil];
-    vc.view.alpha = 0;
-    [UIView animateWithDuration:1 animations:^{
-        vc.view.alpha = 1;
-    }];
+    self.resultType = [NSNumber numberWithInt:1];
+    NetworkController *networkController = [NetworkController sharedInstance];
+    [networkController solveTheMonkey:gameItem.gameNo GameLevel:@"0" ObserverName:OBSERVERNAME];
     
-    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
 }
 @end

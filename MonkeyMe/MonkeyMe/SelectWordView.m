@@ -58,16 +58,16 @@
             NSNumber *level = (NSNumber*)wordDict[@"level"];
             
             switch ([level intValue]) {
-                case 0:
+                case 1:
                     item.difficulty = @"쉬움";
                     break;
-                case 1:
+                case 2:
                     item.difficulty = @"보통";
                     break;
-                case 2:
+                case 3:
                     item.difficulty = @"어려움";
                     break;
-                case 3:
+                case 4:
                     item.difficulty = @"지옥";
                     break;
                     
@@ -95,7 +95,14 @@
 }
 
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    
+    if([[gameInfo objectForKey:@"g_no"] isEqualToString:@"0"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

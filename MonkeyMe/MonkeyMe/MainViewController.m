@@ -13,6 +13,7 @@
 #import "ProfileViewController.h"
 #import "SVProgressHUD.h"
 #import "GuessViewController.h"
+#import "SelectWordView.h"
 
 #define OBSERVERNAME @"updateMainProcess"
 
@@ -128,6 +129,8 @@
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
             listItem.level = (NSString*)dict[@"level"];
+            listItem.isSolved = (NSNumber*)dict[@"isSolved"];
+            
             listItem.round = [NSString stringWithFormat:@"%@",(NSString*)dict[@"round"]];
             [myTurnList addObject:listItem];
         }
@@ -200,6 +203,20 @@
         GuessViewController *guessView = (GuessViewController*)segue.destinationViewController;
         guessView.gameItem = gameItem;
         
+    }
+    
+    else if([segue.identifier isEqualToString:@"SelectWordSegue"]) {
+        
+        SelectWordView *wordView = (SelectWordView*)segue.destinationViewController;
+        
+        int newRound = [gameItem.round intValue];
+        newRound = newRound+1;
+        NSMutableDictionary *gameInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                         gameItem.memberNo, @"targetNumber",
+                                         gameItem.gameNo,@"gameNumber",
+                                         [NSString stringWithFormat:@"%d",newRound],@"round",
+                                         nil];
+        wordView.gameInfo = gameInfo;
     }
 }
 #pragma mark - SlideNavigationController Methods -
@@ -340,7 +357,13 @@
         
         MainTableViewCell *gList = [[self.gameListArray objectAtIndex:0] objectAtIndex:indexPath.row];
         gameItem = gList;
-        [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
+        
+        if([gameItem.isSolved intValue]==0) {
+            [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
+
+        }
+        else
+            [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
     }
 }
 
