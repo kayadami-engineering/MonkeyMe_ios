@@ -9,6 +9,7 @@
 #import "FinishPopupViewController.h"
 
 @implementation FinishPopupViewController
+@synthesize delegate;
 
 - (void)viewDidLoad {
     
@@ -16,7 +17,16 @@
 }
 
 - (IBAction)okBtnPressed:(id)sender {
-       
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [delegate closePopup:self];
 }
+
+- (IBAction)sendToFriend:(id)sender {
+    [delegate sendToFriend:self];
+}
+
+- (IBAction)addToRandom:(id)sender {
+    [delegate addToRandom:self];
+}
+
+
 @end

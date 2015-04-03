@@ -9,14 +9,22 @@
 #import "SelectFriendView.h"
 #import "SelectWordView.h"
 #import "MainTableViewCell.h"
+#import "FinishPopupViewController.h"
+#import "NetworkController.h"
 
 #define OBSERVERNAME_1 @"m_friendListProcess"
 #define OBSERVERNAME_2 @"f_friendListProcess"
+#define OBSERVERNAME_3 @"uploadGameDataProcess2"
+
+@interface SelectFriendView() <UploadGameDelegate>
+
+@end
 
 @implementation SelectFriendView
 @synthesize friendList;
 @synthesize networkController;
 @synthesize targetNumber;
+@synthesize gameInfo;
 
 - (void)viewDidLoad {
     
@@ -46,7 +54,10 @@
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
     [sendNotification addObserver:self selector:@selector(monkeyFriendListUpdate:) name:OBSERVERNAME_1 object:nil];
+    [sendNotification addObserver:self selector:@selector(transferOkProcess:) name:OBSERVERNAME_3 object:nil];
 }
+
+
 
 - (void)monkeyFriendListUpdate:(NSNotification *)notification {
     
@@ -82,6 +93,38 @@
     }
 }
 
+- (void) transferOkProcess:(NSNotification*)notification { //network notify the result of update request
+    
+    //do something..
+    NSLog(@"received somthing2");
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        NSLog(@"tansfer ok process");
+        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+                                                      bundle:nil];
+        FinishPopupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
+        vc.delegate = self;
+        
+        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [self presentViewController:vc animated:YES completion:nil];
+        vc.view.alpha = 0;
+        [UIView animateWithDuration:1 animations:^{
+            vc.view.alpha = 1;
+        }];
+    }
+}
+
 - (void)setNavigationItem {
     
     UIButton *buttonLeft  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
@@ -93,7 +136,13 @@
 }
 
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if(![gameInfo objectForKey:@"keyword"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else {
+        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+    }
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -101,13 +150,12 @@
     if([segue.identifier isEqualToString:@"SelectWordSegue"]) {
         
         SelectWordView *wordView = (SelectWordView*)segue.destinationViewController;
-        NSDictionary *gameInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+        gameInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   targetNumber, @"targetNumber",
                                   @"0",@"gameNumber",
                                   @"1",@"round",
                                   nil];
         wordView.gameInfo = gameInfo;
-        
     }
 }
 
@@ -170,11 +218,35 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     MainTableViewCell *gList = [friendList objectAtIndex:indexPath.row];
     targetNumber = gList.memberNo;
     
-    [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+    if(![gameInfo objectForKey:@"keyword"]) {
+        
+        [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+    }
+    
+    
+    else {
+        [networkController uploadGameData:[gameInfo objectForKey:@"imageData"] Keyword:[gameInfo objectForKey:@"keyword"] Hint:[gameInfo objectForKey:@"hint"] GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:targetNumber BananaCount:[gameInfo objectForKey:@"b_count"] Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME_3];
+    }
+    
+}
+
+#pragma mark HintViewControlle Delegate
+
+- (void)closePopup:(FinishPopupViewController *)controller {
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+}
+- (void)sendToFriend:(FinishPopupViewController *)controller {
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)addToRandom:(FinishPopupViewController *)controller {
+    
 }
 
 @end

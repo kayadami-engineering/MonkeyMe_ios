@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *wordItemList;
-@property (nonatomic, strong) NSDictionary *gameInfo;
+@property (nonatomic, strong) NSMutableDictionary *gameInfo;
 @property (nonatomic, strong) WordItemCell *selectedItem;
 @property (nonatomic, strong) NetworkController *networkController;
 @end

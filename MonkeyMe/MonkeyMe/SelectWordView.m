@@ -103,8 +103,10 @@
     if([segue.identifier isEqualToString:@"HintSegue"]) {
         
         HintVIewController *hintView = (HintVIewController*)segue.destinationViewController;
+        [gameInfo setValue:selectedItem.keyword forKey:@"keyword"];
+        [gameInfo setValue:selectedItem.b_count forKey:@"b_count"];
+        
         hintView.gameInfo = gameInfo;
-        hintView.wordItem = selectedItem;
     }
 }
 

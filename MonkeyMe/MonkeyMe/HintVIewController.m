@@ -9,11 +9,15 @@
 #import "HintVIewController.h"
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
+#import "SelectFriendView.h"
+#import "SVProgressHUD.h"
 
 #define OBSERVERNAME @"uploadGameDataProcess"
 
+@interface HintVIewController() <UploadGameDelegate>
+
+@end
 @implementation HintVIewController
-@synthesize wordItem;
 @synthesize gameInfo;
 
 - (void)viewDidLoad {
@@ -72,14 +76,27 @@
     
     [sendNotification addObserver:self selector:@selector(transferOkProcess:) name:OBSERVERNAME object:nil];
 }
+
 - (void)ok {
+    
     [self.view endEditing:YES];
+    [self requestToServer];
+}
+
+- (void)requestToServer {
+    
+    [SVProgressHUD setViewForExtension:self.view];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+    [SVProgressHUD show];
+    
     NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 90);
     
     NetworkController *networkController = [NetworkController sharedInstance];
+
+    [gameInfo setValue:imageData forKey:@"imageData"];
+    [gameInfo setValue:self.hintText.text forKey:@"hint"];
     
-    [networkController uploadGameData:imageData Keyword:wordItem.keyword Hint:self.hintText.text GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:[gameInfo objectForKey:@"targetNumber"] BananaCount:wordItem.b_count Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME];
-    
+    [networkController uploadGameData:imageData Keyword:[gameInfo objectForKey:@"keyword"] Hint:self.hintText.text GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:[gameInfo objectForKey:@"targetNumber"] BananaCount:[gameInfo objectForKey:@"b_count"] Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -87,6 +104,7 @@
 }
 - (void) transferOkProcess:(NSNotification*)notification { //network notify the result of update request
     
+    [SVProgressHUD dismiss];
     //do something..
     NSLog(@"received somthing");
     
@@ -107,15 +125,15 @@
         
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
                                                   bundle:nil];
-        UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
+        FinishPopupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
+        vc.delegate = self;
+        
         self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [self presentViewController:vc animated:YES completion:nil];
         vc.view.alpha = 0;
         [UIView animateWithDuration:1 animations:^{
             vc.view.alpha = 1;
         }];
-    
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
     }
 }
 
@@ -130,7 +148,14 @@
     
     return scaledImage;
 }
-
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if([segue.identifier isEqualToString:@"sendToFriendSegue"]) {
+        
+        SelectFriendView *friendView = (SelectFriendView*)segue.destinationViewController;
+        friendView.gameInfo = gameInfo;
+    }
+}
 #pragma UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
@@ -141,6 +166,23 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark HintViewControlle Delegate
+
+- (void)closePopup:(FinishPopupViewController *)controller {
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
+}
+- (void)sendToFriend:(FinishPopupViewController *)controller {
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:@"sendToFriendSegue" sender:self];
+}
+
+- (void)addToRandom:(FinishPopupViewController *)controller {
+    
 }
 
 @end

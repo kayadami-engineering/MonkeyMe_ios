@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "WordItemCell.h"
+#import "FinishPopupViewController.h"
 
 @interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *hintText;
-@property (strong, nonatomic) WordItemCell *wordItem;
-@property (strong, nonatomic) NSDictionary* gameInfo;
+@property (strong, nonatomic) NSMutableDictionary* gameInfo;
 
 @end
+
+

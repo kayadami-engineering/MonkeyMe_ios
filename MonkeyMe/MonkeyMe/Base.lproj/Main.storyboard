@@ -1212,6 +1212,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addToRandom:" destination="nr4-2V-c44" eventType="touchUpInside" id="76c-QE-10k"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IBp-gg-pta">
                                 <rect key="frame" x="140" y="494" width="40" height="40"/>
@@ -1233,6 +1236,9 @@
                                     <color key="titleColor" red="0.086274509803921567" green="0.6470588235294118" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sendToFriend:" destination="nr4-2V-c44" eventType="touchUpInside" id="Ws5-9E-Smc"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="엄청나네요!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfQ-pf-Hkt">
                                 <rect key="frame" x="93" y="59" width="134" height="34"/>
@@ -1288,6 +1294,7 @@
                     <connections>
                         <outlet property="hintText" destination="0Qf-tJ-xdd" id="kme-Iv-AEU"/>
                         <outlet property="imageView" destination="ghm-8l-pwY" id="Wva-xw-kDC"/>
+                        <segue destination="SEL-nt-gig" kind="show" identifier="sendToFriendSegue" id="94Q-CA-0Dj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iEY-0i-wdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1779,6 +1786,7 @@
         <image name="test.jpg" width="540" height="960"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mrL-yp-HSX"/>
+        <segue reference="94Q-CA-0Dj"/>
+        <segue reference="357-fT-OIB"/>
     </inferredMetricsTieBreakers>
 </document>

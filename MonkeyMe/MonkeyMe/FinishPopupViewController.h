@@ -7,8 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HintVIewController.h"
+
+@protocol UploadGameDelegate;
 
 @interface FinishPopupViewController : UIViewController
 - (IBAction)okBtnPressed:(id)sender;
+- (IBAction)sendToFriend:(id)sender;
+- (IBAction)addToRandom:(id)sender;
+@property (weak, nonatomic) id<UploadGameDelegate> delegate;
+
+@end
+
+@protocol UploadGameDelegate <NSObject>
+
+@optional
+
+- (void)closePopup:(FinishPopupViewController *)controller;
+- (void)sendToFriend:(FinishPopupViewController *)controller;
+- (void)addToRandom:(FinishPopupViewController *)controller;
 
 @end

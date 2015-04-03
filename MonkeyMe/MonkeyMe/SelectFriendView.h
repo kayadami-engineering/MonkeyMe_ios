@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
 #import "NetworkController.h"
+#import "WordItemCell.h"
 
 @interface SelectFriendView : UIViewController<SlideNavigationControllerDelegate,UICollectionViewDataSource, UICollectionViewDelegate>
 
@@ -16,5 +17,6 @@
 @property (nonatomic, strong) NSMutableArray *friendList;
 @property (nonatomic, strong) NetworkController *networkController;
 @property (nonatomic, strong) NSString *targetNumber;
+@property (strong, nonatomic) NSMutableDictionary* gameInfo;
 
 @end
