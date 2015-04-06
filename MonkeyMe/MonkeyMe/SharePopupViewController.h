@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EditPhotoViewController.h"
+#import "DetailGameViewController.h"
 @protocol SharePopupDelegate;
 
 @interface SharePopupViewController : UIViewController

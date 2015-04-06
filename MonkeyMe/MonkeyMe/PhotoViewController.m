@@ -61,6 +61,9 @@
             NSString *keyword = (NSString*)item[@"keyword"];
             NSString *hint = (NSString*)item[@"hint"];
             NSString *date = (NSString*)item[@"date"];
+            NSString *rate = (NSString*)item[@"rate"];
+            NSNumber *playCount = (NSNumber*)item[@"playCount"];
+            NSNumber *replyCount = (NSNumber*)item[@"replyCount"];
             
             ProfileImageItemCell *listItem = [[ProfileImageItemCell alloc]init];
             
@@ -68,6 +71,9 @@
             listItem.keyword = keyword;
             listItem.hint = hint;
             listItem.date = date;
+            listItem.playCount = playCount;
+            listItem.replyCount = replyCount;
+            listItem.rate = rate;
 
             [imageListArray addObject:listItem];
         }

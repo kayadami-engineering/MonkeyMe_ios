@@ -6,24 +6,44 @@
 //  Copyright (c) 2015년 kayadami. All rights reserved.
 //
 
-#import "EditPhotoViewController.h"
+#import "DetailGameViewController.h"
 #import "SharePopupViewController.h"
 #import "WYStoryboardPopoverSegue.h"
 
-@interface EditPhotoViewController() <SharePopupDelegate,WYPopoverControllerDelegate>
+@interface DetailGameViewController() <SharePopupDelegate,WYPopoverControllerDelegate>
 
 @end
-@implementation EditPhotoViewController
+@implementation DetailGameViewController
 @synthesize popoverController;
 @synthesize item;
+@synthesize userStateInfo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setGameInfo];
     [self setNavigationItem];
-    UIImage *image = [[UIImage alloc]initWithData:item.imageData];
+    
+}
+
+- (void)setGameInfo {
+    
+    NSString *name = (NSString*)userStateInfo[@"name"];
+    UIImage *image = (UIImage*)userStateInfo[@"profileImage"];
+    
+    [self.gameImage setImage:[[UIImage alloc]initWithData:item.imageData]];
+    
+    //set profile image
     [self.profileImage setImage:image];
-    self.answerView.layer.borderColor = [UIColor yellowColor].CGColor;
-    self.answerView.layer.borderWidth = 1.0f;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
+    self.profileImage.layer.masksToBounds = YES;
+    self.profileImage.layer.borderWidth = 0;
+    
+    self.name.text = name;
+    self.replyCount.text = item.replyCount;
+    self.rate.text = item.rate;
+    self.playCount.text = item.playCount;
+    
+    self.navigationItem.title = item.keyword;
 }
 
 - (void)setNavigationItem {
@@ -33,13 +53,7 @@
     [buttonLeft addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonLeft];
     self.navigationItem.leftBarButtonItem = leftBarButtonItem;
-    
-//    UIButton *buttonRight  = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 10, 20)];
-//    [buttonRight setImage:[UIImage imageNamed:@"phoedic.png"] forState:UIControlStateNormal];
-//    [buttonRight addTarget:self action:@selector(sharePopover) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:buttonRight];
-//    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-    
+
 }
 - (void)back {
     [self.navigationController popViewControllerAnimated:YES];

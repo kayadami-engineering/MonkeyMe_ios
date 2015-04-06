@@ -193,9 +193,9 @@
     
     }
     else {
-        headerview = [[UIView alloc] initWithFrame:CGRectMake(60, 0, self.view.frame.size.width-60, 40)];
+        headerview = [[UIView alloc] initWithFrame:CGRectMake(60, 0, self.view.frame.size.width-60, 50)];
         //UIButton* result = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIButton *result = [[UIButton alloc]initWithFrame:CGRectMake(60,0,self.view.frame.size.width-60, 40)];
+        UIButton *result = [[UIButton alloc]initWithFrame:CGRectMake(60,0,self.view.frame.size.width-60, 50)];
         
         [result addTarget:self action:@selector(sectionButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
         result.backgroundColor = [UIColor colorWithRed:23.0/255.0 green:165.0/255.0 blue:184.0/255.0 alpha:1.0];
@@ -224,7 +224,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return section>0 ? 40 : 60;
+    return section>0 ? 50 : 60;
 
 }
 

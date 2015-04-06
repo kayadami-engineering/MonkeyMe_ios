@@ -15,6 +15,9 @@
     NSString *hint;
     NSString *date;
     NSData *imageData;
+    NSString *rate;
+    NSString *playCount;
+    NSString *replyCount;
 }
 
 @property (copy, nonatomic) NSString *imageUrl;
@@ -22,5 +25,8 @@
 @property (copy, nonatomic) NSString *hint;
 @property (copy, nonatomic) NSString *date;
 @property (copy, nonatomic) NSData *imageData;
+@property (copy, nonatomic) NSString *rate;
+@property (copy, nonatomic) NSString *playCount;
+@property (copy, nonatomic) NSString *replyCount;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "ProfileViewController.h"
-#import "EditPhotoViewController.h"
+#import "DetailGameViewController.h"
 #import "EditProfileViewController.h"
 #import "NetworkController.h"
 
@@ -105,10 +105,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"EditPhotoSegue"])
+    if ([segue.identifier isEqualToString:@"DetailGameSegue"])
     {
-        EditPhotoViewController *vc = [segue destinationViewController];
+        DetailGameViewController *vc = [segue destinationViewController];
         vc.item = selectedItem;
+        vc.userStateInfo = self.userStateInfo;
     }
     else if([segue.identifier isEqualToString:@"EditProfileSegue"]) {
         EditProfileViewController *vc = [segue destinationViewController];
@@ -156,7 +157,7 @@
     
     self.selectedItem = item;
     
-    [self performSegueWithIdentifier:@"EditPhotoSegue" sender:self];
+    [self performSegueWithIdentifier:@"DetailGameSegue" sender:self];
 }
 
 - (void)setPhotoCountValue:(NSInteger)count {
@@ -165,10 +166,11 @@
     
 }
 
-- (IBAction)playBtn:(id)sender {
+- (IBAction)playBtnPressed:(id)sender {
+    
 }
-
-- (IBAction)friendBtn:(id)sender {
+- (IBAction)friendBtnPressed:(id)sender {
+    
 }
 @end
 

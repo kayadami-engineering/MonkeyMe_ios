@@ -316,12 +316,18 @@ static NetworkController *singletonInstance;
         NSString *keyword = [attributeDict objectForKey:@"keyword"];
         NSString *hint = [attributeDict objectForKey:@"hint"];
         NSString *date = [attributeDict objectForKey:@"date"];
+        NSString *rate = [attributeDict objectForKey:@"rate"];
+        NSString *playCount = [attributeDict objectForKey:@"playCount"];
+        NSString *replyCount = [attributeDict objectForKey:@"replyCount"];
         
         [list setValue:game_no forKey:@"gameNo"];
         [list setValue:imageUrl forKey:@"imageUrl"];
         [list setValue:keyword forKey:@"keyword"];
         [list setValue:hint forKey:@"hint"];
         [list setValue:date forKey:@"date"];
+        [list setValue:rate forKey:@"rate"];
+        [list setValue:playCount forKey:@"playCount"];
+        [list setValue:replyCount forKey:@"replyCount"];
         [tempArray addObject:list];
     }
     

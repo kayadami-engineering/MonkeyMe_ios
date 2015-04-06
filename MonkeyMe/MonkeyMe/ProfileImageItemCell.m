@@ -15,5 +15,8 @@
 @synthesize hint;
 @synthesize date;
 @synthesize imageData;
+@synthesize rate;
+@synthesize playCount;
+@synthesize replyCount;
 
 @end

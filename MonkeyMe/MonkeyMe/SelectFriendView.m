@@ -199,7 +199,6 @@
             data = [NSData dataWithContentsOfURL:url];
             gList.imageData = data;
         }
-
         
         if(data) {
             UIImage *image = [[UIImage alloc]initWithData:data];
