@@ -14,6 +14,7 @@
 @implementation PhotoViewController
 @synthesize imageListArray;
 @synthesize delegate;
+@synthesize friendNumber;
 
 - (void)viewDidLoad
 {
@@ -22,7 +23,8 @@
     [self registerNotification];
     
     NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController getProfileGameListRequest:OBSERVERNAME];
+    
+    [networkController getProfileGameListRequest:friendNumber ObserverName:OBSERVERNAME];
 }
 
 - (void)registerNotification {
@@ -94,9 +96,17 @@
     
     dispatch_async(kBgQueue, ^{
         
-        NSURL *url = [NSURL URLWithString:gList.imageUrl];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        gList.imageData = data;
+        NSURL *url;
+        NSData *data;
+        
+        if(gList.imageData) {
+            data = gList.imageData;
+        }
+        else {
+            url = [NSURL URLWithString:gList.imageUrl];
+            data = [NSData dataWithContentsOfURL:url];
+            gList.imageData = data;
+        }
         
         if(data) {
             UIImage *image = [[UIImage alloc]initWithData:data];

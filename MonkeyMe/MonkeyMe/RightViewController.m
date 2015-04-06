@@ -8,7 +8,7 @@
 
 #import "RightViewController.h"
 #import "MainTableViewCell.h"
-
+#import "ProfileViewController.h"
 #define OBSERVERNAME_1 @"m_friendListProcess"
 #define OBSERVERNAME_2 @"f_friendListProcess"
 
@@ -74,8 +74,6 @@
         
         NSMutableArray *friendList = (NSMutableArray*)dict[@"friendList"];
         
-        //get game list my turn
-        
         for(int i=0;i<[friendList count];i++) {
             dict = [friendList objectAtIndex:i];
             
@@ -84,6 +82,9 @@
             listItem.memberNo = (NSString*)dict[@"memberNo"];
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
+            listItem.memberID = (NSString*)dict[@"memberID"];
+            listItem.level = (NSString*)dict[@"level"];
+            listItem.friendCount = (NSNumber*)dict[@"friendCount"];
             [monkeyFriendList addObject:listItem];
         }
         
@@ -285,42 +286,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id <SlideNavigationContorllerAnimator> revealAnimator;
-    
-    switch (indexPath.row)
-    {
-        case 0:
-            revealAnimator = nil;
-            break;
-            
-        case 1:
-            revealAnimator = [[SlideNavigationContorllerAnimatorSlide alloc] init];
-            break;
-            
-        case 2:
-            revealAnimator = [[SlideNavigationContorllerAnimatorFade alloc] init];
-            break;
-            
-        case 3:
-            revealAnimator = [[SlideNavigationContorllerAnimatorSlideAndFade alloc] initWithMaximumFadeAlpha:.8 fadeColor:[UIColor blackColor] andSlideMovement:100];
-            break;
-            
-        case 4:
-            revealAnimator = [[SlideNavigationContorllerAnimatorScale alloc] init];
-            break;
-            
-        case 5:
-            revealAnimator = [[SlideNavigationContorllerAnimatorScaleAndFade alloc] initWithMaximumFadeAlpha:.6 fadeColor:[UIColor blackColor] andMinimumScale:.8];
-            break;
-            
-        default:
-            return;
-    }
     
     [self hideKeyboard];
     
-    [[SlideNavigationController sharedInstance] closeMenuWithCompletion:^{
-        [SlideNavigationController sharedInstance].menuRevealAnimator = revealAnimator;
-    }];
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    NSMutableArray *tempArray;
+    
+    if(indexPath.section==1)
+        tempArray = facebookFriendList;
+    else
+        tempArray = monkeyFriendList;
+    
+    MainTableViewCell *gList = [tempArray objectAtIndex:indexPath.row];
+    NSMutableDictionary *userStateInfo = [[NSMutableDictionary alloc]init];;
+    
+    UIImage *image = [[UIImage alloc]initWithData:gList.imageData];
+   
+    [userStateInfo setValue:gList.memberNo forKey:@"friendNumber"];
+    [userStateInfo setValue:gList.memberID forKey:@"memberID"];
+    [userStateInfo setValue:gList.name forKey:@"name"];
+    [userStateInfo setValue:gList.level forKey:@"level"];
+    [userStateInfo setValue:image forKey:@"profileImage"];
+    [userStateInfo setValue:gList.friendCount forKey:@"friendCount"];
+    
+    ProfileViewController *vc ;
+    vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"ProfileViewController"];
+    vc.userStateInfo = userStateInfo;
+    
+    [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
+                                                             withSlideOutAnimation:self.slideOutAnimationEnabled
+                                                                     andCompletion:nil];
+    
 }
 @end

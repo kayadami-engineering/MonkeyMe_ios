@@ -53,14 +53,14 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = 1;
+    myMemberNumber = @"1";
     
 }
 
 -(void)postToServer:(NSString *)postString {
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
@@ -125,17 +125,19 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"updateMain";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
 
--(void)getProfileGameListRequest:(NSString *)observerName {
+-(void)getProfileGameListRequest:(NSString*)friendNumber ObserverName:(NSString *)observerName {
     
-    if(myMemberNumber) {
+    NSString* memberNumber = [friendNumber isEqualToString:@"0"] ? myMemberNumber:friendNumber;
+
+    if(memberNumber) {
         currentObserverName = observerName;
         currentCommand = @"pastList";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@",currentCommand,memberNumber];
         [self postToServer:string];
     }
 }
@@ -145,7 +147,7 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"updateProfile";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&name=%@&id=%@",currentCommand,myMemberNumber,name,myID];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&name=%@&id=%@",currentCommand,myMemberNumber,name,myID];
         [self postToServer:string];
     }
 }
@@ -155,7 +157,7 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"friendlist_monkey";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i",currentCommand,myMemberNumber];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@",currentCommand,myMemberNumber];
         [self postToServer:string];
     }
 }
@@ -174,7 +176,7 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"solveTheMonkey";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&g_no=%@&level=%@",currentCommand,myMemberNumber,g_no,level];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&g_no=%@&level=%@",currentCommand,myMemberNumber,g_no,level];
         [self postToServer:string];
     }
 }
@@ -183,7 +185,7 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"gameEvaluate";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%i&g_no=%@&reply=%@&rate=%@",currentCommand,myMemberNumber,g_no,reply,rate];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&g_no=%@&reply=%@&rate=%@",currentCommand,myMemberNumber,g_no,reply,rate];
         [self postToServer:string];
     }
 }
@@ -193,7 +195,7 @@ static NetworkController *singletonInstance;
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"uploadGameData";
-        NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%i",myMemberNumber],
+        NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%@",myMemberNumber],
                                  @"keyword":keyword,@"hint":hint,@"g_no":g_no,@"targetNumber":targetNumber,
                                  @"b_count":b_count,@"round":round};
         [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
@@ -330,10 +332,16 @@ static NetworkController *singletonInstance;
         NSString *memberNo = [attributeDict objectForKey:@"m_no"];
         NSString *name = [attributeDict objectForKey:@"name"];
         NSString *profileUrl = [attributeDict objectForKey:@"profile"];
+        NSString *memberID = [attributeDict objectForKey:@"id"];
+        NSString *level = [attributeDict objectForKey:@"level"];
+        NSNumber *friendCount = [attributeDict objectForKey:@"friends"];
         
         [list setValue:memberNo forKey:@"memberNo"];
         [list setValue:name forKey:@"name"];
         [list setValue:profileUrl forKey:@"profileUrl"];
+        [list setValue:memberID forKey:@"memberID"];
+        [list setValue:level forKey:@"level"];
+        [list setValue:friendCount forKey:@"friendCount"];
         
         [tempArray addObject:list];
     }
@@ -357,7 +365,6 @@ static NetworkController *singletonInstance;
     
     
 }
-
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
@@ -430,7 +437,6 @@ static NetworkController *singletonInstance;
     myParser.delegate = self;
     
     [myParser parse];
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {

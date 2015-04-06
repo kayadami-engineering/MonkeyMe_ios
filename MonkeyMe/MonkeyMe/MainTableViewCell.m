@@ -21,5 +21,6 @@
 @synthesize imageUrl;
 @synthesize hint;
 @synthesize isSolved;
+@synthesize friendCount;
 
 @end

@@ -583,6 +583,28 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wjf-Bz-eMi">
+                                <rect key="frame" x="136" y="166" width="77" height="30"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.64705882349999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="이웃 몽키">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="friendBtnPressed:" destination="oBE-NL-imP" eventType="touchUpInside" id="G8l-4U-rHs"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xr-qX-SgU">
+                                <rect key="frame" x="227" y="166" width="77" height="30"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.64705882349999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="대전하기">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playBtnPressed:" destination="oBE-NL-imP" eventType="touchUpInside" id="VtG-iP-wyK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -593,6 +615,8 @@
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="achieveBtn" destination="3MJ-EW-BBt" id="vt8-4K-9ks"/>
+                        <outlet property="editBtn" destination="4zG-Xu-inj" id="J9w-n7-2iJ"/>
+                        <outlet property="friendBtn" destination="Wjf-Bz-eMi" id="Qeq-Hl-9Cy"/>
                         <outlet property="friendCount" destination="Opo-qx-ngO" id="XQa-km-7wq"/>
                         <outlet property="gameBtn" destination="rG8-Iv-3A6" id="1HW-nJ-9oW"/>
                         <outlet property="myID" destination="q5h-t3-qre" id="I87-z1-ZAj"/>
@@ -601,6 +625,7 @@
                         <outlet property="myView" destination="KHy-kM-lFn" id="Y0T-84-xkm"/>
                         <outlet property="photoBtn" destination="P8d-3w-8YA" id="iOg-CF-l1R"/>
                         <outlet property="photoCount" destination="oTZ-i3-KPv" id="Z7g-z5-8gm"/>
+                        <outlet property="playBtn" destination="7xr-qX-SgU" id="qzg-OZ-3Vi"/>
                         <outlet property="profileImage" destination="ebM-31-8cX" id="rxr-cs-OBp"/>
                         <outlet property="stateCount_banana" destination="43v-1i-kRw" id="VCj-6i-RWf"/>
                         <outlet property="stateCount_leaf" destination="BDx-k4-5Zb" id="hus-xH-fig"/>

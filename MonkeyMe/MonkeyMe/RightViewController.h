@@ -24,5 +24,6 @@
 @property (nonatomic, strong) NSMutableArray *monkeyFriendList;
 @property (nonatomic, strong) NetworkController *networkController;
 @property (nonatomic, assign) bool blockUpdate;
+@property (nonatomic, assign) BOOL slideOutAnimationEnabled;
 
 @end

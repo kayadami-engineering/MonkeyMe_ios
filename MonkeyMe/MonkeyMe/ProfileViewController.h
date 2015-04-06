@@ -34,7 +34,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *stateCount_banana;
 @property (weak, nonatomic) IBOutlet UILabel *stateCount_leaf;
 @property (weak, nonatomic) IBOutlet UILabel *myLevel;
+@property (strong,nonatomic) NSString *friendNumber;
+@property (weak, nonatomic) IBOutlet UIButton *editBtn;
+@property (weak, nonatomic) IBOutlet UIButton *friendBtn;
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
 
+- (IBAction)playBtnPressed:(id)sender;
+- (IBAction)friendBtnPressed:(id)sender;
 - (IBAction)photoBtnTouch:(id)sender;
 - (IBAction)gameBtnTouch:(id)sender;
 - (IBAction)achieveBtnTouch:(id)sender;

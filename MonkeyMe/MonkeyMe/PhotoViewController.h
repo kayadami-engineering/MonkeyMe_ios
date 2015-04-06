@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *imageListArray;
 @property (weak, nonatomic) id<PhotoViewDelegate> delegate;
+@property (strong, nonatomic) NSString *friendNumber;
 @end
 
 @protocol PhotoViewDelegate <NSObject>

@@ -22,6 +22,7 @@
     NSString *round;
     NSString *level;
     NSNumber *isSolved;
+    NSNumber *friendCount;
     NSData *imageData;
 }
 
@@ -37,6 +38,7 @@
 @property (copy, nonatomic) NSString *hint;
 @property (copy, nonatomic) NSString *imageUrl;
 @property (copy, nonatomic) NSNumber *isSolved;
+@property (copy, nonatomic) NSNumber *friendCount;
 
 
 @end

@@ -314,13 +314,21 @@
         
         dispatch_async(kBgQueue, ^{
             
-            NSURL *url = [NSURL URLWithString:gList.profileUrl];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            gList.imageData = data;
+            NSURL *url;
+            NSData *data;
+            
+            if(gList.imageData) {
+                data = gList.imageData;
+            }
+            else {
+                url = [NSURL URLWithString:gList.profileUrl];
+                data = [NSData dataWithContentsOfURL:url];
+                gList.imageData = data;
+            }
             
             if(data) {
                 UIImage *image = [[UIImage alloc]initWithData:data];
-            
+    
                 if (image) {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         UITableViewCell *updateCell = (id)[tableView cellForRowAtIndexPath:indexPath];

@@ -29,8 +29,8 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self setNavigationItem];
     [self setProfile];
+    [self setNavigationItem];
 }
 
 - (void)setProfile {
@@ -43,6 +43,18 @@
     NSString *bananaCount = (NSString*)userStateInfo[@"bananaCount"];
     NSString *leafCount = (NSString*)userStateInfo[@"leafCount"];
     NSString *friends = (NSString*)userStateInfo[@"friendCount"];
+    NSString *friendNumber = (NSString*)userStateInfo[@"friendNumber"];
+    
+    if(friendNumber) {
+        
+        self.friendNumber = friendNumber;
+        self.editBtn.hidden = true;
+        self.friendBtn.hidden = false;
+        self.playBtn.hidden = false;
+    }
+    else {
+        self.friendNumber = @"0";
+    }
     
     [self.profileImage setImage:image];
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
@@ -62,9 +74,12 @@
     
 }
 - (void)setNavigationItem {
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     photoView = (PhotoViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"PhotoViewController"];
     photoView.delegate = self;
+    photoView.friendNumber = self.friendNumber;
+    
     gameView = (GameViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"GameViewController"];
     achieveView = (AchieveViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"AchieveViewController"];
     self.currentView = photoView.view;
@@ -150,5 +165,10 @@
     
 }
 
+- (IBAction)playBtn:(id)sender {
+}
+
+- (IBAction)friendBtn:(id)sender {
+}
 @end
 
