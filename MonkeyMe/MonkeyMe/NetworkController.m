@@ -53,7 +53,7 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = @"1";
+    myMemberNumber = @"5";
     
 }
 
@@ -201,7 +201,26 @@ static NetworkController *singletonInstance;
         [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
     }
 }
-
+- (void)addToRandomMode:(NSString*)g_no ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"addToRandom";
+        NSString *string = [NSString stringWithFormat:@"command=%@&g_no=%@&memberNumber=%@",currentCommand,g_no,myMemberNumber];
+        [self postToServer:string];
+    }
+}
+- (void)addToRandomModeNew:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"addToRandomNew";
+        NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%@",myMemberNumber],
+                                 @"keyword":keyword,@"hint":hint};
+        [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
+    }
+    
+}
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
@@ -261,6 +280,10 @@ static NetworkController *singletonInstance;
             
             [tempDictionary setValue:userInfo forKey:@"userInfo"];
             
+        }
+        else if([currentCommand isEqualToString:@"uploadGameData"]) {
+            NSString *gameNo = [attributeDict objectForKey:@"g_no"];
+            [tempDictionary setValue:gameNo forKey:@"gameNo"];
         }
     }
     else if([elementName isEqualToString:@"list"]) {

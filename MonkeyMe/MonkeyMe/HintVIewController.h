@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "WordItemCell.h"
 #import "FinishPopupViewController.h"
+#import "NetworkController.h"
 
 @interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextField *hintText;
 @property (strong, nonatomic) NSMutableDictionary* gameInfo;
-
+@property (strong, nonatomic) NetworkController *networkController;
 @end
 
 

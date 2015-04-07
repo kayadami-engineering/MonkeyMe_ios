@@ -29,6 +29,10 @@
     self.name.text = gameItem.name;
     
 }
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
 - (void)viewDidLayoutSubviews {
     self.scrollView.contentSize = CGSizeMake(320, 1136);
     self.scrollView.scrollEnabled = TRUE;

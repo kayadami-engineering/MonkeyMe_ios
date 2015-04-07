@@ -16,6 +16,7 @@
 - (IBAction)sendToFriend:(id)sender;
 - (IBAction)addToRandom:(id)sender;
 @property (weak, nonatomic) id<UploadGameDelegate> delegate;
+@property (strong, nonatomic) NSString *g_no;
 
 @end
 

@@ -8,7 +8,6 @@
 
 #import "HintVIewController.h"
 #import "FinishPopupViewController.h"
-#import "NetworkController.h"
 #import "SelectFriendView.h"
 #import "SVProgressHUD.h"
 
@@ -19,10 +18,15 @@
 @end
 @implementation HintVIewController
 @synthesize gameInfo;
+@synthesize networkController;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    networkController = [NetworkController sharedInstance];
+    [self registerNotification];
+    
     [self setNavigationItemLeft];
     
     [self performSelector:@selector(showCameraView) withObject:nil afterDelay:0.5f];
@@ -30,7 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self registerNotification];
+    
 }
 
 - (void)dealloc {
@@ -80,18 +84,16 @@
 - (void)ok {
     
     [self.view endEditing:YES];
-    [self requestToServer];
+    [self sendGameToServer];
 }
 
-- (void)requestToServer {
+- (void)sendGameToServer {
     
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
     
     NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 90);
-    
-    NetworkController *networkController = [NetworkController sharedInstance];
 
     [gameInfo setValue:imageData forKey:@"imageData"];
     [gameInfo setValue:self.hintText.text forKey:@"hint"];
@@ -121,12 +123,12 @@
     }
     else {
         
-        [[NSNotificationCenter defaultCenter] removeObserver:self];
-        
-        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
+        NSString *gameNo = (NSString*)dict[@"gameNo"];
+        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main"
                                                   bundle:nil];
         FinishPopupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
         vc.delegate = self;
+        vc.g_no = gameNo;
         
         self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [self presentViewController:vc animated:YES completion:nil];
@@ -182,6 +184,9 @@
 }
 
 - (void)addToRandom:(FinishPopupViewController *)controller {
+    
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:0] animated:YES];
     
 }
 
