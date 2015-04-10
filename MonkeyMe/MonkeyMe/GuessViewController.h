@@ -18,6 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIView *AgainView;
 @property (weak, nonatomic) IBOutlet UIView *WordViewFrame;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIImageView *profile;
+@property (weak, nonatomic) IBOutlet UILabel *name;
+@property (weak, nonatomic) IBOutlet UILabel *hintText;
+
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *textWordCollection;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *underBarCollection;
 
@@ -25,10 +29,8 @@
 @property (assign, nonatomic) CGSize keyboardHeight;
 @property (strong, nonatomic) WYPopoverController *popoverController;
 @property (strong, nonatomic) MainTableViewCell *gameItem;
-@property (weak, nonatomic) IBOutlet UIImageView *profile;
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UILabel *hintText;
 @property (strong, nonatomic) NSNumber *resultType;
+
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
 

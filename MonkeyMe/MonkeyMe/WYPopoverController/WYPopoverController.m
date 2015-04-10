@@ -2239,7 +2239,7 @@ static WYPopoverTheme *defaultTheme_ = nil;
         contentViewSize = CGSizeMake(300, 250);
     }
     else if(self.popupMode==SHAREPOP) {
-        contentViewSize = CGSizeMake(300, 150);
+        contentViewSize = CGSizeMake(300, 170);
     }
     else if(self.popupMode==GiveUpPop) {
         contentViewSize = CGSizeMake(300, 100);

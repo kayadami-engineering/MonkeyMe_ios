@@ -21,8 +21,9 @@
     NSString *memberID;
     NSString *round;
     NSString *level;
-    NSNumber *isSolved;
-    NSNumber *friendCount;
+    NSString *b_count;
+    NSString *isSolved;
+    NSString *friendCount;
     NSData *imageData;
 }
 
@@ -37,8 +38,9 @@
 @property (copy, nonatomic) NSString *keyword;
 @property (copy, nonatomic) NSString *hint;
 @property (copy, nonatomic) NSString *imageUrl;
-@property (copy, nonatomic) NSNumber *isSolved;
-@property (copy, nonatomic) NSNumber *friendCount;
+@property (copy, nonatomic) NSString *b_count;
+@property (copy, nonatomic) NSString *isSolved;
+@property (copy, nonatomic) NSString *friendCount;
 
 
 @end

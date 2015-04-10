@@ -53,7 +53,7 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = @"5";
+    myMemberNumber = @"1";
     
 }
 
@@ -171,16 +171,16 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
-- (void)solveTheMonkey:(NSString*)g_no GameLevel:(NSString*)level ObserverName:(NSString*)observerName {
+- (void)solveTheMonkey:(NSString*)g_no BananaCount:(NSString*)b_count ObserverName:(NSString*)observerName {
     
     if(myMemberNumber) {
         currentObserverName = observerName;
         currentCommand = @"solveTheMonkey";
-        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&g_no=%@&level=%@",currentCommand,myMemberNumber,g_no,level];
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&g_no=%@&b_count=%@",currentCommand,myMemberNumber,g_no,b_count];
         [self postToServer:string];
     }
 }
--(void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSNumber*)rate ObserverName:(NSString*)observerName {
+-(void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSString*)rate ObserverName:(NSString*)observerName {
     
     if(myMemberNumber) {
         currentObserverName = observerName;
@@ -219,7 +219,31 @@ static NetworkController *singletonInstance;
                                  @"keyword":keyword,@"hint":hint};
         [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
     }
+}
+
+- (void)getReplyList:(NSString*)g_no Count:(int)replyCount Sort:(int)sort ObserverName:(NSString*)observerName {
     
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        
+        if(replyCount==0)
+            currentCommand = @"replyList";
+        else
+            currentCommand = @"topReply";
+        
+        NSString *string = [NSString stringWithFormat:@"command=%@&g_no=%@&memberNumber=%@&sort=%d",currentCommand,g_no,myMemberNumber,sort];
+        [self postToServer:string];
+    }
+}
+- (void)sendReply:(NSString*)g_no Contents:(NSString*)contents  ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"sendReply";
+        
+        NSString *string = [NSString stringWithFormat:@"command=%@&g_no=%@&memberNumber=%@&contents=%@",currentCommand,g_no,myMemberNumber,contents];
+        [self postToServer:string];
+    }
 }
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
@@ -239,7 +263,7 @@ static NetworkController *singletonInstance;
         
         [tempDictionary setValue:result forKey:@"result"];
         [tempDictionary setValue:message forKey:@"message"];
-       
+
     }
     
     else if([elementName isEqualToString:@"state"]) { //My state
@@ -310,7 +334,8 @@ static NetworkController *singletonInstance;
         NSString *keyword = [attributeDict objectForKey:@"keyword"];
         NSString *hint = [attributeDict objectForKey:@"hint"];
         NSString *imageUrl = [attributeDict objectForKey:@"imageUrl"];
-        NSNumber *isSolved = [attributeDict objectForKey:@"isSolved"];
+        NSString *b_count = [attributeDict objectForKey:@"b_count"];
+        NSString *isSolved = [attributeDict objectForKey:@"isSolved"];
         
         [list setValue:memberNo forKey:@"memberNo"];
         [list setValue:gameNo forKey:@"gameNo"];
@@ -322,12 +347,14 @@ static NetworkController *singletonInstance;
         [list setValue:keyword forKey:@"keyword"];
         [list setValue:hint forKey:@"hint"];
         [list setValue:imageUrl forKey:@"imageUrl"];
+        [list setValue:b_count forKey:@"b_count"];
         [list setValue:isSolved forKey:@"isSolved"];
         
         if([currentCommand isEqualToString:@"updateMain_myturn"])
             [tempArray addObject:list];
         else if([currentCommand isEqualToString:@"updateMain_friendsturn"])
             [tempArray2 addObject:list];
+        
     }
     
     else if([elementName isEqualToString:@"item"]) {
@@ -363,7 +390,7 @@ static NetworkController *singletonInstance;
         NSString *profileUrl = [attributeDict objectForKey:@"profile"];
         NSString *memberID = [attributeDict objectForKey:@"id"];
         NSString *level = [attributeDict objectForKey:@"level"];
-        NSNumber *friendCount = [attributeDict objectForKey:@"friends"];
+        NSString *friendCount = [attributeDict objectForKey:@"friends"];
         
         [list setValue:memberNo forKey:@"memberNo"];
         [list setValue:name forKey:@"name"];
@@ -374,6 +401,7 @@ static NetworkController *singletonInstance;
         
         [tempArray addObject:list];
     }
+    
     else if([elementName isEqualToString:@"wordinfo"]) {
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
@@ -383,6 +411,25 @@ static NetworkController *singletonInstance;
         
         [list setValue:level forKey:@"level"];
         [list setValue:keyword forKey:@"keyword"];
+        
+        [tempArray addObject:list];
+    }
+    
+    else if([elementName isEqualToString:@"replyinfo"]) {
+        
+        NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
+        
+        NSString *replyNo = [attributeDict objectForKey:@"r_no"];
+        NSString *name = [attributeDict objectForKey:@"name"];
+        NSString *contents = [attributeDict objectForKey:@"contents"];
+        NSString *date = [attributeDict objectForKey:@"date"];
+        NSNumber *likeCount = [attributeDict objectForKey:@"likeCount"];
+        
+        [list setValue:replyNo forKey:@"r_no"];
+        [list setValue:name forKey:@"name"];
+        [list setValue:date forKey:@"date"];
+        [list setValue:contents forKey:@"contents"];
+        [list setValue:likeCount forKey:@"likeCount"];
         
         [tempArray addObject:list];
     }
@@ -399,9 +446,9 @@ static NetworkController *singletonInstance;
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
     if([elementName isEqualToString:@"list"]) {
+        
         if([currentCommand isEqualToString:@"updateMain_myturn"]) {
             [tempDictionary setValue:tempArray forKey:@"gamelist_myturn"];
-            
         }
         
         else if([currentCommand isEqualToString:@"updateMain_friendsturn"]) {
@@ -417,6 +464,9 @@ static NetworkController *singletonInstance;
         }
         else if([currentCommand isEqual:@"wordList"]) {
             [tempDictionary setValue:tempArray forKey:@"wordList"];
+        }
+        else if([currentCommand isEqual:@"replyList"]) {
+            [tempDictionary setValue:tempArray forKey:@"replyList"];
         }
     }
     
@@ -483,7 +533,6 @@ static NetworkController *singletonInstance;
         [tempDictionary setValue:message forKey:@"message"];
         [notificationCenter postNotificationName:currentObserverName object:self userInfo:tempDictionary];
     }
-
 }
 
 @end

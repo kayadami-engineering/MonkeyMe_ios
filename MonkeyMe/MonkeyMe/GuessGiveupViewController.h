@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainTableViewCell.h"
-@interface GuessGiveupViewController : UIViewController
+@interface GuessGiveupViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profile;
 @property (weak, nonatomic) IBOutlet UILabel *name;

@@ -57,16 +57,18 @@
             
             NSMutableDictionary *item = (NSMutableDictionary*)[items objectAtIndex:i];
             
+            NSString *g_no = (NSString*)item[@"gameNo"];
             NSString *imageUrl = (NSString*)item[@"imageUrl"];
             NSString *keyword = (NSString*)item[@"keyword"];
             NSString *hint = (NSString*)item[@"hint"];
             NSString *date = (NSString*)item[@"date"];
             NSString *rate = (NSString*)item[@"rate"];
-            NSNumber *playCount = (NSNumber*)item[@"playCount"];
-            NSNumber *replyCount = (NSNumber*)item[@"replyCount"];
+            NSString *playCount = (NSString*)item[@"playCount"];
+            NSString *replyCount = (NSString*)item[@"replyCount"];
             
             ProfileImageItemCell *listItem = [[ProfileImageItemCell alloc]init];
             
+            listItem.g_no = g_no;
             listItem.imageUrl = imageUrl;
             listItem.keyword = keyword;
             listItem.hint = hint;

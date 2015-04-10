@@ -10,6 +10,7 @@
 
 @interface ProfileImageItemCell : NSObject
 {
+    NSString *g_no;
     NSString *imageUrl;
     NSString *keyword;
     NSString *hint;
@@ -20,6 +21,7 @@
     NSString *replyCount;
 }
 
+@property (copy, nonatomic) NSString *g_no;
 @property (copy, nonatomic) NSString *imageUrl;
 @property (copy, nonatomic) NSString *keyword;
 @property (copy, nonatomic) NSString *hint;

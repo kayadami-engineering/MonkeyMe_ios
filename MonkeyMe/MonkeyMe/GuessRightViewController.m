@@ -7,7 +7,10 @@
 //
 
 #import "GuessRightViewController.h"
+#import "NetworkController.h"
+#import "SVProgressHUD.h"
 
+#define OBSERVERNAME @"sendReplyFinishProcess"
 @implementation GuessRightViewController
 @synthesize percent;
 @synthesize gameItem;
@@ -28,6 +31,8 @@
     
     self.name.text = gameItem.name;
     
+    [self registerNotification];
+    
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
@@ -37,7 +42,48 @@
     self.scrollView.contentSize = CGSizeMake(320, 1136);
     self.scrollView.scrollEnabled = TRUE;
 }
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(replyListProcess:) name:OBSERVERNAME object:nil];
+    
+}
+
+- (void)replyListProcess:(NSNotification *)notification { //network notify the result of update request
+    
+    //do something..
+    [SVProgressHUD dismiss];
+    NSLog(@"receive ok");
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+}
+
 - (IBAction)goMyTurn:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [SVProgressHUD setViewForExtension:self.view];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+    [SVProgressHUD show];
+    
+    NetworkController *networkController = [NetworkController sharedInstance];
+    [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
+    
 }
 @end

@@ -129,7 +129,8 @@
             listItem.profileUrl = (NSString*)dict[@"profileUrl"];
             listItem.name = (NSString*)dict[@"name"];
             listItem.level = (NSString*)dict[@"level"];
-            listItem.isSolved = (NSNumber*)dict[@"isSolved"];
+            listItem.isSolved = (NSString*)dict[@"isSolved"];
+            listItem.b_count = (NSString*)dict[@"b_count"];
             
             listItem.round = [NSString stringWithFormat:@"%@",(NSString*)dict[@"round"]];
             [myTurnList addObject:listItem];

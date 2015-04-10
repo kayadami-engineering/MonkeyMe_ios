@@ -153,7 +153,7 @@
         
         self.resultType = [NSNumber numberWithInt:0];
         NetworkController *networkController = [NetworkController sharedInstance];
-        [networkController solveTheMonkey:gameItem.gameNo GameLevel:gameItem.level ObserverName:OBSERVERNAME];
+        [networkController solveTheMonkey:gameItem.gameNo BananaCount:gameItem.b_count ObserverName:OBSERVERNAME];
     }
     else {
         if(self.AgainView.hidden==YES) {
@@ -312,7 +312,7 @@
     
     self.resultType = [NSNumber numberWithInt:1];
     NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController solveTheMonkey:gameItem.gameNo GameLevel:@"0" ObserverName:OBSERVERNAME];
+    [networkController solveTheMonkey:gameItem.gameNo BananaCount:@"0" ObserverName:OBSERVERNAME];
     
 }
 @end

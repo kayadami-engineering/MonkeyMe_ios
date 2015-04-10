@@ -22,5 +22,5 @@
 @synthesize hint;
 @synthesize isSolved;
 @synthesize friendCount;
-
+@synthesize b_count;
 @end

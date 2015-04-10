@@ -108,7 +108,7 @@
     if ([segue.identifier isEqualToString:@"DetailGameSegue"])
     {
         DetailGameViewController *vc = [segue destinationViewController];
-        vc.item = selectedItem;
+        vc.gameItem = selectedItem;
         vc.userStateInfo = self.userStateInfo;
     }
     else if([segue.identifier isEqualToString:@"EditProfileSegue"]) {

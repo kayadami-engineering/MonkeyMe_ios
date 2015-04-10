@@ -10,6 +10,7 @@
 
 @implementation ProfileImageItemCell
 
+@synthesize g_no;
 @synthesize imageUrl;
 @synthesize keyword;
 @synthesize hint;
