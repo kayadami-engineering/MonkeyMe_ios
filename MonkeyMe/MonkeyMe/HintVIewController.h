@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *hintText;
 @property (strong, nonatomic) NSMutableDictionary* gameInfo;
 @property (strong, nonatomic) NetworkController *networkController;
+@property (assign, nonatomic) CGSize keyboardHeight;
 @end
 
 

@@ -19,6 +19,7 @@
 @implementation HintVIewController
 @synthesize gameInfo;
 @synthesize networkController;
+@synthesize keyboardHeight;
 
 - (void)viewDidLoad {
     
@@ -26,20 +27,17 @@
     
     networkController = [NetworkController sharedInstance];
     [self registerNotification];
+    [self registKeyboardNotification];
     
     [self setNavigationItemLeft];
     
     [self performSelector:@selector(showCameraView) withObject:nil afterDelay:0.5f];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-}
-
 - (void)dealloc {
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [self unregistKeyboardNotification];
 }
 
 - (void) showCameraView {
@@ -158,6 +156,69 @@
         friendView.gameInfo = gameInfo;
     }
 }
+
+
+#pragma mark KEYBOARD settings
+- (void)registKeyboardNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+- (void) unregistKeyboardNotification {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardDidShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
+- (void)keyboardWillShow:(NSNotification*)aNotification {
+    
+    NSDictionary *userInfo = [aNotification userInfo];
+    keyboardHeight = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    [self setViewMovedUp:YES];
+}
+
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification {
+    
+    [self setViewMovedUp:NO];
+}
+
+- (void)keyboardHide {
+    [self.view endEditing:YES];
+}
+-(void)setViewMovedUp:(BOOL)movedUp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3]; // if you want to slide up the view
+    
+    CGRect rect = self.view.frame;
+    if (movedUp)
+    {
+        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
+        // 2. increase the size of the view so that the area behind the keyboard is covered up.
+        
+        rect.origin.y -= keyboardHeight.height;
+        rect.size.height += keyboardHeight.height;
+    }
+    else
+    {
+        // revert back to the normal state.
+        rect.origin.y += keyboardHeight.height;
+        rect.size.height -= keyboardHeight.height;
+    }
+    self.view.frame = rect;
+    
+    [UIView commitAnimations];
+}
+
 #pragma UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     

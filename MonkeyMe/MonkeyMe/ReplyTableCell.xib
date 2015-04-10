@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -56,7 +57,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <button opaque="NO" tag="106" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gq-NZ-Iy2">
-                        <rect key="frame" x="249" y="19" width="26" height="9"/>
+                        <rect key="frame" x="249" y="23" width="26" height="6"/>
                         <state key="normal" image="comment_action.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -64,7 +65,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ihJ-cC-NwA" firstAttribute="top" secondItem="7KL-2A-sBP" secondAttribute="bottom" constant="10" id="gZA-gp-a92"/>
-                    <constraint firstItem="VUL-Hf-286" firstAttribute="top" secondItem="ihJ-cC-NwA" secondAttribute="bottom" constant="10" id="ywJ-Oa-bKh"/>
+                    <constraint firstItem="VUL-Hf-286" firstAttribute="leading" secondItem="Dki-XZ-E3T" secondAttribute="leadingMargin" constant="2" id="twv-NH-MPs"/>
+                    <constraint firstItem="VUL-Hf-286" firstAttribute="top" secondItem="ihJ-cC-NwA" secondAttribute="bottom" constant="5" id="ywJ-Oa-bKh"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -77,7 +79,7 @@
                 <outlet property="optionBtn" destination="5Gq-NZ-Iy2" id="xZz-BK-gsJ"/>
                 <outlet property="showAllLabel" destination="WJS-2Z-9di" id="Okf-we-QWF"/>
             </connections>
-            <point key="canvasLocation" x="548" y="277.5"/>
+            <point key="canvasLocation" x="548" y="276.5"/>
         </tableViewCell>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="More" rowHeight="40" id="2PM-86-XCs" customClass="ReplyCustomCell">
             <rect key="frame" x="0.0" y="0.0" width="288" height="40"/>
