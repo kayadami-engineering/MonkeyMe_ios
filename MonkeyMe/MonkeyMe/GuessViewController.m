@@ -9,12 +9,18 @@
 #import "GuessViewController.h"
 #import "SelectWordView.h"
 #import "GiveUpPopupVIewController.h"
-#import "NetworkController.h"
 #import "WYStoryboardPopoverSegue.h"
 #import "GuessRightViewController.h"
 #import "GuessGiveupViewController.h"
+#import "PuzzelRightViewController.h"
+#import "SVProgressHUD.h"
 
-#define OBSERVERNAME @"solvedTheMonkeyProcess"
+#define OBSERVERNAME1 @"solvedTheMonkeyProcess"
+#define OBSERVERNAME2 @"getRandomGameProcess"
+
+#define PVPMODE     1
+#define RANDMODE    2
+
 @interface GuessViewController() <GiveUpPopupDelegate,WYPopoverControllerDelegate>
 
 @end
@@ -26,13 +32,17 @@
 @synthesize popoverController;
 @synthesize gameItem;
 @synthesize resultType;
+@synthesize currentMode;
+@synthesize networkController;
+@synthesize rndNumber;
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self initView];
-    [self setNavigationItem];
     [self registerNotification];
+    [self setNavigationItem];
+    [self initView];
+
 }
 
 - (void)dealloc {
@@ -48,6 +58,46 @@
     self.WordViewFrame.layer.borderColor = [UIColor yellowColor].CGColor;
     self.WordViewFrame.layer.borderWidth = 1.0f;
     
+    self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
+    self.profile.layer.masksToBounds = YES;
+    self.profile.layer.borderWidth = 0;
+    
+    networkController = [NetworkController sharedInstance];
+    
+    //PVP Mode
+    if(currentMode==PVPMODE) {
+        self.optionBtn.hidden = false;
+        [self loadGameItem];
+        
+    }
+    //Puzzel Mode
+    else {
+        [self getRandomItemNetwork];
+    }
+}
+
+- (void)resetView {
+    
+    for(UILabel *underbar in self.underBarCollection) {
+        underbar.hidden = true;
+    }
+    for(UILabel *text in self.textWordCollection) {
+        text.text = @"";
+    }
+    
+    self.answerText.text = @"";
+}
+
+- (void)getRandomItemNetwork {
+    
+    [SVProgressHUD setViewForExtension:self.view];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+    [SVProgressHUD show];
+    
+    [networkController getRandomItem:OBSERVERNAME2];
+}
+
+- (void)loadGameItem {
     //load image from url
     NSURL *url = [NSURL URLWithString:gameItem.imageUrl];
     NSData *data = [NSData dataWithContentsOfURL:url];
@@ -59,9 +109,6 @@
     
     //set profile image
     [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
-    self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
-    self.profile.layer.masksToBounds = YES;
-    self.profile.layer.borderWidth = 0;
     
     self.name.text = gameItem.name;
     self.hintText.text = gameItem.hint;
@@ -82,8 +129,8 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(solvedTheMonkeyProcess:) name:OBSERVERNAME object:nil];
-    
+    [sendNotification addObserver:self selector:@selector(solvedTheMonkeyProcess:) name:OBSERVERNAME1 object:nil];
+    [sendNotification addObserver:self selector:@selector(getRandomGameProcess:) name:OBSERVERNAME2 object:nil];
     
 }
 
@@ -105,9 +152,35 @@
     else {
         UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
                                                       bundle:nil];
+        //PVP mode
+        if(currentMode==PVPMODE) {
+            if([resultType intValue]==0) {// guess right
+                GuessRightViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessRightViewController"];
+                vc.gameItem = gameItem;
+                self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+                [self presentViewController:vc animated:YES completion:nil];
+                vc.view.alpha = 0;
+                [UIView animateWithDuration:1 animations:^{
+                    vc.view.alpha = 1;
+                }];
+            }
+            else { //give up
+                GuessGiveupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessGiveupViewController"];
+                vc.gameItem = gameItem;
+                self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+                [self presentViewController:vc animated:YES completion:nil];
+                vc.view.alpha = 0;
+                [UIView animateWithDuration:1 animations:^{
+                    vc.view.alpha = 1;
+                }];
+            }
+            
+            [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+        }
         
-        if([resultType intValue]==0) {// guess right
-            GuessRightViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessRightViewController"];
+        //Puzzel mode
+        else {
+            PuzzelRightViewController* vc = [sb instantiateViewControllerWithIdentifier:@"PuzzelRightViewController"];
             vc.gameItem = gameItem;
             self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
             [self presentViewController:vc animated:YES completion:nil];
@@ -115,19 +188,57 @@
             [UIView animateWithDuration:1 animations:^{
                 vc.view.alpha = 1;
             }];
+            
+            [self resetView];
+            [self performSelector:@selector(getRandomItemNetwork) withObject:nil afterDelay:0.5];
         }
-        else { //give up
-            GuessGiveupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"GuessGiveupViewController"];
-            vc.gameItem = gameItem;
-            self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-            [self presentViewController:vc animated:YES completion:nil];
-            vc.view.alpha = 0;
-            [UIView animateWithDuration:1 animations:^{
-                vc.view.alpha = 1;
-            }];
+    }
+}
+
+- (void)getRandomGameProcess:(NSNotification *)notification { //network notify the result of update request
+    
+    //do something..
+    
+    [SVProgressHUD dismiss];
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        NSMutableArray *randomGame = (NSMutableArray*)dict[@"gameItem"];
+        
+        // Get user profile info
+        gameItem = [[MainTableViewCell alloc] init];
+        
+        for(NSDictionary *item in randomGame) {
+        
+            gameItem.gameNo = (NSString*)item[@"gameNo"];
+            gameItem.memberNo = (NSString*)item[@"memberNo"];
+            gameItem.imageUrl = (NSString*)item[@"imageUrl"];
+            gameItem.keyword = (NSString*)item[@"keyword"];
+            gameItem.hint = (NSString*)item[@"hint"];
+            gameItem.profileUrl = (NSString*)item[@"profileUrl"];
+            gameItem.name = (NSString*)item[@"name"];
+            rndNumber = (NSString*)item[@"rnd_no"];
         }
         
-        [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+        NSURL *url = [NSURL URLWithString:gameItem.profileUrl];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        
+        if(data)
+            gameItem.imageData = data;
+        
+        self.navigationItem.title = [NSString stringWithFormat:@"#%@",rndNumber];
+        [self loadGameItem];
     }
 }
 
@@ -151,9 +262,13 @@
     
     if ([[answerText text] isEqualToString:gameItem.keyword]) { //answer right
         
-        self.resultType = [NSNumber numberWithInt:0];
-        NetworkController *networkController = [NetworkController sharedInstance];
-        [networkController solveTheMonkey:gameItem.gameNo BananaCount:gameItem.b_count ObserverName:OBSERVERNAME];
+        if (self.currentMode==PVPMODE) {
+            self.resultType = [NSNumber numberWithInt:0];
+            [networkController solveTheMonkey:gameItem.gameNo BananaCount:gameItem.b_count ObserverName:OBSERVERNAME1];
+        }
+        else {
+            [networkController solveTheRandom:rndNumber ObserverName:OBSERVERNAME1];
+        }
     }
     else {
         if(self.AgainView.hidden==YES) {
@@ -311,8 +426,9 @@
     [self closePopup];
     
     self.resultType = [NSNumber numberWithInt:1];
-    NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController solveTheMonkey:gameItem.gameNo BananaCount:@"0" ObserverName:OBSERVERNAME];
+
+    [networkController solveTheMonkey:gameItem.gameNo BananaCount:@"0" ObserverName:OBSERVERNAME1];
     
 }
+
 @end

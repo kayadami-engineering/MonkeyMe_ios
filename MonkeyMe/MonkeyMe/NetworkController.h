@@ -21,6 +21,7 @@
 - (void)getMonkeyFriendList:(NSString*)observerName;
 - (void)getWordList:(NSString*)observerName;
 - (void)solveTheMonkey:(NSString*)g_no BananaCount:(NSString*)level ObserverName:(NSString*)observerName;
+- (void)solveTheRandom:(NSString*)rnd_no ObserverName:(NSString*)observerName;
 - (void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSString*)rate ObserverName:(NSString*)observerName;
 - (void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
             GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round
@@ -29,6 +30,8 @@
 - (void)addToRandomModeNew:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint ObserverName:(NSString*)observerName;
 - (void)getReplyList:(NSString*)g_no Count:(int)replyCount Sort:(int)sort ObserverName:(NSString*)observerName;
 - (void)sendReply:(NSString*)g_no Contents:(NSString*)contents  ObserverName:(NSString*)observerName;
+- (void)getRandomItem:(NSString*)observerName;
+
 + (NetworkController *)sharedInstance;
 
 @property (assign, nonatomic) NSString* myMemberNumber;

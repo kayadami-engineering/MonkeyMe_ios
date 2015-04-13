@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *replyCount;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+- (IBAction)showAllClick:(id)sender;
 
 @property (strong, nonatomic) NSMutableDictionary *userStateInfo;
 @property (strong, nonatomic) WYPopoverController *popoverController;

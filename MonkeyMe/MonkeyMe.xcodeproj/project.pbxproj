@@ -39,6 +39,7 @@
 		8862FF4B1A9F37B600A1E7A9 /* SharePopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8862FF4A1A9F37B600A1E7A9 /* SharePopupViewController.m */; };
 		8862FF4D1A9F517200A1E7A9 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 8862FF4C1A9F517200A1E7A9 /* share.png */; };
 		8862FF4F1A9F53B400A1E7A9 /* mleaf.png in Resources */ = {isa = PBXBuildFile; fileRef = 8862FF4E1A9F53B400A1E7A9 /* mleaf.png */; };
+		887CB4C71ADC24630040C23B /* PuzzelRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 887CB4C61ADC24630040C23B /* PuzzelRightViewController.m */; };
 		887F2F731A9B60FF005E2F4F /* mleafbutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 887F2F721A9B60FF005E2F4F /* mleafbutton.png */; };
 		887F2F761A9B657A005E2F4F /* GuessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 887F2F751A9B657A005E2F4F /* GuessViewController.m */; };
 		888043881A9E1D910092C7AC /* GuessRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 888043871A9E1D910092C7AC /* GuessRightViewController.m */; };
@@ -189,6 +190,8 @@
 		8862FF4A1A9F37B600A1E7A9 /* SharePopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharePopupViewController.m; sourceTree = "<group>"; };
 		8862FF4C1A9F517200A1E7A9 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		8862FF4E1A9F53B400A1E7A9 /* mleaf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mleaf.png; sourceTree = "<group>"; };
+		887CB4C51ADC24630040C23B /* PuzzelRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PuzzelRightViewController.h; sourceTree = "<group>"; };
+		887CB4C61ADC24630040C23B /* PuzzelRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PuzzelRightViewController.m; sourceTree = "<group>"; };
 		887F2F721A9B60FF005E2F4F /* mleafbutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mleafbutton.png; sourceTree = "<group>"; };
 		887F2F741A9B657A005E2F4F /* GuessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessViewController.h; sourceTree = "<group>"; };
 		887F2F751A9B657A005E2F4F /* GuessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessViewController.m; sourceTree = "<group>"; };
@@ -531,6 +534,8 @@
 				88D969571A9763B9007EE2E3 /* FinishPopupViewController.m */,
 				887F2F741A9B657A005E2F4F /* GuessViewController.h */,
 				887F2F751A9B657A005E2F4F /* GuessViewController.m */,
+				887CB4C51ADC24630040C23B /* PuzzelRightViewController.h */,
+				887CB4C61ADC24630040C23B /* PuzzelRightViewController.m */,
 				888043861A9E1D910092C7AC /* GuessRightViewController.h */,
 				888043871A9E1D910092C7AC /* GuessRightViewController.m */,
 				88CA96DF1AB30EB7008B72BE /* GuessGiveupViewController.h */,
@@ -811,6 +816,7 @@
 				883BA80C1A7FA3C200B0DDA1 /* WYPopoverController.m in Sources */,
 				88CA96E11AB30EB7008B72BE /* GuessGiveupViewController.m in Sources */,
 				8862FF461A9F2EC100A1E7A9 /* DetailGameViewController.m in Sources */,
+				887CB4C71ADC24630040C23B /* PuzzelRightViewController.m in Sources */,
 				883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */,
 				88BB5BB61A91F16800385C04 /* ProfileViewController.m in Sources */,
 				883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */,

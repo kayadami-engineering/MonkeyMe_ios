@@ -10,6 +10,7 @@
 #import "SlideNavigationController.h"
 #import "WYPopoverController.h"
 #import "MainTableViewCell.h"
+#import "NetworkController.h"
 
 @interface GuessViewController : UIViewController <SlideNavigationControllerDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIView *HintView;
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profile;
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *hintText;
+@property (weak, nonatomic) IBOutlet UIButton *optionBtn;
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *textWordCollection;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *underBarCollection;
@@ -30,7 +32,9 @@
 @property (strong, nonatomic) WYPopoverController *popoverController;
 @property (strong, nonatomic) MainTableViewCell *gameItem;
 @property (strong, nonatomic) NSNumber *resultType;
-
+@property (assign, nonatomic) int currentMode;
+@property (strong, nonatomic) NSString *rndNumber;
+@property (strong, nonatomic) NetworkController *networkController;
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
 

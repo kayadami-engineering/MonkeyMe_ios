@@ -180,6 +180,15 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
+- (void)solveTheRandom:(NSString*)rnd_no ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"solveTheRandom";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&rnd_no=%@",currentCommand,myMemberNumber,rnd_no];
+        [self postToServer:string];
+    }
+}
 -(void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSString*)rate ObserverName:(NSString*)observerName {
     
     if(myMemberNumber) {
@@ -245,6 +254,16 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
+- (void)getRandomItem:(NSString *)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"randomItem";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@",currentCommand,myMemberNumber];
+        [self postToServer:string];
+    }
+}
+
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
@@ -433,6 +452,32 @@ static NetworkController *singletonInstance;
         
         [tempArray addObject:list];
     }
+    
+    else if([elementName isEqualToString:@"randominfo"]) {
+        
+        NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
+        
+        NSString *rndNo = [attributeDict objectForKey:@"rnd_no"];
+        NSString *name = [attributeDict objectForKey:@"name"];
+        NSString *gameNo = [attributeDict objectForKey:@"g_no"];
+        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+        NSString *profileUrl = [attributeDict objectForKey:@"profile"];
+        NSString *keyword = [attributeDict objectForKey:@"keyword"];
+        NSString *hint = [attributeDict objectForKey:@"hint"];
+        NSString *imageUrl = [attributeDict objectForKey:@"image"];
+        
+        [list setValue:memberNo forKey:@"memberNo"];
+        [list setValue:gameNo forKey:@"gameNo"];
+        [list setValue:name forKey:@"name"];
+        [list setValue:profileUrl forKey:@"profileUrl"];
+        [list setValue:keyword forKey:@"keyword"];
+        [list setValue:hint forKey:@"hint"];
+        [list setValue:imageUrl forKey:@"imageUrl"];
+        [list setValue:rndNo forKey:@"rnd_no"];
+        [list setValue:name forKey:@"name"];
+        
+        [tempArray addObject:list];
+    }
     //NSLog(@"Processing Element: %@", elementName);
     
 }
@@ -467,6 +512,9 @@ static NetworkController *singletonInstance;
         }
         else if([currentCommand isEqual:@"replyList"]) {
             [tempDictionary setValue:tempArray forKey:@"replyList"];
+        }
+        else if([currentCommand isEqual:@"randomItem"]) {
+            [tempDictionary setValue:tempArray forKey:@"gameItem"];
         }
     }
     

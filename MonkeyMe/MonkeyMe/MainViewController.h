@@ -26,4 +26,5 @@
 @property (nonatomic, strong) NSMutableDictionary *userStateInfo;
 @property (nonatomic, strong) NetworkController *networkController;
 @property (nonatomic, strong) MainTableViewCell *gameItem;
+@property (nonatomic, assign) int playMode;
 @end

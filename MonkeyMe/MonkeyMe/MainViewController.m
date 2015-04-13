@@ -15,6 +15,9 @@
 #import "GuessViewController.h"
 #import "SelectWordView.h"
 
+#define PVPMODE     1
+#define RANDMODE    2
+
 #define OBSERVERNAME @"updateMainProcess"
 
 @implementation MainViewController
@@ -25,6 +28,7 @@
 @synthesize networkController;
 @synthesize userStateInfo;
 @synthesize gameItem;
+@synthesize playMode;
 
 - (void)viewDidLoad {
     
@@ -191,6 +195,12 @@
     [self performSegueWithIdentifier:@"SelectFriendSegue" sender:self];
 }
 
+- (IBAction)playRandom:(id)sender {
+    
+    playMode = RANDMODE;
+    [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
+}
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     if([segue.identifier isEqualToString:@"ProfileViewSegue"]) {
@@ -203,7 +213,7 @@
         
         GuessViewController *guessView = (GuessViewController*)segue.destinationViewController;
         guessView.gameItem = gameItem;
-        
+        guessView.currentMode = playMode;
     }
     
     else if([segue.identifier isEqualToString:@"SelectWordSegue"]) {
@@ -269,6 +279,7 @@
             [button setImage:[UIImage imageNamed:@"gomonkey.png"] forState:UIControlStateNormal];
             [button addTarget:self action:@selector(playWithFriend:) forControlEvents:UIControlEventTouchUpInside];
             [button2 setImage:[UIImage imageNamed:@"puzzlemode.png"] forState:UIControlStateNormal];
+            [button2 addTarget:self action:@selector(playRandom:) forControlEvents:UIControlEventTouchUpInside];
             [headerview addSubview:button];
             [headerview addSubview:button2];
             [headerview addSubview:text];
@@ -368,6 +379,7 @@
         gameItem = gList;
         
         if([gameItem.isSolved intValue]==0) {
+            playMode = PVPMODE;
             [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
 
         }
