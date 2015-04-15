@@ -18,6 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard:)];
+    gestureRecognizer.delegate = self;
+    [self.scrollView addGestureRecognizer:gestureRecognizer];
+    
     [self.expBar setTransform:CGAffineTransformMakeScale(1.0, 12.0)];
     percent = 33;
     CGFloat curPercent = (CGFloat)self.percent/100;
@@ -30,11 +34,13 @@
     self.profile.layer.borderWidth = 0;
     
     self.name.text = gameItem.name;
-    
+
     [self registerNotification];
     
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+
+-(void) hideKeyBoard:(UIGestureRecognizer *) sender
+{
     [self.view endEditing:YES];
 }
 
@@ -82,8 +88,13 @@
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
     
-    NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
-    
+    if ([self.replyText.text length] > 0 || self.replyText.text != nil || [self.replyText.text isEqual:@""] == FALSE) {
+
+        NetworkController *networkController = [NetworkController sharedInstance];
+        [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 @end

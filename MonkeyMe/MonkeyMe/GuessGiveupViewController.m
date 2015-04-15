@@ -16,7 +16,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyBoard:)];
+    gestureRecognizer.delegate = self;
+    [self.scrollView addGestureRecognizer:gestureRecognizer];
+    
     //set profile image
     [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
     self.profile.layer.cornerRadius = self.profile.frame.size.height /2;
@@ -36,10 +40,10 @@
     self.scrollView.contentSize = CGSizeMake(320, 1136);
     self.scrollView.scrollEnabled = TRUE;
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+-(void) hideKeyBoard:(UIGestureRecognizer *) sender
+{
     [self.view endEditing:YES];
 }
-
 - (void)registerNotification {
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
@@ -67,15 +71,20 @@
     else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    
 }
 - (IBAction)goMyTurn:(id)sender {
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
     
-    NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
+    if ([self.replyText.text length] > 0 || self.replyText.text != nil || [self.replyText.text isEqual:@""] == FALSE) {
+        
+        NetworkController *networkController = [NetworkController sharedInstance];
+        [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
+    }
+    else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 

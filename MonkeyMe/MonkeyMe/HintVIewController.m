@@ -43,9 +43,9 @@
 - (void) showCameraView {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     [imagePickerController setDelegate:self];
-    [imagePickerController setAllowsEditing:YES];
-    
+    [imagePickerController setAllowsEditing:NO];
     [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+    
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 - (void)setNavigationItemLeft {
@@ -219,10 +219,25 @@
     [UIView commitAnimations];
 }
 
+- (UIImage *) thumbnailFromImage:(UIImage *)image {
+    
+    CGRect imageRect = CGRectMake(0, 0, self.imageView.frame.size.width, self.imageView.frame.size.height);
+    
+    UIGraphicsBeginImageContext(imageRect.size);
+    
+    [image drawInRect:imageRect];
+    
+    UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return thumbnail;
+}
+
 #pragma UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    self.imageView.image = [info objectForKey:UIImagePickerControllerEditedImage];
+    self.imageView.image = [self thumbnailFromImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     [picker dismissViewControllerAnimated:YES completion:nil];
     [self setNavigationItemRight];
 }

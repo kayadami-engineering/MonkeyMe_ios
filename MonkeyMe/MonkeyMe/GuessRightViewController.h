@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MainTableViewCell.h"
-@interface GuessRightViewController : UIViewController <UITextFieldDelegate>
+@interface GuessRightViewController : UIViewController <UITextFieldDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIProgressView *expBar;
 @property (weak, nonatomic) IBOutlet UIImageView *profile;

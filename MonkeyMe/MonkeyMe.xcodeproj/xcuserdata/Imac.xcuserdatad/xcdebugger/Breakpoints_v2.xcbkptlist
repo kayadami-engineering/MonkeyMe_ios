@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/GuessViewController.m"
-            timestampString = "450641862.231506"
+            timestampString = "450802562.781269"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "-okbtnPressed:"
             landmarkType = "5">
          </BreakpointContent>

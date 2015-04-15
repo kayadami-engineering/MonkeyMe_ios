@@ -427,8 +427,6 @@
         <scene sceneID="dYg-sz-DpC">
             <objects>
                 <navigationController definesPresentationContext="YES" id="sfV-kv-zpf" customClass="SlideNavigationController" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wjk-u4-dkb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -732,7 +730,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-sy-frb">
-                                <rect key="frame" x="16" y="121" width="288" height="290"/>
+                                <rect key="frame" x="16" y="120" width="288" height="291"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jim-Ud-yP5">
                                 <rect key="frame" x="16" y="417" width="288" height="40"/>
@@ -1465,7 +1463,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="너무 어려울 것 같다면 힌트를 적어주세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-ZZ-knF">
                                 <rect key="frame" x="0.0" y="505" width="320" height="63"/>
-                                <color key="backgroundColor" red="0.082352941176470587" green="0.074509803921568626" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.12549019610000001" green="0.14901960780000001" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1484,7 +1482,7 @@
                                 </subviews>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12549019607843137" green="0.14901960784313725" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="힌트 더하기" id="qa9-2Y-KFP"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -1860,8 +1858,12 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VK3-w3-BRy">
                                                 <rect key="frame" x="8" y="5" width="262" height="30"/>
                                                 <color key="backgroundColor" red="0.17254901960784313" green="0.20000000000000001" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Z1I-Mm-rPU" id="fwp-cT-cuJ"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </view>
@@ -2011,6 +2013,9 @@
                                                 <color key="backgroundColor" red="0.17254901959999999" green="0.20000000000000001" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="ZbS-tc-pwK" id="eL0-xZ-ZVN"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </view>
@@ -2487,7 +2492,7 @@
         <image name="ystar.png" width="192" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fHr-WI-0pY"/>
-        <segue reference="357-fT-OIB"/>
+        <segue reference="mrL-yp-HSX"/>
+        <segue reference="94Q-CA-0Dj"/>
     </inferredMetricsTieBreakers>
 </document>

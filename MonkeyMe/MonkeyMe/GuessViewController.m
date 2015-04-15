@@ -40,6 +40,7 @@
     
     [super viewDidLoad];
     [self registerNotification];
+    [self registNotification];
     [self setNavigationItem];
     [self initView];
 
@@ -86,6 +87,7 @@
     }
     
     self.answerText.text = @"";
+    self.HintView.hidden = YES;
 }
 
 - (void)getRandomItemNetwork {
@@ -96,6 +98,19 @@
     
     [networkController getRandomItem:OBSERVERNAME2];
 }
+- (UIImage *)imageByCroppingImage:(UIImage *)image toSize:(CGSize)size
+{
+    double x = (image.size.width - size.width) / 2.0;
+    double y = (image.size.height - size.height) / 2.0;
+    
+    CGRect cropRect = CGRectMake(x, y, size.height, size.width);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    
+    UIImage *cropped = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return cropped;
+}
 
 - (void)loadGameItem {
     //load image from url
@@ -104,6 +119,7 @@
     
     if(data) {
         UIImage *image = [[UIImage alloc]initWithData:data];
+        self.imageView.image = [self imageByCroppingImage:image toSize:self.imageView.frame.size];
         self.imageView.image = image;
     }
     
@@ -120,7 +136,7 @@
             UILabel *underbar = [self.underBarCollection objectAtIndex:i];
             UILabel *text = [self.textWordCollection objectAtIndex:i];
             underbar.hidden = FALSE;
-            text.text = [NSString stringWithFormat:@"%C",[gameItem.keyword characterAtIndex:i]];
+            //text.text = [NSString stringWithFormat:@"%C",[gameItem.keyword characterAtIndex:i]];
         }
     }
 }
@@ -289,17 +305,6 @@
     if(hintCount==1) {
         self.HintView.hidden = NO;
     }
-}
-
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self registNotification];
-}
-
--(void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [self unregistNotification];
 }
 
 - (void) registNotification {
