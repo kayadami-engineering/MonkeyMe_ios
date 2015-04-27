@@ -12,13 +12,14 @@
 #import "WYStoryboardPopoverSegue.h"
 #import "SortViewPopupController.h"
 #import "SVProgressHUD.h"
+#import "ProfileViewController.h"
 
 #define OBSERVERNAME1 @"replyListProcess"
 #define OBSERVERNAME2 @"sendReplyProcess"
 
 #define RECENT  0
 #define POPULAR 1
-
+#define MAXREPLYLEN 40
 
 @interface ReplyViewController () <SortPopupDelegate,WYPopoverControllerDelegate> {}
 @end
@@ -28,11 +29,11 @@
 @synthesize networkController;
 @synthesize g_no;
 @synthesize keyboardHeight;
+@synthesize userStateInfo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavigationItemLeft];
-    [self registerNotification];
     
     UIControl *control = [[UIControl alloc] initWithFrame:self.tableView.frame];
     [control setBackgroundColor:[UIColor clearColor]];
@@ -49,12 +50,15 @@
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self registerNotification];
     [self registKeyboardNotification];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self unregistKeyboardNotification];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setNavigationItemLeft {
@@ -76,7 +80,6 @@
 }
 
 - (void)dealloc {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -174,12 +177,20 @@
         
         // Get user profile info
         for(NSDictionary *replyItem in list) {
+
             ReplyItemCell *myItem = [[ReplyItemCell alloc]init];
             
+            myItem.memberNo = (NSString*)replyItem[@"memberNo"];
+            myItem.memberID = (NSString*)replyItem[@"memberID"];
+            myItem.r_no = (NSString*)replyItem[@"r_no"];
+            myItem.profileUrl = (NSString*)replyItem[@"profileUrl"];
             myItem.name = (NSString*)replyItem[@"name"];
             myItem.contents = (NSString*)replyItem[@"contents"];
             myItem.date = (NSString*)replyItem[@"date"];
             myItem.likeCount = (NSNumber*)replyItem[@"likeCount"];
+            myItem.friendCount = (NSNumber*)replyItem[@"friendCount"];
+            myItem.level = (NSString*)replyItem[@"level"];
+            
             [replyList addObject:myItem];
         }
 
@@ -193,8 +204,6 @@
 - (void)sendReplyProcess:(NSNotification *)notification { //network notify the result of update request
     
     //do something..
-    
-    NSLog(@"reply ok");
     
     NSDictionary* dict = notification.userInfo;
     
@@ -220,14 +229,29 @@
 
 - (IBAction)okBtn:(id)sender {
     
-    [self keyboardHide];
+    if([self checkLength]) {
+        [self keyboardHide];
     
-    [SVProgressHUD setViewForExtension:self.view];
-    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
-    [SVProgressHUD show];
+        [SVProgressHUD setViewForExtension:self.view];
+        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+        [SVProgressHUD show];
     
-    [networkController sendReply:g_no Contents:self.replyText.text ObserverName:OBSERVERNAME2];
+        [networkController sendReply:g_no Contents:self.replyText.text ObserverName:OBSERVERNAME2];
+    }
     
+}
+
+- (BOOL)checkLength {
+    
+    UIAlertView *alert;
+    if(self.replyText.text.length > MAXREPLYLEN) {
+        alert = [[UIAlertView alloc]initWithTitle:@"길이초과" message:@"댓글은 40글자를 넘을 수 없습니다." delegate:self cancelButtonTitle:@"확인" otherButtonTitles:@"취소", nil];
+        [alert show];
+        return FALSE;
+    }
+    else {
+        return TRUE;
+    }
 }
 
 - (CGFloat)heightForText:(NSString *)bodyText
@@ -259,9 +283,35 @@
                                                                  mode:3];
         popoverController.delegate = self;
     }
+    
+    else if([segue.identifier isEqualToString:@"OthersProfileSegue"]) {
+        
+        ProfileViewController *profileView = (ProfileViewController*)segue.destinationViewController;
+        profileView.userStateInfo = self.userStateInfo;
+    }
 }
 
 - (void)likeBtnClicked:(UIButton*)sender {
+    
+}
+- (void)nameBtnClicked:(UIButton*)sender {
+    
+    ReplyItemCell *myItem = [replyList objectAtIndex:sender.tag];
+    
+    userStateInfo = [[NSMutableDictionary alloc]init];;
+    
+    NSURL *url = [NSURL URLWithString:myItem.profileUrl];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [[UIImage alloc]initWithData:data];
+    
+    [userStateInfo setValue:myItem.memberNo forKey:@"friendNumber"];
+    [userStateInfo setValue:myItem.memberID forKey:@"memberID"];
+    [userStateInfo setValue:myItem.name forKey:@"name"];
+    [userStateInfo setValue:myItem.level forKey:@"level"];
+    [userStateInfo setValue:image forKey:@"profileImage"];
+    [userStateInfo setValue:myItem.friendCount forKey:@"friendCount"];
+    
+    [self performSegueWithIdentifier:@"OthersProfileSegue" sender:self];
     
 }
 
@@ -291,6 +341,7 @@
     UILabel *likeCount = cell.likeCount;
     UIButton *likebtn = cell.likeBtn;
     UIButton *optionBtn = cell.optionBtn;
+    UIButton *nameBtn = cell.nameBtn;
     
     name.text = replyItem.name;
     contents.text = replyItem.contents;
@@ -300,6 +351,9 @@
         
     likebtn.tag = indexPath.row;
     [likebtn addTarget:self action:@selector(likeBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    nameBtn.tag = indexPath.row;
+    [nameBtn addTarget:self action:@selector(nameBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

@@ -438,18 +438,27 @@ static NetworkController *singletonInstance;
         
         NSMutableDictionary *list = [[NSMutableDictionary alloc]init];
         
-        NSString *replyNo = [attributeDict objectForKey:@"r_no"];
+        NSString *memberNo = [attributeDict objectForKey:@"m_no"];
+        NSString *memberID = [attributeDict objectForKey:@"id"];
         NSString *name = [attributeDict objectForKey:@"name"];
+        NSString *replyNo = [attributeDict objectForKey:@"r_no"];
         NSString *contents = [attributeDict objectForKey:@"contents"];
         NSString *date = [attributeDict objectForKey:@"date"];
         NSNumber *likeCount = [attributeDict objectForKey:@"likeCount"];
+        NSNumber *friendCount = [attributeDict objectForKey:@"friendCount"];
+        NSString *profileUrl = [attributeDict objectForKey:@"profile"];
+        NSString *level = [attributeDict objectForKey:@"level"];
         
         [list setValue:replyNo forKey:@"r_no"];
         [list setValue:name forKey:@"name"];
         [list setValue:date forKey:@"date"];
         [list setValue:contents forKey:@"contents"];
         [list setValue:likeCount forKey:@"likeCount"];
-        
+        [list setValue:profileUrl forKey:@"profileUrl"];
+        [list setValue:memberID forKey:@"memberID"];
+        [list setValue:memberNo forKey:@"memberNo"];
+        [list setValue:friendCount forKey:@"friendCount"];
+        [list setValue:level forKey:@"level"];
         [tempArray addObject:list];
     }
     

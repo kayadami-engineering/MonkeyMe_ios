@@ -11,6 +11,7 @@
 #import "SelectFriendView.h"
 #import "SVProgressHUD.h"
 
+#define MAXHINTLEN 15
 #define OBSERVERNAME @"uploadGameDataProcess"
 
 @interface HintVIewController() <UploadGameDelegate>
@@ -38,6 +39,19 @@
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [self unregistKeyboardNotification];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSUInteger oldLength = [textField.text length];
+    NSUInteger replacementLength = [string length];
+    NSUInteger rangeLength = range.length;
+    
+    NSUInteger newLength = oldLength - rangeLength + replacementLength;
+    
+    BOOL returnKey = [string rangeOfString: @"\n"].location != NSNotFound;
+    
+    return newLength <= MAXHINTLEN || returnKey;
 }
 
 - (void) showCameraView {
@@ -81,8 +95,14 @@
 
 - (void)ok {
     
-    [self.view endEditing:YES];
-    [self sendGameToServer];
+    if(self.hintText.text.length > MAXHINTLEN) {
+        self.textLabel.text = @"힌트는 15글자를 넘을 수 없습니다!";
+        self.textLabel.textColor = [UIColor redColor];
+    }
+    else {
+        [self.view endEditing:YES];
+        [self sendGameToServer];
+    }
 }
 
 - (void)sendGameToServer {

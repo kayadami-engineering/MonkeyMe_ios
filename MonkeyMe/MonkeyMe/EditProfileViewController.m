@@ -10,6 +10,8 @@
 #import "NetworkController.h"
 #import "SVProgressHUD.h"
 
+#define MAXNAMELEN  10
+#define MAXIDLEN    12
 #define OBSERVERNAME @"updateProfileProcess"
 
 @implementation EditProfileViewController
@@ -66,14 +68,34 @@
 }
 
 - (void)ok {
-    NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController updateProfile:self.myName.text Id:self.myID.text ObserverName:OBSERVERNAME];
-    [SVProgressHUD setViewForExtension:self.view];
-    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
-    [SVProgressHUD show];
+    
+    if([self checkLength]) {
+        NetworkController *networkController = [NetworkController sharedInstance];
+        [networkController updateProfile:self.myName.text Id:self.myID.text ObserverName:OBSERVERNAME];
+        [SVProgressHUD setViewForExtension:self.view];
+        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+        [SVProgressHUD show];
+    }
     
 }
 
+- (BOOL)checkLength {
+    
+    UIAlertView *alert;
+    if(self.myName.text.length > MAXNAMELEN) {
+        alert = [[UIAlertView alloc]initWithTitle:@"길이초과" message:@"이름은 10글자를 넘을 수 없습니다." delegate:self cancelButtonTitle:@"확인" otherButtonTitles:@"취소", nil];
+        [alert show];
+        return FALSE;
+    }
+    else if(self.myID.text.length > MAXIDLEN) {
+        alert = [[UIAlertView alloc]initWithTitle:@"길이초과" message:@"아이디는 12글자를 넘을 수 없습니다." delegate:self cancelButtonTitle:@"확인" otherButtonTitles:@"취소", nil];
+        [alert show];
+        return FALSE;
+    }
+    else {
+        return TRUE;
+    }
+}
 - (void)registerNotification {
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];

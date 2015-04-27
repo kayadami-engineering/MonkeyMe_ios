@@ -20,4 +20,5 @@
 @property (strong, nonatomic) NSString *g_no;
 @property (weak, nonatomic) IBOutlet UITextField *replyText;
 @property (assign, nonatomic) CGSize keyboardHeight;
+@property (strong, nonatomic) NSMutableDictionary *userStateInfo;
 @end

@@ -10,6 +10,7 @@
 #import "NetworkController.h"
 #import "SVProgressHUD.h"
 
+#define MAXREPLYLEN 40
 #define OBSERVERNAME @"sendReplyFinishProcess"
 @implementation GuessRightViewController
 @synthesize percent;
@@ -81,7 +82,18 @@
     }
     
 }
-
+- (BOOL)checkLength {
+    
+    UIAlertView *alert;
+    if(self.replyText.text.length > MAXREPLYLEN) {
+        alert = [[UIAlertView alloc]initWithTitle:@"길이초과" message:@"댓글은 40글자를 넘을 수 없습니다." delegate:self cancelButtonTitle:@"확인" otherButtonTitles:@"취소", nil];
+        [alert show];
+        return FALSE;
+    }
+    else {
+        return TRUE;
+    }
+}
 - (IBAction)goMyTurn:(id)sender {
     
     [SVProgressHUD setViewForExtension:self.view];
@@ -89,9 +101,11 @@
     [SVProgressHUD show];
     
     if ([self.replyText.text length] > 0 || self.replyText.text != nil || [self.replyText.text isEqual:@""] == FALSE) {
-
-        NetworkController *networkController = [NetworkController sharedInstance];
-        [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
+        
+        if([self checkLength]) {
+            NetworkController *networkController = [NetworkController sharedInstance];
+            [networkController sendReply:gameItem.gameNo Contents:self.replyText.text ObserverName:OBSERVERNAME];
+        }
     }
     else {
         [self dismissViewControllerAnimated:YES completion:nil];

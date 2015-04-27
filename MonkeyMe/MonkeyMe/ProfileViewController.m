@@ -45,6 +45,7 @@
     NSString *friends = (NSString*)userStateInfo[@"friendCount"];
     NSString *friendNumber = (NSString*)userStateInfo[@"friendNumber"];
     
+    //show friend profile
     if(friendNumber) {
         
         self.friendNumber = friendNumber;

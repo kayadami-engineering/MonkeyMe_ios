@@ -62,6 +62,12 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biG-S2-4Qz">
+                        <rect key="frame" x="14" y="3" width="227" height="30"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="ihJ-cC-NwA" firstAttribute="top" secondItem="7KL-2A-sBP" secondAttribute="bottom" constant="10" id="gZA-gp-a92"/>
@@ -76,6 +82,7 @@
                 <outlet property="likeBtn" destination="b6M-2H-Tuz" id="ddi-gH-ewP"/>
                 <outlet property="likeCount" destination="Bey-uc-Dxp" id="i7X-pp-6X5"/>
                 <outlet property="name" destination="7KL-2A-sBP" id="2mq-vm-A2P"/>
+                <outlet property="nameBtn" destination="biG-S2-4Qz" id="ICX-g8-HDP"/>
                 <outlet property="optionBtn" destination="5Gq-NZ-Iy2" id="xZz-BK-gsJ"/>
             </connections>
             <point key="canvasLocation" x="548" y="276.5"/>

@@ -14,4 +14,9 @@
 @synthesize contents;
 @synthesize date;
 @synthesize likeCount;
+@synthesize memberNo;
+@synthesize level;
+@synthesize memberID;
+@synthesize friendCount;
+@synthesize profileUrl;
 @end
