@@ -11,6 +11,7 @@
 #import "MainTableViewCell.h"
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
+#import "CommonSharedObject.h"
 
 #define OBSERVERNAME_1 @"m_friendListProcess"
 #define OBSERVERNAME_2 @"f_friendListProcess"
@@ -96,7 +97,6 @@
 - (void) transferOkProcess:(NSNotification*)notification { //network notify the result of update request
     
     //do something..
-    NSLog(@"received somthing2");
     
     NSDictionary* dict = notification.userInfo;
     
@@ -110,10 +110,13 @@
         NSLog(@"Error Message=%@",message);
     }
     else {
-        NSLog(@"tansfer ok process");
-        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
-                                                      bundle:nil];
-        FinishPopupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
+        
+        CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+        NSString *storyboardName = commonSharedObject.storyboardName;
+        
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:storyboardName
+                                                                 bundle: nil];
+        FinishPopupViewController* vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
         vc.delegate = self;
         
         self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;

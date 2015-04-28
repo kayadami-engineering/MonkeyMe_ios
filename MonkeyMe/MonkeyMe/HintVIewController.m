@@ -10,6 +10,7 @@
 #import "FinishPopupViewController.h"
 #import "SelectFriendView.h"
 #import "SVProgressHUD.h"
+#import "CommonSharedObject.h"
 
 #define MAXHINTLEN 15
 #define OBSERVERNAME @"uploadGameDataProcess"
@@ -142,8 +143,12 @@
     else {
         
         NSString *gameNo = (NSString*)dict[@"gameNo"];
-        UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main"
-                                                  bundle:nil];
+        CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+        NSString *storyboardName = commonSharedObject.storyboardName;
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName
+                                                                 bundle: nil];
+    
         FinishPopupViewController* vc = [sb instantiateViewControllerWithIdentifier:@"FinishPopupViewController"];
         vc.delegate = self;
         vc.g_no = gameNo;

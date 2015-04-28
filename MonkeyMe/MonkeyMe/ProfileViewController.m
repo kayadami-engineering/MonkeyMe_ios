@@ -10,6 +10,7 @@
 #import "DetailGameViewController.h"
 #import "EditProfileViewController.h"
 #import "NetworkController.h"
+#import "CommonSharedObject.h"
 
 @interface ProfileViewController() <PhotoViewDelegate>
 @end
@@ -76,7 +77,12 @@
 }
 - (void)setNavigationItem {
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+    NSString *storyboardName = commonSharedObject.storyboardName;
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:storyboardName
+                                                             bundle: nil];
+    
     photoView = (PhotoViewController*)[mainStoryboard instantiateViewControllerWithIdentifier: @"PhotoViewController"];
     photoView.delegate = self;
     photoView.friendNumber = self.friendNumber;

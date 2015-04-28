@@ -14,6 +14,7 @@
 #import "SVProgressHUD.h"
 #import "GuessViewController.h"
 #import "SelectWordView.h"
+#import "CommonSharedObject.h"
 
 #define PVPMODE     1
 #define RANDMODE    2
@@ -162,7 +163,11 @@
 }
 
 - (void)setNavigationItem {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+    
+    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+    NSString *storyboardName = commonSharedObject.storyboardName;
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:storyboardName
                                                              bundle: nil];
     
     LeftViewController *leftMenu = (LeftViewController*)[mainStoryboard
@@ -263,10 +268,12 @@
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.view.frame.size.width-20, 30)];
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(25, 10, self.view.frame.size.width-50, 50)];
     UIButton *button2 = [[UIButton alloc] initWithFrame:CGRectMake(25, 65, self.view.frame.size.width-50, 50)];
-    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(122, 5, self.view.frame.size.width-122, 50)];
-    UILabel *text2 = [[UILabel alloc] initWithFrame:CGRectMake(122, 60, self.view.frame.size.width-122, 50)];
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.view.frame.size.width-25, 50)];
+    UILabel *text2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width-25, 50)];
     
     headerLabel.textColor = [UIColor whiteColor];
+    text.textAlignment = NSTextAlignmentCenter;
+    text2.textAlignment = NSTextAlignmentCenter;
     
     [headerview addSubview:headerLabel];
     

@@ -77,7 +77,7 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    self.scrollView.contentSize = CGSizeMake(320, 700);
+    self.scrollView.contentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*2-436);
     self.scrollView.scrollEnabled = TRUE;
 }
 

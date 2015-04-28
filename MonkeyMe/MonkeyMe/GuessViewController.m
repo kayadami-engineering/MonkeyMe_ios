@@ -14,6 +14,7 @@
 #import "GuessGiveupViewController.h"
 #import "PuzzelRightViewController.h"
 #import "SVProgressHUD.h"
+#import "CommonSharedObject.h"
 
 #define OBSERVERNAME1 @"solvedTheMonkeyProcess"
 #define OBSERVERNAME2 @"getRandomGameProcess"
@@ -166,8 +167,13 @@
         NSLog(@"Error Message=%@",message);
     }
     else {
-        UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main"
-                                                      bundle:nil];
+        
+        CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+        NSString *storyboardName = commonSharedObject.storyboardName;
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:storyboardName
+                                                                 bundle: nil];
+        
         //PVP mode
         if(currentMode==PVPMODE) {
             if([resultType intValue]==0) {// guess right

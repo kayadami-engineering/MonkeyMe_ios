@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8826D12B1AEF81A8002563DC /* iPhone6.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8826D12A1AEF81A8002563DC /* iPhone6.storyboard */; };
+		8826D12E1AEFD123002563DC /* CommonSharedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8826D12D1AEFD123002563DC /* CommonSharedObject.m */; };
 		8831DDF41AC9556A00394AC7 /* WordItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8831DDF31AC9556A00394AC7 /* WordItemCell.m */; };
 		8831DDF61ACA6A2900394AC7 /* send.png in Resources */ = {isa = PBXBuildFile; fileRef = 8831DDF51ACA6A2900394AC7 /* send.png */; };
 		8831DDF81ACA6A8400394AC7 /* guesshint.png in Resources */ = {isa = PBXBuildFile; fileRef = 8831DDF71ACA6A8400394AC7 /* guesshint.png */; };
@@ -139,6 +141,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8826D12A1AEF81A8002563DC /* iPhone6.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone6.storyboard; sourceTree = "<group>"; };
+		8826D12C1AEFD123002563DC /* CommonSharedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSharedObject.h; sourceTree = "<group>"; };
+		8826D12D1AEFD123002563DC /* CommonSharedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSharedObject.m; sourceTree = "<group>"; };
 		8831DDF21AC9556A00394AC7 /* WordItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordItemCell.h; sourceTree = "<group>"; };
 		8831DDF31AC9556A00394AC7 /* WordItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordItemCell.m; sourceTree = "<group>"; };
 		8831DDF51ACA6A2900394AC7 /* send.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send.png; sourceTree = "<group>"; };
@@ -378,10 +383,13 @@
 				8831DDF11AC954FA00394AC7 /* ClassObjects */,
 				883BA7F51A7FA3C100B0DDA1 /* NetworkController.h */,
 				883BA7F61A7FA3C100B0DDA1 /* NetworkController.m */,
+				8826D12C1AEFD123002563DC /* CommonSharedObject.h */,
+				8826D12D1AEFD123002563DC /* CommonSharedObject.m */,
 				883BA7C41A7FA28A00B0DDA1 /* AppDelegate.h */,
 				883BA7C51A7FA28A00B0DDA1 /* AppDelegate.m */,
 				88F948CB1AD5AA800007C124 /* ReplyTableCell.xib */,
 				883BA7CA1A7FA28A00B0DDA1 /* Main.storyboard */,
+				8826D12A1AEF81A8002563DC /* iPhone6.storyboard */,
 				883BA7CD1A7FA28A00B0DDA1 /* Images.xcassets */,
 				883BA7CF1A7FA28A00B0DDA1 /* LaunchScreen.xib */,
 				883BA7C01A7FA28A00B0DDA1 /* Supporting Files */,
@@ -723,6 +731,7 @@
 				88F948C71AD580020007C124 /* friendslist.png in Resources */,
 				88BB5BDB1A935E7200385C04 /* achg.png in Resources */,
 				889CD0C41A85EFEF00580FB6 /* banana.png in Resources */,
+				8826D12B1AEF81A8002563DC /* iPhone6.storyboard in Resources */,
 				88B656D31A8E0A7000F73DB4 /* help.png in Resources */,
 				883BA80A1A7FA3C200B0DDA1 /* SVProgressHUD.bundle in Resources */,
 				88F948CC1AD5AA800007C124 /* ReplyTableCell.xib in Resources */,
@@ -803,6 +812,7 @@
 			files = (
 				889CD0EA1A861E4300580FB6 /* SlideNavigationController.m in Sources */,
 				889CD1011A86346200580FB6 /* RightViewController.m in Sources */,
+				8826D12E1AEFD123002563DC /* CommonSharedObject.m in Sources */,
 				887F2F761A9B657A005E2F4F /* GuessViewController.m in Sources */,
 				88BB5BE21A94981500385C04 /* ProfileImageItemCell.m in Sources */,
 				883BA8061A7FA3C200B0DDA1 /* LoginPopupViewController.m in Sources */,

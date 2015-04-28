@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "CommonSharedObject.h"
 @interface AppDelegate ()
 
 @end
@@ -18,6 +18,32 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     // Override point for customization after application launch.
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        
+        CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+        
+        UIStoryboard *storyBoard;
+        
+        CGSize result = [[UIScreen mainScreen] bounds].size;
+        CGFloat scale = [UIScreen mainScreen].scale;
+        result = CGSizeMake(result.width * scale, result.height * scale);
+        
+        //iPhone 5
+        if(result.height == 1136){
+            commonSharedObject.storyboardName = @"Main";
+            storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
+            [self.window setRootViewController:initViewController];
+        }
+        //iPhone 6
+        else if(result.height == 1334) {
+            commonSharedObject.storyboardName = @"iPhone6";
+            storyBoard = [UIStoryboard storyboardWithName:@"iPhone6" bundle:nil];
+            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
+            [self.window setRootViewController:initViewController];
+        }
+    }
     return YES;
 }
 

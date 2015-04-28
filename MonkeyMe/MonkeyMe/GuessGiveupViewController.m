@@ -38,7 +38,7 @@
 }
 
 - (void)viewDidLayoutSubviews {
-    self.scrollView.contentSize = CGSizeMake(320, 1136);
+    self.scrollView.contentSize = CGSizeMake([[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height*2);
     self.scrollView.scrollEnabled = TRUE;
 }
 -(void) hideKeyBoard:(UIGestureRecognizer *) sender

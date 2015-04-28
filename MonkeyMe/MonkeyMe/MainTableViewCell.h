@@ -23,7 +23,7 @@
     NSString *level;
     NSString *b_count;
     NSString *isSolved;
-    NSString *friendCount;
+    NSNumber *friendCount;
     NSData *imageData;
 }
 
@@ -40,7 +40,7 @@
 @property (copy, nonatomic) NSString *imageUrl;
 @property (copy, nonatomic) NSString *b_count;
 @property (copy, nonatomic) NSString *isSolved;
-@property (copy, nonatomic) NSString *friendCount;
+@property (copy, nonatomic) NSNumber *friendCount;
 
 
 @end

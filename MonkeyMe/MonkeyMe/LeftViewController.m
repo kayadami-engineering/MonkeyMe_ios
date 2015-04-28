@@ -7,7 +7,7 @@
 //
 
 #import "LeftViewController.h"
-
+#import "CommonSharedObject.h"
 
 @implementation LeftViewController
 
@@ -94,9 +94,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
-                                        bundle: nil];
-
+    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+    NSString *storyboardName = commonSharedObject.storyboardName;
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:storyboardName
+                                                             bundle: nil];
     UIViewController *vc ;
     
     switch (indexPath.row)

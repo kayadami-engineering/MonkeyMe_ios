@@ -9,6 +9,8 @@
 #import "RightViewController.h"
 #import "MainTableViewCell.h"
 #import "ProfileViewController.h"
+#import "CommonSharedObject.h"
+
 #define OBSERVERNAME_1 @"m_friendListProcess"
 #define OBSERVERNAME_2 @"f_friendListProcess"
 
@@ -289,8 +291,12 @@
     
     [self hideKeyboard];
     
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+    NSString *storyboardName = commonSharedObject.storyboardName;
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:storyboardName
                                                              bundle: nil];
+    
     NSMutableArray *tempArray;
     
     if(indexPath.section==1)
