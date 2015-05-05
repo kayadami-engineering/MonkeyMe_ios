@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 #import "SlideNavigationController.h"
 #import "WYPopoverController.h"
 #import "MainTableViewCell.h"
@@ -23,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *hintText;
 @property (weak, nonatomic) IBOutlet UIButton *optionBtn;
+@property (weak, nonatomic) IBOutlet UIButton *playBtn;
+- (IBAction)playBtnClicked:(id)sender;
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *textWordCollection;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *underBarCollection;
@@ -35,6 +39,7 @@
 @property (assign, nonatomic) int currentMode;
 @property (strong, nonatomic) NSString *rndNumber;
 @property (strong, nonatomic) NetworkController *networkController;
+@property (strong, nonatomic) MPMoviePlayerController *videoController;
 - (IBAction)okbtnPressed:(id)sender;
 - (IBAction)hintbtnPressed:(id)sender;
 

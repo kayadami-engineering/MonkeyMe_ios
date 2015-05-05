@@ -25,7 +25,7 @@
 - (void)sendGameEval:(NSString*)g_no ReplyText:(NSString*)reply Rate:(NSString*)rate ObserverName:(NSString*)observerName;
 - (void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
             GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round
-          ObserverName:(NSString*)observerName;
+          ObserverName:(NSString*)observerName FileName:(NSString*)filename;
 - (void)addToRandomMode:(NSString*)g_no ObserverName:(NSString*)observerName;
 - (void)addToRandomModeNew:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint ObserverName:(NSString*)observerName;
 - (void)getReplyList:(NSString*)g_no Count:(int)replyCount Sort:(int)sort ObserverName:(NSString*)observerName;

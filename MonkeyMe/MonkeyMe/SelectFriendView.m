@@ -240,7 +240,7 @@
     
     
     else {
-        [networkController uploadGameData:[gameInfo objectForKey:@"imageData"] Keyword:[gameInfo objectForKey:@"keyword"] Hint:[gameInfo objectForKey:@"hint"] GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:targetNumber BananaCount:[gameInfo objectForKey:@"b_count"] Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME_3];
+        [networkController uploadGameData:[gameInfo objectForKey:@"imageData"] Keyword:[gameInfo objectForKey:@"keyword"] Hint:[gameInfo objectForKey:@"hint"] GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:targetNumber BananaCount:[gameInfo objectForKey:@"b_count"] Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME_3 FileName:[gameInfo objectForKey:@"fileName"]];
     }
     
 }

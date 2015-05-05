@@ -55,8 +55,6 @@
     
     //init subviews
     self.hintCount = 0;
-    self.HintView.hidden = YES;
-    self.AgainView.hidden = YES;
     self.WordViewFrame.layer.borderColor = [UIColor yellowColor].CGColor;
     self.WordViewFrame.layer.borderWidth = 1.0f;
     
@@ -116,12 +114,22 @@
 - (void)loadGameItem {
     //load image from url
     NSURL *url = [NSURL URLWithString:gameItem.imageUrl];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    if(data) {
-        UIImage *image = [[UIImage alloc]initWithData:data];
-        self.imageView.image = [self imageByCroppingImage:image toSize:self.imageView.frame.size];
-        self.imageView.image = image;
+    NSString *ext = [[gameItem.imageUrl componentsSeparatedByString:@"."] lastObject];
+   
+    //image
+    if([ext isEqualToString:@"jpeg"]) {
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        if(data) {
+            UIImage *image = [[UIImage alloc]initWithData:data];
+            self.imageView.image = [self imageByCroppingImage:image toSize:self.imageView.frame.size];
+            self.imageView.image = image;
+        }
+    }
+    // video
+    else {
+        
+        self.playBtn.hidden = FALSE;
     }
     
     //set profile image
@@ -442,4 +450,47 @@
     
 }
 
+- (IBAction)playBtnClicked:(id)sender {
+    
+    /*
+    MPMoviePlayerController *moviePlayer=[[MPMoviePlayerController alloc] initWithContentURL:url];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayBackDidFinish:) name:MPMoviePlayerPlaybackDidFinishNotification object:moviePlayer];
+    
+    moviePlayer.controlStyle=MPMovieControlStyleDefault;
+    moviePlayer.shouldAutoplay=YES;
+    [self.view addSubview:moviePlayer.view];
+    [moviePlayer setFullscreen:YES animated:YES];
+    
+    [moviePlayer play];
+     */
+    NSURL *url = [NSURL URLWithString:gameItem.imageUrl];
+    
+    NSLog(@"url = %@",url);
+    MPMoviePlayerViewController *mpvc = [[MPMoviePlayerViewController alloc] init];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(moviePlaybackDidFinish:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:mpvc];
+    
+    mpvc.moviePlayer.movieSourceType = MPMovieSourceTypeStreaming;
+    [mpvc.moviePlayer setContentURL:url];
+    [self presentMoviePlayerViewControllerAnimated:mpvc];
+    
+}
+
+- (void) moviePlaybackDidFinish:(NSNotification*)notification
+{
+    
+    MPMoviePlayerController *player = [notification object];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification object:player];
+    
+    if ([player respondsToSelector:@selector(setFullscreen:animated:)])
+    {
+        [player.view removeFromSuperview];
+    }
+}
 @end

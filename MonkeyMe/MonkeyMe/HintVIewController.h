@@ -10,6 +10,9 @@
 #import "WordItemCell.h"
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
 
 @interface HintVIewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate>
 
@@ -19,6 +22,9 @@
 @property (strong, nonatomic) NSMutableDictionary* gameInfo;
 @property (strong, nonatomic) NetworkController *networkController;
 @property (assign, nonatomic) CGSize keyboardHeight;
+@property (strong, nonatomic) NSURL *videoURL;
+@property (strong, nonatomic) MPMoviePlayerController *videoController;
+
 @end
 
 

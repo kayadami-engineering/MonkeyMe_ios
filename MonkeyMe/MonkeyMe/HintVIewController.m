@@ -57,9 +57,12 @@
 
 - (void) showCameraView {
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
+    
     [imagePickerController setDelegate:self];
     [imagePickerController setAllowsEditing:NO];
     [imagePickerController setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [imagePickerController setMediaTypes:@[(NSString *)kUTTypeImage, (NSString *)kUTTypeMovie]];
+    [imagePickerController setVideoMaximumDuration:6];
     
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
@@ -112,12 +115,23 @@
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
     
-    NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 90);
-
-    [gameInfo setValue:imageData forKey:@"imageData"];
-    [gameInfo setValue:self.hintText.text forKey:@"hint"];
+    NSData *fileData;
+    NSString *filename;
     
-    [networkController uploadGameData:imageData Keyword:[gameInfo objectForKey:@"keyword"] Hint:self.hintText.text GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:[gameInfo objectForKey:@"targetNumber"] BananaCount:[gameInfo objectForKey:@"b_count"] Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME];
+    if(self.videoURL==NULL) {
+        fileData = UIImageJPEGRepresentation(self.imageView.image, 90);
+        filename = @"file.jpeg";
+    }
+    else {
+        fileData = [NSData dataWithContentsOfURL:self.videoURL];
+        filename = @"file.mp4";
+    }
+    
+    [gameInfo setValue:fileData forKey:@"imageData"];
+    [gameInfo setValue:self.hintText.text forKey:@"hint"];
+    [gameInfo setValue:filename forKey:@"fileName"];
+    
+    [networkController uploadGameData:fileData Keyword:[gameInfo objectForKey:@"keyword"] Hint:self.hintText.text GameNumber:[gameInfo objectForKey:@"gameNumber"] TargetNumber:[gameInfo objectForKey:@"targetNumber"] BananaCount:[gameInfo objectForKey:@"b_count"] Round:[gameInfo objectForKey:@"round"] ObserverName:OBSERVERNAME FileName:filename];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -181,7 +195,6 @@
         friendView.gameInfo = gameInfo;
     }
 }
-
 
 #pragma mark KEYBOARD settings
 - (void)registKeyboardNotification {
@@ -247,13 +260,11 @@
 - (UIImage *) thumbnailFromImage:(UIImage *)image {
     
     CGRect imageRect = CGRectMake(0, 0, self.imageView.frame.size.width, self.imageView.frame.size.height);
-    
     UIGraphicsBeginImageContext(imageRect.size);
     
     [image drawInRect:imageRect];
     
     UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
-    
     UIGraphicsEndImageContext();
     
     return thumbnail;
@@ -261,10 +272,23 @@
 
 #pragma UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    
-    self.imageView.image = [self thumbnailFromImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+
     [picker dismissViewControllerAnimated:YES completion:nil];
     [self setNavigationItemRight];
+    
+    if([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString *)kUTTypeImage]) {
+        self.imageView.image = [self thumbnailFromImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+    }
+    else {
+        self.videoURL = info[UIImagePickerControllerMediaURL];
+        self.videoController = [[MPMoviePlayerController alloc] init];
+        
+        [self.videoController setContentURL:self.videoURL];
+        [self.videoController.view setFrame:self.imageView.frame];
+        [self.view addSubview:self.videoController.view];
+        
+        [self.videoController play];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {

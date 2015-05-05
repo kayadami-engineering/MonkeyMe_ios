@@ -874,6 +874,15 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.086274509803921567" green="0.6470588235294118" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRF-ID-WEZ">
+                                <rect key="frame" x="133" y="238" width="55" height="56"/>
+                                <state key="normal" image="play_button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playBtnClicked:" destination="ERJ-k2-JcM" eventType="touchUpInside" id="bpV-nm-56b"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.20000000000000001" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -904,6 +913,7 @@
                         <outlet property="imageView" destination="b5W-sy-frb" id="SMj-s9-8aa"/>
                         <outlet property="name" destination="2vA-at-afN" id="cx7-Zd-tBS"/>
                         <outlet property="optionBtn" destination="Zcz-GC-yx2" id="1jY-hX-moh"/>
+                        <outlet property="playBtn" destination="iRF-ID-WEZ" id="FqP-0H-LSi"/>
                         <outlet property="profile" destination="sUG-z4-DmS" id="9YZ-Hu-apR"/>
                         <outletCollection property="underBarCollection" destination="Blu-a9-7Ai" id="5RH-Wm-FoA"/>
                         <outletCollection property="underBarCollection" destination="UM0-w6-6oy" id="iHK-CZ-oZa"/>
@@ -2482,6 +2492,7 @@
         <image name="phoedic.png" width="16" height="62"/>
         <image name="phog.png" width="360" height="140"/>
         <image name="pinkLine.png" width="536" height="1"/>
+        <image name="play_button.png" width="250" height="250"/>
         <image name="profbox.png" width="1080" height="260"/>
         <image name="puzzlemode.png" width="1008" height="158"/>
         <image name="refresh.png" width="84" height="83"/>
@@ -2494,8 +2505,8 @@
         <image name="ystar.png" width="192" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wLM-c5-vnb"/>
         <segue reference="uYZ-Wn-XGN"/>
         <segue reference="fHr-WI-0pY"/>
+        <segue reference="mrL-yp-HSX"/>
     </inferredMetricsTieBreakers>
 </document>

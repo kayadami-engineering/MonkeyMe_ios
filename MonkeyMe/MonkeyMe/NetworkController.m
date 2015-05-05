@@ -53,7 +53,7 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = @"2";
+    myMemberNumber = @"1";
     
 }
 
@@ -88,22 +88,39 @@ static NetworkController *singletonInstance;
     }
     
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"image\"; filename=\"%@\"\r\n",filename] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n",filename] dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     [body appendData:[NSData dataWithData:fileData]];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPBody:body];
     
-    NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    
-    responseData = [[NSMutableData alloc] init];
-    [responseData appendData:returnData];
-    
-    myParser = [[NSXMLParser alloc]initWithData:responseData];
-    myParser.delegate = self;
-    
-    [myParser parse];
-    
+    //NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc]init]
+                                                completionHandler:^(NSURLResponse *response,
+                                                                    NSData *returnData,
+                                                                    NSError *error)
+    {
+        if ([returnData length] >0 && error == nil)
+        {
+            
+            // DO YOUR WORK HERE
+            responseData = [[NSMutableData alloc] init];
+            [responseData appendData:returnData];
+            
+            myParser = [[NSXMLParser alloc]initWithData:responseData];
+            myParser.delegate = self;
+            
+            [myParser parse];
+            
+        }
+        else if ([returnData length] == 0 && error == nil)
+        {
+            NSLog(@"Nothing was downloaded.");
+        }
+        else if (error != nil){
+            NSLog(@" Asynch Error = %@", error);
+        }
+    }];
 }
 
 #pragma mark - Request Command Methods-
@@ -199,7 +216,7 @@ static NetworkController *singletonInstance;
     }
 }
 -(void)uploadGameData:(NSData*)imageData Keyword:(NSString*)keyword Hint:(NSString*)hint
-           GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round ObserverName:(NSString *)observerName{
+           GameNumber:(NSString*)g_no TargetNumber:(NSString*)targetNumber BananaCount:(NSString*)b_count Round:(NSString*)round ObserverName:(NSString *)observerName FileName:(NSString*)filename{
     
     if(myMemberNumber) {
         currentObserverName = observerName;
@@ -207,7 +224,7 @@ static NetworkController *singletonInstance;
         NSDictionary *params = @{@"command":currentCommand, @"memberNumber":[NSString stringWithFormat:@"%@",myMemberNumber],
                                  @"keyword":keyword,@"hint":hint,@"g_no":g_no,@"targetNumber":targetNumber,
                                  @"b_count":b_count,@"round":round};
-        [self postToServerWithData:imageData Filename:@"file.jpeg" Data:params];
+        [self postToServerWithData:imageData Filename:filename Data:params];
     }
 }
 - (void)addToRandomMode:(NSString*)g_no ObserverName:(NSString*)observerName {
