@@ -25,8 +25,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *name;
 @property (weak, nonatomic) IBOutlet UILabel *hintText;
 @property (weak, nonatomic) IBOutlet UIButton *optionBtn;
-@property (weak, nonatomic) IBOutlet UIButton *playBtn;
-- (IBAction)playBtnClicked:(id)sender;
 
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *textWordCollection;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *underBarCollection;

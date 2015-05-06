@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pff-w9-yCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pff-w9-yCk">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Left View Controller-->
@@ -728,10 +728,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-R8-49d">
-                                <rect key="frame" x="16" y="133" width="343" height="360"/>
+                                <rect key="frame" x="16" y="126" width="343" height="375"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urS-8m-0sA">
-                                <rect key="frame" x="16" y="501" width="343" height="40"/>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="urS-8m-0sA">
+                                <rect key="frame" x="16" y="509" width="343" height="40"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="guesshint.png" translatesAutoresizingMaskIntoConstraints="NO" id="adW-aY-P9U">
                                         <rect key="frame" x="0.0" y="2" width="343" height="36"/>
@@ -756,7 +756,7 @@
                                 </subviews>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fXM-Zl-S0h">
-                                <rect key="frame" x="16" y="72" width="50" height="50"/>
+                                <rect key="frame" x="16" y="72" width="46" height="46"/>
                             </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WYK-Y1-skN">
                                 <rect key="frame" x="0.0" y="614" width="375" height="53"/>
@@ -853,7 +853,7 @@
                                 <color key="backgroundColor" red="0.086274509799999996" green="0.64705882349999999" blue="0.72156862749999995" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="faL-Qa-cmm">
-                                <rect key="frame" x="309" y="550" width="50" height="49"/>
+                                <rect key="frame" x="309" y="557" width="50" height="49"/>
                                 <state key="normal" image="mleafbutton.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -862,7 +862,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-63-r4I">
-                                <rect key="frame" x="82" y="72" width="167" height="50"/>
+                                <rect key="frame" x="83" y="75" width="167" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1447,7 +1447,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="45V-bL-2yF">
-                                <rect key="frame" x="16" y="105" width="343" height="360"/>
+                                <rect key="frame" x="16" y="107" width="343" height="375"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="너무 어려울 것 같다면 힌트를 적어주세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVp-LQ-TCE">
                                 <rect key="frame" x="0.0" y="604" width="375" height="63"/>
@@ -1457,10 +1457,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r8m-Fb-ttT">
-                                <rect key="frame" x="16" y="487" width="343" height="40"/>
+                                <rect key="frame" x="16" y="495" width="343" height="40"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="guesshint.png" translatesAutoresizingMaskIntoConstraints="NO" id="4uT-SJ-yPa">
-                                        <rect key="frame" x="0.0" y="2" width="335" height="36"/>
+                                        <rect key="frame" x="0.0" y="2" width="343" height="36"/>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H4z-6U-UWc">
                                         <rect key="frame" x="8" y="2" width="319" height="36"/>
@@ -1576,6 +1576,9 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-1H-Pfp">
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                                </imageView>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play_button.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ssg-jo-nBd">
+                                                    <rect key="frame" x="31" y="31" width="63" height="63"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1906,7 +1909,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9fz-r1-pwW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1137"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="test.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="1nY-I1-YVD">
                                         <rect key="frame" x="16" y="125" width="337" height="241"/>
@@ -2242,7 +2245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1E4-Fm-6G9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="1127"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="몽키를 맞췄어요!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jcG-rW-Y7k">
                                         <rect key="frame" x="81" y="69" width="188" height="30"/>
@@ -2465,6 +2468,7 @@
         <image name="phoedic.png" width="16" height="62"/>
         <image name="phog.png" width="360" height="140"/>
         <image name="pinkLine.png" width="536" height="1"/>
+        <image name="play_button.png" width="250" height="250"/>
         <image name="profbox.png" width="1080" height="260"/>
         <image name="puzzlemode.png" width="1008" height="158"/>
         <image name="refresh.png" width="84" height="83"/>
@@ -2477,8 +2481,8 @@
         <image name="ystar.png" width="192" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lnh-UM-YB1"/>
-        <segue reference="2BJ-Ua-ned"/>
+        <segue reference="oEM-Vb-N2c"/>
+        <segue reference="NUg-qx-wJP"/>
         <segue reference="4PZ-55-G3L"/>
     </inferredMetricsTieBreakers>
 </document>

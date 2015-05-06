@@ -19,5 +19,6 @@
 @synthesize rate;
 @synthesize playCount;
 @synthesize replyCount;
+@synthesize videoRef;
 
 @end

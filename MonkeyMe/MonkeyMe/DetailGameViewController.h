@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "WYPopoverController.h"
 #import "ProfileImageItemCell.h"
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface DetailGameViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     UIImage *currentImage;
@@ -29,4 +31,5 @@
 @property (strong, nonatomic) WYPopoverController *popoverController;
 @property (strong, nonatomic) ProfileImageItemCell *gameItem;
 @property (strong, nonatomic) NSMutableArray *replyList;
+@property (strong, nonatomic) MPMoviePlayerController *videoController;
 @end

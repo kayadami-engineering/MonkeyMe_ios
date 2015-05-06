@@ -38,9 +38,26 @@
     
     NSString *name = (NSString*)userStateInfo[@"name"];
     UIImage *image = (UIImage*)userStateInfo[@"profileImage"];
+    NSString *ext = [[gameItem.imageUrl componentsSeparatedByString:@"."] lastObject];
     
-    [self.gameImage setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
-    
+    //image
+    if([ext isEqualToString:@"jpeg"] || [ext isEqualToString:@"bmp"]) {
+        
+        [self.gameImage setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
+    }
+    // video
+    else {
+        
+        NSURL *url = [NSURL URLWithString:gameItem.imageUrl];
+        self.videoController = [[MPMoviePlayerController alloc] init];
+        
+        [self.videoController setContentURL:url];
+        [self.videoController.view setFrame:self.gameImage.frame];
+        [self.view addSubview:self.videoController.view];
+        
+        [self.videoController play];
+    }
+
     //set profile image
     [self.profileImage setImage:image];
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
@@ -114,7 +131,6 @@
         }
         
         [self.tableView reloadData];
-        
     }
 }
 

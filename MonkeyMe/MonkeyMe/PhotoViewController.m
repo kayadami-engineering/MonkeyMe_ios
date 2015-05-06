@@ -8,6 +8,8 @@
 
 #import "PhotoViewController.h"
 #import "NetworkController.h"
+#import <AVFoundation/AVAsset.h>
+#import <AVFoundation/AVAssetImageGenerator.h>
 
 #define OBSERVERNAME @"profileGameListProcess"
 
@@ -89,7 +91,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
 #pragma mark Collection View Delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return [self.imageListArray count];
@@ -101,30 +102,70 @@
     
     ProfileImageItemCell *gList = [imageListArray objectAtIndex:indexPath.row];
     UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
+    UIImageView *playBtn = (UIImageView*)[cell viewWithTag:101];
     
     dispatch_async(kBgQueue, ^{
         
-        NSURL *url;
         NSData *data;
         
-        if(gList.imageData) {
-            data = gList.imageData;
-        }
-        else {
-            url = [NSURL URLWithString:gList.imageUrl];
-            data = [NSData dataWithContentsOfURL:url];
-            gList.imageData = data;
-        }
+        NSURL *url = [NSURL URLWithString:gList.imageUrl];
+        NSString *ext = [[gList.imageUrl componentsSeparatedByString:@"."] lastObject];
         
-        if(data) {
-            UIImage *image = [[UIImage alloc]initWithData:data];
+        //image
+        if([ext isEqualToString:@"jpeg"] || [ext isEqualToString:@"bmp"]) {
             
-            if (image) {
+            if(gList.imageData) {
+                data = gList.imageData;
+            }
+            else {
+                data = [NSData dataWithContentsOfURL:url];
+                gList.imageData = data;
+            }
+            
+            if(data) {
+                UIImage *image = [[UIImage alloc]initWithData:data];
+                
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UICollectionViewCell *updateCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+                        
+                        if (updateCell) {
+                            imageView.image = image;
+                            playBtn.hidden = TRUE;
+                            
+                        }
+                    });
+                }
+            }
+        }
+        // video
+        else {
+            
+            UIImage *thumbnail;
+            CGImageRef imageRef;
+            
+            if(gList.videoRef) {
+                imageRef = gList.videoRef;
+            }
+            else {
+                
+                AVAsset *asset = [AVAsset assetWithURL:url];
+                AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc]initWithAsset:asset];
+                CMTime time = CMTimeMake(1, 1);
+                imageRef= [imageGenerator copyCGImageAtTime:time actualTime:NULL error:NULL];
+                gList.videoRef = imageRef;
+            }
+            
+            thumbnail = [UIImage imageWithCGImage:imageRef];
+            
+            if (thumbnail) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     UICollectionViewCell *updateCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
                     
                     if (updateCell) {
-                        imageView.image = image;
+                        
+                        playBtn.hidden = FALSE;
+                        imageView.image = thumbnail;
                         
                     }
                 });

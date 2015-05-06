@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sfV-kv-zpf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sfV-kv-zpf">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Left View Controller-->
@@ -730,26 +730,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5W-sy-frb">
-                                <rect key="frame" x="16" y="120" width="288" height="291"/>
+                                <rect key="frame" x="16" y="120" width="288" height="298"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jim-Ud-yP5">
-                                <rect key="frame" x="16" y="417" width="288" height="40"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="guesshint.png" translatesAutoresizingMaskIntoConstraints="NO" id="zo8-t5-B4Y">
-                                        <rect key="frame" x="0.0" y="2" width="288" height="36"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWr-uc-zIr">
-                                        <rect key="frame" x="14" y="10" width="259" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uNr-Om-wLY">
-                                <rect key="frame" x="0.0" y="453" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="467" width="320" height="43"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f8l-NE-8A1">
-                                        <rect key="frame" x="269" y="8" width="50" height="49"/>
+                                        <rect key="frame" x="263" y="2" width="41" height="39"/>
                                         <state key="normal" image="mleafbutton.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -874,15 +861,19 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.086274509803921567" green="0.6470588235294118" blue="0.72156862745098038" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRF-ID-WEZ">
-                                <rect key="frame" x="133" y="238" width="55" height="56"/>
-                                <state key="normal" image="play_button.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="playBtnClicked:" destination="ERJ-k2-JcM" eventType="touchUpInside" id="bpV-nm-56b"/>
-                                </connections>
-                            </button>
+                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jim-Ud-yP5">
+                                <rect key="frame" x="16" y="426" width="288" height="40"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="guesshint.png" translatesAutoresizingMaskIntoConstraints="NO" id="zo8-t5-B4Y">
+                                        <rect key="frame" x="0.0" y="2" width="288" height="36"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWr-uc-zIr">
+                                        <rect key="frame" x="14" y="10" width="259" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.17254901960784313" green="0.20000000000000001" blue="0.22352941176470589" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -913,7 +904,6 @@
                         <outlet property="imageView" destination="b5W-sy-frb" id="SMj-s9-8aa"/>
                         <outlet property="name" destination="2vA-at-afN" id="cx7-Zd-tBS"/>
                         <outlet property="optionBtn" destination="Zcz-GC-yx2" id="1jY-hX-moh"/>
-                        <outlet property="playBtn" destination="iRF-ID-WEZ" id="FqP-0H-LSi"/>
                         <outlet property="profile" destination="sUG-z4-DmS" id="9YZ-Hu-apR"/>
                         <outletCollection property="underBarCollection" destination="Blu-a9-7Ai" id="5RH-Wm-FoA"/>
                         <outletCollection property="underBarCollection" destination="UM0-w6-6oy" id="iHK-CZ-oZa"/>
@@ -1470,7 +1460,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghm-8l-pwY">
-                                <rect key="frame" x="16" y="105" width="288" height="309"/>
+                                <rect key="frame" x="16" y="112" width="288" height="300"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="너무 어려울 것 같다면 힌트를 적어주세요!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ys8-ZZ-knF">
                                 <rect key="frame" x="0.0" y="505" width="320" height="63"/>
@@ -1480,7 +1470,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DDL-Eg-fpE">
-                                <rect key="frame" x="16" y="422" width="288" height="40"/>
+                                <rect key="frame" x="16" y="425" width="288" height="40"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="guesshint.png" translatesAutoresizingMaskIntoConstraints="NO" id="D8C-3D-qS1">
                                         <rect key="frame" x="0.0" y="2" width="288" height="36"/>
@@ -1601,6 +1591,9 @@
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKM-uQ-sdV">
                                                     <rect key="frame" x="0.0" y="0.0" width="106" height="106"/>
                                                 </imageView>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play_button.png" translatesAutoresizingMaskIntoConstraints="NO" id="CdN-rq-cOA">
+                                                    <rect key="frame" x="27" y="26" width="55" height="55"/>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -1622,7 +1615,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="acu-1E-0HN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1738" y="-287.5"/>
+            <point key="canvasLocation" x="1738" y="-288"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="VTy-ig-eGo">
@@ -2372,7 +2365,7 @@
                                             <action selector="nextGame:" destination="oad-bM-8oX" eventType="touchUpInside" id="qKW-DY-6wG"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="내 차례로!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hR-eV-QqV">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="다음 게임!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7hR-eV-QqV">
                                         <rect key="frame" x="109" y="1051" width="98" height="30"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2506,7 +2499,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uYZ-Wn-XGN"/>
-        <segue reference="fHr-WI-0pY"/>
         <segue reference="mrL-yp-HSX"/>
+        <segue reference="94Q-CA-0Dj"/>
     </inferredMetricsTieBreakers>
 </document>

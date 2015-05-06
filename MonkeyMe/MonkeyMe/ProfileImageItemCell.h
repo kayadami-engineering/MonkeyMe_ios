@@ -6,6 +6,7 @@
 //  Copyright (c) 2015년 kayadami. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
 @interface ProfileImageItemCell : NSObject
@@ -19,6 +20,7 @@
     NSString *rate;
     NSString *playCount;
     NSString *replyCount;
+    CGImageRef videoRef;
 }
 
 @property (copy, nonatomic) NSString *g_no;
@@ -30,5 +32,6 @@
 @property (copy, nonatomic) NSString *rate;
 @property (copy, nonatomic) NSString *playCount;
 @property (copy, nonatomic) NSString *replyCount;
+@property (assign, nonatomic) CGImageRef videoRef;
 
 @end
