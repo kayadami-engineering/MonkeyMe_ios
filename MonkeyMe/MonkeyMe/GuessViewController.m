@@ -326,6 +326,13 @@
     if(hintCount==1) {
         self.HintView.hidden = NO;
     }
+    else {
+        int index = hintCount-2;
+        if(index < gameItem.keyword.length) {
+            UILabel *label = [self.textWordCollection objectAtIndex:index];
+            label.text = [self GetChosungAtIndex:gameItem.keyword Index:index];
+        }
+    }
 }
 
 - (void) registNotification {
@@ -375,7 +382,7 @@
     {
         // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
         // 2. increase the size of the view so that the area behind the keyboard is covered up.
-
+        
         rect.origin.y -= keyboardHeight.height;
         rect.size.height += keyboardHeight.height;
     }
@@ -418,6 +425,19 @@
         wordView.gameInfo = gameInfo;
         
     }
+}
+
+- (NSString *)GetChosungAtIndex:(NSString *)hanggulString Index:(int)index {
+    NSArray *chosung = [[NSArray alloc] initWithObjects:@"ㄱ",@"ㄲ",@"ㄴ",@"ㄷ",@"ㄸ",@"ㄹ",@"ㅁ",@"ㅂ",@"ㅃ",@"ㅅ",@"ㅆ",@"ㅇ",@"ㅈ",@"ㅉ",@"ㅊ",@"ㅋ",@"ㅌ",@"ㅍ",@"ㅎ",nil];
+    NSString *textResult = @"";
+    NSInteger code = [hanggulString characterAtIndex:index];
+    if (code >= 44032 && code <= 55203) {
+        NSInteger uniCode = code - 44032;
+        NSInteger chosungIndex = uniCode / 21 / 28;
+        textResult = [NSString stringWithFormat:@"%@", [chosung objectAtIndex:chosungIndex]];
+    }
+    
+    return textResult;
 }
 
 - (NSString *)GetUTF8String:(NSString *)hanggulString {

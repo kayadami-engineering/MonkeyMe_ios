@@ -53,7 +53,11 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
+<<<<<<< HEAD
     myMemberNumber = @"8";
+=======
+    myMemberNumber = @"1";
+>>>>>>> 2f10357565c1fd025c4b9672921ceb5052e6a1bf
     
 }
 
