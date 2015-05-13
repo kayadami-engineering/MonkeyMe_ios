@@ -248,7 +248,10 @@
     
     name.text = gList.name;
     
-    if(!gList.imageData) { //first update
+    if([gList.profileUrl isEqualToString:@"default"]) {
+        profile.image = [UIImage imageNamed:@"profile_default.png"];
+    }
+    else if(!gList.imageData) { //first update
         dispatch_async(kBgQueue, ^{
         
             NSURL *url = [NSURL URLWithString:gList.profileUrl];

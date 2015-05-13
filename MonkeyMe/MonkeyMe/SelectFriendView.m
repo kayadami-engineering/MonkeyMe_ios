@@ -188,35 +188,40 @@
     MainTableViewCell *gList = [friendList objectAtIndex:indexPath.row];
 
     UIImageView *imageView = (UIImageView*)[cell viewWithTag:100];
-
-    dispatch_async(kBgQueue, ^{
+    
+    if([gList.profileUrl isEqualToString:@"default"]) {
+        imageView.image = [UIImage imageNamed:@"profile_default.png"];
+    }
+    else {
+        dispatch_async(kBgQueue, ^{
         
-        NSURL *url;
-        NSData *data;
+            NSURL *url;
+            NSData *data;
         
-        if(gList.imageData) {
-            data = gList.imageData;
-        }
-        else {
-            url = [NSURL URLWithString:gList.profileUrl];
-            data = [NSData dataWithContentsOfURL:url];
-            gList.imageData = data;
-        }
-        
-        if(data) {
-            UIImage *image = [[UIImage alloc]initWithData:data];
-            
-            if (image) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    UITableViewCell *updateCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
-                    
-                    if (updateCell) {
-                        imageView.image = image;
-                    }
-                });
+            if(gList.imageData) {
+                data = gList.imageData;
             }
-        }
-    });
+            else {
+                url = [NSURL URLWithString:gList.profileUrl];
+                data = [NSData dataWithContentsOfURL:url];
+                gList.imageData = data;
+            }
+        
+            if(data) {
+                UIImage *image = [[UIImage alloc]initWithData:data];
+            
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        UITableViewCell *updateCell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+                    
+                        if (updateCell) {
+                            imageView.image = image;
+                        }
+                    });
+                }
+            }
+        });
+    }
     
     imageView.layer.cornerRadius = imageView.frame.size.height /2;
     imageView.layer.masksToBounds = YES;

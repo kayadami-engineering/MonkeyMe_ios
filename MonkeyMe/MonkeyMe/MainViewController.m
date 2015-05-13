@@ -53,22 +53,27 @@
 
 - (void)setProfileImageFromURL:(NSString*)profileUrl {
     
-    NSURL *url = [NSURL URLWithString:profileUrl];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    
-    if(data) {
-        UIImage *image = [[UIImage alloc]initWithData:data];
-        
-        [self.profileImage setImage:image];
-        self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
-        self.profileImage.layer.masksToBounds = YES;
-        self.profileImage.layer.borderWidth = 0;
-        
-        [userStateInfo setValue:image forKey:@"profileImage"];
+    if([profileUrl isEqualToString:@"default"]) {
+        [self.profileImage setImage:[UIImage imageNamed:@"profile_default.png"]];
     }
-    
     else {
-        NSLog(@"failed to load image");
+        NSURL *url = [NSURL URLWithString:profileUrl];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        
+        if(data) {
+            UIImage *image = [[UIImage alloc]initWithData:data];
+            
+            [self.profileImage setImage:image];
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
+            self.profileImage.layer.masksToBounds = YES;
+            self.profileImage.layer.borderWidth = 0;
+            
+            [userStateInfo setValue:image forKey:@"profileImage"];
+        }
+        
+        else {
+            NSLog(@"failed to load image");
+        }
     }
 }
 - (void)registerNotification {
