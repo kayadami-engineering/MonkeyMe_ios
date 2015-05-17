@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>7FCE95B3-9E92-4947-8B19-43E4116FE868</string>
 	<key>IDESourceControlProjectName</key>
-	<string>MonkeyMe</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>223750D54138217753F89B734733FAA3D11C1FA7</key>
 		<string>https://github.com/kayadami-engineering/MonkeyMe_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MonkeyMe/MonkeyMe.xcodeproj</string>
+	<string>MonkeyMe/MonkeyMe.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>223750D54138217753F89B734733FAA3D11C1FA7</key>
@@ -34,7 +34,7 @@
 			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>223750D54138217753F89B734733FAA3D11C1FA7</string>
 			<key>IDESourceControlWCCName</key>
-			<string>MonkeyMe_ios</string>
+			<string>kayadami</string>
 		</dict>
 	</array>
 </dict>

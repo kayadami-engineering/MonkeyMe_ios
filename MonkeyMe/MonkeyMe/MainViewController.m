@@ -19,7 +19,8 @@
 #define PVPMODE     1
 #define RANDMODE    2
 
-#define OBSERVERNAME @"updateMainProcess"
+#define OBSERVERNAME1 @"updateMainProcess"
+#define OBSERVERNAME2 @"deleteOkProcess"
 
 @implementation MainViewController
 @synthesize myTableView;
@@ -43,7 +44,11 @@
     
     [super viewWillAppear:animated];
     
-    [networkController updateMainRequest:OBSERVERNAME];
+    [SVProgressHUD setViewForExtension:self.view];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+    [SVProgressHUD show];
+    
+    [networkController updateMainRequest:OBSERVERNAME1];
     
 }
 - (void)dealloc {
@@ -80,14 +85,17 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(updateProcess:) name:OBSERVERNAME object:nil];
+    [sendNotification addObserver:self selector:@selector(updateProcess:) name:OBSERVERNAME1 object:nil];
+    [sendNotification addObserver:self selector:@selector(deleteOkProcess:) name:OBSERVERNAME2 object:nil];
 
 }
 
 - (void)updateProcess:(NSNotification *)notification { //network notify the result of update request
     
     //do something..
-
+    
+    [SVProgressHUD dismiss];
+    
     NSDictionary* dict = notification.userInfo;
     
     NSString *result = (NSString*)dict[@"result"];
@@ -167,6 +175,27 @@
     }
 }
 
+- (void)deleteOkProcess:(NSNotification *)notification{
+    
+    //do something..
+    [SVProgressHUD dismiss];
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        [self.myTableView reloadData];
+    }
+}
 - (void)setNavigationItem {
     
     CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
@@ -197,6 +226,7 @@
     [button addTarget:[SlideNavigationController sharedInstance] action:@selector(toggleRightMenu) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
     [SlideNavigationController sharedInstance].rightBarButtonItem = rightBarButtonItem;
+    
     
 }
 
@@ -400,6 +430,25 @@
     }
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+-(void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [SVProgressHUD setViewForExtension:self.view];
+        [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+        [SVProgressHUD show];
+        
+        MainTableViewCell *gList = [[self.gameListArray objectAtIndex:indexPath.section-1] objectAtIndex:indexPath.row];
+        
+        [networkController deleteGameItem:gList.gameNo ObserverName:OBSERVERNAME2];
+        
+        [[self.gameListArray objectAtIndex:indexPath.section-1] removeObjectAtIndex:indexPath.row];
+    }
+}
 
 @end
 

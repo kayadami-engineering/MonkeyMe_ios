@@ -53,11 +53,7 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-<<<<<<< HEAD
-    myMemberNumber = @"8";
-=======
     myMemberNumber = @"1";
->>>>>>> 2f10357565c1fd025c4b9672921ceb5052e6a1bf
     
 }
 
@@ -285,13 +281,21 @@ static NetworkController *singletonInstance;
     }
 }
 
+- (void)deleteGameItem:(NSString*)g_no ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"deleteGame";
+        NSString *string = [NSString stringWithFormat:@"command=%@&g_no=%@&memberNumber=%@",currentCommand,g_no,myMemberNumber];
+        [self postToServer:string];
+    }
+}
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
-    
     
     currentElementName = [NSString stringWithString:elementName];
     
@@ -303,7 +307,6 @@ static NetworkController *singletonInstance;
         
         [tempDictionary setValue:result forKey:@"result"];
         [tempDictionary setValue:message forKey:@"message"];
-
     }
     
     else if([elementName isEqualToString:@"state"]) { //My state

@@ -65,7 +65,7 @@
     
     //do something..
     [SVProgressHUD dismiss];
-    NSLog(@"receive ok");
+
     NSDictionary* dict = notification.userInfo;
     
     NSString *result = (NSString*)dict[@"result"];
