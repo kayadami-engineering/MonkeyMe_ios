@@ -276,9 +276,12 @@
     [picker dismissViewControllerAnimated:YES completion:nil];
     [self setNavigationItemRight];
     
+    //image
     if([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString *)kUTTypeImage]) {
         self.imageView.image = [self thumbnailFromImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     }
+    
+    //video
     else {
         self.videoURL = info[UIImagePickerControllerMediaURL];
         self.videoController = [[MPMoviePlayerController alloc] init];

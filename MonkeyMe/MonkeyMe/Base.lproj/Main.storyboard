@@ -629,6 +629,7 @@
                         <outlet property="stateCount_leaf" destination="BDx-k4-5Zb" id="hus-xH-fig"/>
                         <outlet property="stateCount_light" destination="00k-6n-lxc" id="LNr-We-8zC"/>
                         <segue destination="3Bw-ZC-81K" kind="show" identifier="DetailGameSegue" id="NeP-3i-cyc"/>
+                        <segue destination="ERJ-k2-JcM" kind="show" identifier="GuessViewSegue" id="hin-pf-qW7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EkB-Sa-2QD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2499,6 +2500,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uYZ-Wn-XGN"/>
+        <segue reference="hin-pf-qW7"/>
         <segue reference="mrL-yp-HSX"/>
         <segue reference="94Q-CA-0Dj"/>
     </inferredMetricsTieBreakers>

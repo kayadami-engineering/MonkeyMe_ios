@@ -318,6 +318,7 @@
     [userStateInfo setValue:gList.level forKey:@"level"];
     [userStateInfo setValue:image forKey:@"profileImage"];
     [userStateInfo setValue:gList.friendCount forKey:@"friendCount"];
+    [userStateInfo setValue:gList.profileUrl forKey:@"profileUrl"];
     
     ProfileViewController *vc ;
     vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"ProfileViewController"];

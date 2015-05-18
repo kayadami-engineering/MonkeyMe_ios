@@ -290,6 +290,16 @@ static NetworkController *singletonInstance;
         [self postToServer:string];
     }
 }
+
+- (void)checkIsGameSolved:(NSString*)g_no ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"checkGame";
+        NSString *string = [NSString stringWithFormat:@"command=%@&g_no=%@&memberNumber=%@",currentCommand,g_no,myMemberNumber];
+        [self postToServer:string];
+    }
+}
 #pragma mark Parser Delegate
 -(void)parserDidEndDocument:(NSXMLParser *)parser {
     
@@ -351,6 +361,12 @@ static NetworkController *singletonInstance;
         else if([currentCommand isEqualToString:@"uploadGameData"]) {
             NSString *gameNo = [attributeDict objectForKey:@"g_no"];
             [tempDictionary setValue:gameNo forKey:@"gameNo"];
+        }
+        else if([currentCommand isEqualToString:@"checkGame"]) {
+            
+            NSNumber *isSolved = [attributeDict objectForKey:@"isSolved"];
+            
+            [tempDictionary setValue:isSolved forKey:@"isSolved"];
         }
     }
     else if([elementName isEqualToString:@"list"]) {

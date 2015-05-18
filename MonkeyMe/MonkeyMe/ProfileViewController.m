@@ -11,6 +11,13 @@
 #import "EditProfileViewController.h"
 #import "NetworkController.h"
 #import "CommonSharedObject.h"
+#import "GuessViewController.h"
+
+
+#define OBSERVERNAME @"checkGameProcess"
+#define NOTSOLVED   0
+#define SOLVED      1
+#define PVPMODE     1
 
 @interface ProfileViewController() <PhotoViewDelegate>
 @end
@@ -32,6 +39,19 @@
     [super viewDidLoad];
     [self setProfile];
     [self setNavigationItem];
+    [self registerNotification];
+}
+
+- (void)registerNotification {
+    
+    NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
+    
+    [sendNotification addObserver:self selector:@selector(checkGameProcess:) name:OBSERVERNAME object:nil];
+}
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setProfile {
@@ -122,6 +142,49 @@
         EditProfileViewController *vc = [segue destinationViewController];
         vc.userStateInfo = self.userStateInfo;
     }
+    else if([segue.identifier isEqualToString:@"GuessViewSegue"]) {
+        
+        GuessViewController *guessView = (GuessViewController*)segue.destinationViewController;
+        MainTableViewCell *gameItem = [[MainTableViewCell alloc]init];
+        
+        gameItem.name = (NSString*)userStateInfo[@"name"];
+        gameItem.profileUrl = (NSString*)userStateInfo[@"profileUrl"];
+        gameItem.imageUrl = self.selectedItem.imageUrl;
+        gameItem.hint = self.selectedItem.hint;
+        gameItem.keyword = self.selectedItem.keyword;
+        gameItem.gameNo = self.selectedItem.g_no;
+        gameItem.b_count = @"-1";
+        
+        guessView.gameItem = gameItem;
+        guessView.currentMode = PVPMODE;
+        guessView.isProfileGame = TRUE;
+    }
+}
+
+- (void)checkGameProcess:(NSNotification *)notification {
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if update failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+    }
+    else {
+        
+        NSNumber *isSolved = (NSNumber*)dict[@"isSolved"];
+
+        if([isSolved intValue]==NOTSOLVED) {
+            [self performSegueWithIdentifier:@"GuessViewSegue" sender:self];
+        }
+        else {
+            [self performSegueWithIdentifier:@"DetailGameSegue" sender:self];
+        }
+    }
 }
 
 #pragma tab bar tocuh event
@@ -163,8 +226,21 @@
 - (void)selectItem:(ProfileImageItemCell *)item{
     
     self.selectedItem = item;
+
+    NSString *friendNumber = (NSString*)userStateInfo[@"friendNumber"];
     
-    [self performSegueWithIdentifier:@"DetailGameSegue" sender:self];
+    //other's profile
+
+    if(friendNumber) {
+        
+        NetworkController *networkController = [NetworkController sharedInstance];
+        [networkController checkIsGameSolved:item.g_no ObserverName:OBSERVERNAME];
+    }
+    
+    //my profile
+    else {
+        [self performSegueWithIdentifier:@"DetailGameSegue" sender:self];
+    }
 }
 
 - (void)setPhotoCountValue:(NSInteger)count {

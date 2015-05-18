@@ -29,6 +29,7 @@
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *textWordCollection;
 @property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *underBarCollection;
 
+@property (assign, nonatomic) BOOL isProfileGame;
 @property (assign, nonatomic) int hintCount;
 @property (assign, nonatomic) CGSize keyboardHeight;
 @property (strong, nonatomic) WYPopoverController *popoverController;
