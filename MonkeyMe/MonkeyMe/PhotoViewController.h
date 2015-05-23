@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ProfileImageItemCell.h"
+#import "NetworkController.h"
+
 @protocol PhotoViewDelegate;
 
 @interface PhotoViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
@@ -16,6 +18,7 @@
 @property (nonatomic, strong) NSMutableArray *imageListArray;
 @property (weak, nonatomic) id<PhotoViewDelegate> delegate;
 @property (strong, nonatomic) NSString *friendNumber;
+@property (strong, nonatomic) NetworkController *networkController;
 @end
 
 @protocol PhotoViewDelegate <NSObject>

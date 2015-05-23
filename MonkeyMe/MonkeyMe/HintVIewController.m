@@ -11,6 +11,9 @@
 #import "SelectFriendView.h"
 #import "SVProgressHUD.h"
 #import "CommonSharedObject.h"
+#import <AVFoundation/AVAsset.h>
+#import <AVFoundation/AVAssetExportSession.h>
+#import <AVFoundation/AVMediaFormat.h>
 
 #define MAXHINTLEN 15
 #define OBSERVERNAME @"uploadGameDataProcess"
@@ -269,18 +272,76 @@
     
     return thumbnail;
 }
-
+- (void) convertVideoQtimeToMpeg4:(NSURL *) videoURL withPath:(NSString *)videoPath
+{
+    NSLog(@"======= convertVideoQtimeToMpeg4 ======");
+    NSLog(@"videoURL :::: [%@]", videoURL);
+    NSLog(@"videoPath :::: [%@]", videoPath);
+    
+    AVURLAsset *avAsset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
+    
+    NSArray *compatiblePresets = [AVAssetExportSession exportPresetsCompatibleWithAsset:avAsset];
+    
+    if ([compatiblePresets containsObject:AVAssetExportPresetLowQuality])
+    {
+        AVAssetExportSession *exportSession = [[AVAssetExportSession alloc]initWithAsset:avAsset presetName:AVAssetExportPresetPassthrough];
+        
+        exportSession.outputURL = [NSURL fileURLWithPath:videoPath];
+        
+        exportSession.outputFileType = AVFileTypeMPEG4;
+        
+        CMTime start = CMTimeMakeWithSeconds(0.0, 600);
+        
+        CMTimeRange range = CMTimeRangeMake(start, [avAsset duration]);
+        
+        
+        exportSession.timeRange = range;
+        
+        [exportSession exportAsynchronouslyWithCompletionHandler:^{
+            
+            switch ([exportSession status])
+            {
+                case AVAssetExportSessionStatusFailed:
+                {
+                    NSLog(@"Export failed: %@", [[exportSession error] localizedDescription]);
+                }
+                    break;
+                    
+                case AVAssetExportSessionStatusCompleted:
+                {
+                    NSLog(@"Export Success");
+                    
+                                    }
+                    break;
+                    
+                case AVAssetExportSessionStatusCancelled:
+                {
+                    NSLog(@"Export canceled");
+                }
+                    break;
+                    
+                default:
+                    
+                    break;
+            }
+        }];
+    }
+}
 #pragma UIImagePickerController Delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
 
     [picker dismissViewControllerAnimated:YES completion:nil];
     [self setNavigationItemRight];
     
+    //image
     if([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString *)kUTTypeImage]) {
         self.imageView.image = [self thumbnailFromImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
     }
+    
+    //video
     else {
         self.videoURL = info[UIImagePickerControllerMediaURL];
+
         self.videoController = [[MPMoviePlayerController alloc] init];
         
         [self.videoController setContentURL:self.videoURL];
@@ -288,6 +349,10 @@
         [self.view addSubview:self.videoController.view];
         
         [self.videoController play];
+
+//        NSString *tmpDir = NSTemporaryDirectory();
+//        tmpDir = [tmpDir  stringByAppendingString:@"temp.mp4"];
+//        [self convertVideoQtimeToMpeg4:self.videoURL withPath:tmpDir];
     }
 }
 

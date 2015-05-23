@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/MainViewController.m"
-            timestampString = "451926165.490482"
+            timestampString = "453658614.679537"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "282"
             endingLineNumber = "282"
-            landmarkName = "-tableView:viewForHeaderInSection:"
+            landmarkName = "-slideNavigationControllerShouldDisplayRightMenu"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/GuessViewController.m"
-            timestampString = "452531091.3601"
+            timestampString = "453656644.463399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "-okbtnPressed:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/NetworkController.m"
-            timestampString = "449068656.770471"
+            timestampString = "453219667.796334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
-            landmarkName = "-postToServer:"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "-initNetwork"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/NetworkController.m"
-            timestampString = "449068616.68681"
+            timestampString = "453219667.796334"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-postToServerWithData:Filename:Data:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MonkeyMe/GuessViewController.m"
-            timestampString = "453102117.678676"
+            timestampString = "453656644.463399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "-hintbtnPressed:"
             landmarkType = "5">
          </BreakpointContent>

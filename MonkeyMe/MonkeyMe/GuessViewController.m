@@ -36,6 +36,7 @@
 @synthesize currentMode;
 @synthesize networkController;
 @synthesize rndNumber;
+@synthesize isProfileGame;
 
 - (void)viewDidLoad {
     
@@ -140,7 +141,16 @@
     }
     
     //set profile image
-    [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
+    
+    if(gameItem.imageData) {
+        [self.profile setImage:[[UIImage alloc]initWithData:gameItem.imageData]];
+    }
+    else {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:gameItem.profileUrl]];
+        if(data) {
+            [self.profile setImage:[[UIImage alloc]initWithData:data]];
+        }
+    }
     
     self.name.text = gameItem.name;
     self.hintText.text = gameItem.hint;
@@ -212,7 +222,13 @@
                 }];
             }
             
-            [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+            //solve the game from profile. Go back to profile view
+            if(isProfileGame) {
+                [self back];
+            }
+            else {
+                [self performSegueWithIdentifier:@"SelectWordSegue" sender:self];
+            }
         }
         
         //Puzzel mode

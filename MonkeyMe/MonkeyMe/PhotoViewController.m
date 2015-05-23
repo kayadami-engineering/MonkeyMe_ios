@@ -7,16 +7,16 @@
 //
 
 #import "PhotoViewController.h"
-#import "NetworkController.h"
 #import <AVFoundation/AVAsset.h>
 #import <AVFoundation/AVAssetImageGenerator.h>
 
-#define OBSERVERNAME @"profileGameListProcess"
+#define OBSERVERNAME1 @"profileGameListProcess"
 
 @implementation PhotoViewController
 @synthesize imageListArray;
 @synthesize delegate;
 @synthesize friendNumber;
+@synthesize networkController;
 
 - (void)viewDidLoad
 {
@@ -24,16 +24,16 @@
     [super viewDidLoad];
     [self registerNotification];
     
-    NetworkController *networkController = [NetworkController sharedInstance];
+    networkController = [NetworkController sharedInstance];
     
-    [networkController getProfileGameListRequest:friendNumber ObserverName:OBSERVERNAME];
+    [networkController getProfileGameListRequest:friendNumber ObserverName:OBSERVERNAME1];
 }
 
 - (void)registerNotification {
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(updateList:) name:OBSERVERNAME object:nil];
+    [sendNotification addObserver:self selector:@selector(updateList:) name:OBSERVERNAME1 object:nil];
 }
 - (void)updateList:(NSNotification *)notification {
 
@@ -84,9 +84,10 @@
         [self.delegate setPhotoCountValue:[imageListArray count]];
         [self.collectionView reloadData];
     }
-
-    
 }
+
+
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

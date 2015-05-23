@@ -25,6 +25,7 @@
     NSString *isSolved;
     NSNumber *friendCount;
     NSData *imageData;
+    
 }
 
 @property (copy, nonatomic) NSString *memberNo;

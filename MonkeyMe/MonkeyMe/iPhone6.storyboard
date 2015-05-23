@@ -628,6 +628,7 @@
                         <outlet property="stateCount_leaf" destination="l9p-O8-VKo" id="Bte-bm-ghC"/>
                         <outlet property="stateCount_light" destination="zXW-pD-zpJ" id="fMD-NF-fFK"/>
                         <segue destination="zbk-zK-gII" kind="show" identifier="DetailGameSegue" id="Lqv-aw-AgL"/>
+                        <segue destination="sVC-2J-AKy" kind="show" identifier="GuessViewSegue" id="eLV-yS-6pC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZa-5D-L7o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -713,7 +714,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwp-xP-SK9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1737.5" y="1136.5"/>
+            <point key="canvasLocation" x="1738.5" y="1202.5"/>
         </scene>
         <!--Guess!-->
         <scene sceneID="tMF-1F-aPP">
@@ -911,7 +912,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LmM-eb-PLR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1737.5" y="1914.5"/>
+            <point key="canvasLocation" x="1738.5" y="2038.5"/>
         </scene>
         <!--Going Monkey-->
         <scene sceneID="OK5-89-Yxi">
@@ -994,7 +995,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0W9-99-UL9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2202.5" y="1136.5"/>
+            <point key="canvasLocation" x="2236.5" y="1202.5"/>
         </scene>
         <!--프로필 수정-->
         <scene sceneID="n3n-YU-T7X">
@@ -1483,7 +1484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKz-ED-lPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2641.5" y="1136.5"/>
+            <point key="canvasLocation" x="2747.5" y="1202.5"/>
         </scene>
         <!--Login Popup View Controller-->
         <scene sceneID="lrb-um-9Vd">
@@ -2481,8 +2482,9 @@
         <image name="ystar.png" width="192" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oEM-Vb-N2c"/>
+        <segue reference="XoR-rK-rp8"/>
         <segue reference="NUg-qx-wJP"/>
         <segue reference="4PZ-55-G3L"/>
+        <segue reference="eLV-yS-6pC"/>
     </inferredMetricsTieBreakers>
 </document>
