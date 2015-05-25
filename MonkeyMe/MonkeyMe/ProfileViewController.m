@@ -245,7 +245,7 @@
 
 - (void)setPhotoCountValue:(NSInteger)count {
     
-    self.photoCount.text = [NSString stringWithFormat:@"%d",count];
+    self.photoCount.text = [NSString stringWithFormat:@"%ld",(long)count];
     
 }
 
