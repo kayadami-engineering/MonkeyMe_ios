@@ -140,6 +140,7 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
+
 - (void) transferOkProcess:(NSNotification*)notification { //network notify the result of update request
     
     [SVProgressHUD dismiss];
@@ -153,13 +154,12 @@
     
     if([result isEqualToString:@"error"]) { // if update failed
         
-        //show pop up
-        
         NSLog(@"Error Message=%@",message);
     }
     else {
         
         NSString *gameNo = (NSString*)dict[@"gameNo"];
+        
         CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
         NSString *storyboardName = commonSharedObject.storyboardName;
         
@@ -170,12 +170,16 @@
         vc.delegate = self;
         vc.g_no = gameNo;
         
-        self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
-        [self presentViewController:vc animated:YES completion:nil];
-        vc.view.alpha = 0;
-        [UIView animateWithDuration:1 animations:^{
-            vc.view.alpha = 1;
-        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0 * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+            //To do
+            self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            [self presentViewController:vc animated:YES completion:nil];
+            vc.view.alpha = 0;
+            
+            [UIView animateWithDuration:1 animations:^{
+                vc.view.alpha = 1;
+            }];
+        });
     }
 }
 

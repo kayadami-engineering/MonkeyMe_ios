@@ -8,6 +8,8 @@
 
 #import "FinishPopupViewController.h"
 #import "NetworkController.h"
+#import "SVProgressHUD.h"
+
 #define OBSERVERNAME @"addToRandomProcess"
 
 @implementation FinishPopupViewController
@@ -17,6 +19,7 @@
     
     [super viewDidLoad];
     [self registerNotification];
+
 }
 
 - (void)dealloc {

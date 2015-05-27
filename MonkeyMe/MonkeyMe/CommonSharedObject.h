@@ -14,6 +14,7 @@
 - (void)setStoryboardName;
 
 @property (nonatomic, strong) NSString *storyboardName;
+@property (nonatomic, strong) NSString *tokenString;
 
 
 @end

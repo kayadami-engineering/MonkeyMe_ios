@@ -10,6 +10,7 @@
 
 @implementation CommonSharedObject
 @synthesize storyboardName;
+@synthesize tokenString;
 
 static CommonSharedObject *singletonInstance;
 

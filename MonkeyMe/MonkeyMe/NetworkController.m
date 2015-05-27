@@ -57,6 +57,17 @@ static NetworkController *singletonInstance;
     
 }
 
+-(void)postToServerSynch:(NSString *)postString {
+    
+    NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setHTTPBody:postData];
+    
+    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+}
+
 -(void)postToServer:(NSString *)postString {
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
@@ -298,6 +309,16 @@ static NetworkController *singletonInstance;
         currentCommand = @"checkGame";
         NSString *string = [NSString stringWithFormat:@"command=%@&g_no=%@&memberNumber=%@",currentCommand,g_no,myMemberNumber];
         [self postToServer:string];
+    }
+}
+
+- (void)registerDevice:(NSString*)token ObserverName:(NSString*)observerName {
+    
+    if(myMemberNumber) {
+        currentObserverName = observerName;
+        currentCommand = @"registerDev";
+        NSString *string = [NSString stringWithFormat:@"command=%@&memberNumber=%@&osType=%@%@",currentCommand,myMemberNumber,@"0",token];
+        [self postToServerSynch:string];
     }
 }
 #pragma mark Parser Delegate

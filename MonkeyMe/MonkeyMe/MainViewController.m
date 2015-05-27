@@ -38,6 +38,19 @@
     [self setNavigationItem];
     [self registerNotification];
     networkController = [NetworkController sharedInstance];
+    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+    
+    [networkController registerDevice:commonSharedObject.tokenString ObserverName:nil];
+    NSLog(@"register process");
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+   
+    [SVProgressHUD setViewForExtension:self.view];
+    [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
+    [SVProgressHUD show];
+    
+    [networkController updateMainRequest:OBSERVERNAME1];
     
 }
 - (void)viewWillAppear:(BOOL)animated {

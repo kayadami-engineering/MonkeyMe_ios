@@ -33,6 +33,7 @@
 - (void)getRandomItem:(NSString*)observerName;
 - (void)deleteGameItem:(NSString*)g_no ObserverName:(NSString*)observerName;
 - (void)checkIsGameSolved:(NSString*)g_no ObserverName:(NSString*)observerName;
+- (void)registerDevice:(NSString*)token ObserverName:(NSString*)observerName;
 
 + (NetworkController *)sharedInstance;
 

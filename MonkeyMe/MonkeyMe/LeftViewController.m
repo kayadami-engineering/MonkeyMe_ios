@@ -103,10 +103,7 @@
     
     switch (indexPath.row)
     {
-        case 0:
-            vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"ProfileViewController"];
-            break;
-            
+
         case 1:
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"MainViewController"];
             break;
@@ -115,11 +112,6 @@
             vc = [mainStoryboard instantiateViewControllerWithIdentifier: @"MainViewController"];
             break;
             
-        case 3:
-            [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
-            [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
-            return;
-            break;
     }
     
     [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:vc
