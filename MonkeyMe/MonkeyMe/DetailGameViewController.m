@@ -30,7 +30,7 @@
     [self registerNotification];
     
     NetworkController *networkController = [NetworkController sharedInstance];
-    [networkController getReplyList:gameItem.g_no Count:3 Sort:-1 ObserverName:OBSERVERNAME];
+    [networkController getReplyList:gameItem.gameNo Count:3 Sort:-1 ObserverName:OBSERVERNAME];
     
 }
 
@@ -158,7 +158,7 @@
     else if([segue.identifier isEqualToString:@"ReplyViewSegue"]) {
         
         ReplyViewController *replyViewController = segue.destinationViewController;
-        replyViewController.g_no = gameItem.g_no;
+        replyViewController.g_no = gameItem.gameNo;
     }
 }
 

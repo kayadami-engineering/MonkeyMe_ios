@@ -96,6 +96,7 @@
 		88B656D51A8E0A7000F73DB4 /* ranking.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656CF1A8E0A7000F73DB4 /* ranking.png */; };
 		88B656D61A8E0A7000F73DB4 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656D01A8E0A7000F73DB4 /* settings.png */; };
 		88B656D71A8E0A7000F73DB4 /* word.png in Resources */ = {isa = PBXBuildFile; fileRef = 88B656D11A8E0A7000F73DB4 /* word.png */; };
+		88BAD6981B1C83CB00C3A21C /* GameItemObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BAD6971B1C83CB00C3A21C /* GameItemObject.m */; };
 		88BB5BB61A91F16800385C04 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88BB5BB51A91F16800385C04 /* ProfileViewController.m */; };
 		88BB5BB81A91F81500385C04 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BB71A91F81500385C04 /* back.png */; };
 		88BB5BBA1A91F86300385C04 /* back_top.png in Resources */ = {isa = PBXBuildFile; fileRef = 88BB5BB91A91F86300385C04 /* back_top.png */; };
@@ -279,6 +280,8 @@
 		88B656CF1A8E0A7000F73DB4 /* ranking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ranking.png; sourceTree = "<group>"; };
 		88B656D01A8E0A7000F73DB4 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		88B656D11A8E0A7000F73DB4 /* word.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = word.png; sourceTree = "<group>"; };
+		88BAD6961B1C83CB00C3A21C /* GameItemObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameItemObject.h; sourceTree = "<group>"; };
+		88BAD6971B1C83CB00C3A21C /* GameItemObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameItemObject.m; sourceTree = "<group>"; };
 		88BB5BB41A91F16800385C04 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		88BB5BB51A91F16800385C04 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		88BB5BB71A91F81500385C04 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
@@ -369,6 +372,8 @@
 		8831DDF11AC954FA00394AC7 /* ClassObjects */ = {
 			isa = PBXGroup;
 			children = (
+				88BAD6961B1C83CB00C3A21C /* GameItemObject.h */,
+				88BAD6971B1C83CB00C3A21C /* GameItemObject.m */,
 				88A68FE11A8A0DDD00DBA3CE /* MainTableViewCell.h */,
 				88A68FE21A8A0DDD00DBA3CE /* MainTableViewCell.m */,
 				88BB5BE01A94981500385C04 /* ProfileImageItemCell.h */,
@@ -906,6 +911,7 @@
 				887CB4C71ADC24630040C23B /* PuzzelRightViewController.m in Sources */,
 				883BA8091A7FA3C200B0DDA1 /* SVIndefiniteAnimatedView.m in Sources */,
 				88BB5BB61A91F16800385C04 /* ProfileViewController.m in Sources */,
+				88BAD6981B1C83CB00C3A21C /* GameItemObject.m in Sources */,
 				883BA7C61A7FA28A00B0DDA1 /* AppDelegate.m in Sources */,
 				88F948D41AD7CEF00007C124 /* SortViewPopupController.m in Sources */,
 				88A68FE31A8A0DDD00DBA3CE /* MainTableViewCell.m in Sources */,

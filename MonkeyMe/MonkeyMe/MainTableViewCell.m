@@ -9,17 +9,7 @@
 #import "MainTableViewCell.h"
 
 @implementation MainTableViewCell
-@synthesize profileUrl;
-@synthesize name;
 @synthesize round;
-@synthesize level;
-@synthesize memberID;
-@synthesize memberNo;
-@synthesize gameNo;
-@synthesize imageData;
-@synthesize keyword;
-@synthesize imageUrl;
-@synthesize hint;
 @synthesize isSolved;
 @synthesize friendCount;
 @synthesize b_count;
