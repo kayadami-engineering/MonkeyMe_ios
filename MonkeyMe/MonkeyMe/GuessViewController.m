@@ -160,9 +160,7 @@
     if(gameItem.keyword.length <= [self.underBarCollection count]) {
         for(int i=0; i<gameItem.keyword.length; i++) {
             UILabel *underbar = [self.underBarCollection objectAtIndex:i];
-            UILabel *text = [self.textWordCollection objectAtIndex:i];
             underbar.hidden = FALSE;
-            //text.text = [NSString stringWithFormat:@"%C",[gameItem.keyword characterAtIndex:i]];
         }
     }
 }

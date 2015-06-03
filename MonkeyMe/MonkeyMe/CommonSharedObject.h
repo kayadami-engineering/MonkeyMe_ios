@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface CommonSharedObject : NSObject
-+ (CommonSharedObject *)sharedInstance;
 
-- (void)setStoryboardName;
++ (CommonSharedObject *)sharedInstance;
 
 @property (nonatomic, strong) NSString *storyboardName;
 @property (nonatomic, strong) NSString *tokenString;

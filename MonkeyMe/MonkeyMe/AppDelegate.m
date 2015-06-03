@@ -54,14 +54,14 @@
         
         //iPhone 5
         if(result.height == 1136){
-            commonSharedObject.storyboardName = @"Main";
+            [commonSharedObject setStoryboardName:@"Main"];
             storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             UIViewController *initViewController = [storyBoard instantiateInitialViewController];
             [self.window setRootViewController:initViewController];
         }
         //iPhone 6
         else if(result.height == 1334) {
-            commonSharedObject.storyboardName = @"iPhone6";
+            [commonSharedObject setStoryboardName:@"iPhone6"];
             storyBoard = [UIStoryboard storyboardWithName:@"iPhone6" bundle:nil];
             UIViewController *initViewController = [storyBoard instantiateInitialViewController];
             [self.window setRootViewController:initViewController];

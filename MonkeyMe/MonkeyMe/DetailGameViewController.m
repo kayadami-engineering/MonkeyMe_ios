@@ -207,7 +207,7 @@
     UILabel *date = cell.date;
     UILabel *likeCount = cell.likeCount;
     UIButton *likebtn = cell.likeBtn;
-    UIButton *optionBtn = cell.optionBtn;
+    //UIButton *optionBtn = cell.optionBtn;
         
     name.text = replyItem.name;
     contents.text = replyItem.contents;
