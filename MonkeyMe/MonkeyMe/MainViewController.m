@@ -38,10 +38,6 @@
     [self setNavigationItem];
     [self registerNotification];
     networkController = [NetworkController sharedInstance];
-    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
-    
-    [networkController registerDevice:commonSharedObject.tokenString ObserverName:nil];
-    NSLog(@"register process");
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -244,6 +240,10 @@
 }
 
 - (IBAction)playWithFriend:(id)sender {
+    
+    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
+    [networkController registerDevice:commonSharedObject.tokenString ObserverName:nil];
+    NSLog(@"register process");
     
     [self performSegueWithIdentifier:@"SelectFriendSegue" sender:self];
 }

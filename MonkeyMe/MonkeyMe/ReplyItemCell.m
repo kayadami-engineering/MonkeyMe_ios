@@ -9,14 +9,9 @@
 #import "ReplyItemCell.h"
 
 @implementation ReplyItemCell
-@synthesize r_no;
-@synthesize name;
 @synthesize contents;
 @synthesize date;
+@synthesize r_no;
 @synthesize likeCount;
-@synthesize memberNo;
-@synthesize level;
-@synthesize memberID;
 @synthesize friendCount;
-@synthesize profileUrl;
 @end

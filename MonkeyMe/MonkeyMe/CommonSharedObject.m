@@ -26,9 +26,4 @@ static CommonSharedObject *singletonInstance;
     return singletonInstance;
 }
 
--(void)setStoryboardName:(NSString*)name {
-    
-    storyboardName = name;
-}
-
 @end

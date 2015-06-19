@@ -70,7 +70,7 @@
             
             ProfileImageItemCell *listItem = [[ProfileImageItemCell alloc]init];
             
-            listItem.g_no = g_no;
+            listItem.gameNo = g_no;
             listItem.imageUrl = imageUrl;
             listItem.keyword = keyword;
             listItem.hint = hint;

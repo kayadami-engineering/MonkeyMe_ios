@@ -152,7 +152,7 @@
         gameItem.imageUrl = self.selectedItem.imageUrl;
         gameItem.hint = self.selectedItem.hint;
         gameItem.keyword = self.selectedItem.keyword;
-        gameItem.gameNo = self.selectedItem.g_no;
+        gameItem.gameNo = self.selectedItem.gameNo;
         gameItem.b_count = @"-1";
         
         guessView.gameItem = gameItem;
@@ -234,7 +234,7 @@
     if(friendNumber) {
         
         NetworkController *networkController = [NetworkController sharedInstance];
-        [networkController checkIsGameSolved:item.g_no ObserverName:OBSERVERNAME];
+        [networkController checkIsGameSolved:item.gameNo ObserverName:OBSERVERNAME];
     }
     
     //my profile

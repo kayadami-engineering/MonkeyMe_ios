@@ -10,12 +10,7 @@
 
 @implementation ProfileImageItemCell
 
-@synthesize g_no;
-@synthesize imageUrl;
-@synthesize keyword;
-@synthesize hint;
 @synthesize date;
-@synthesize imageData;
 @synthesize rate;
 @synthesize playCount;
 @synthesize replyCount;
