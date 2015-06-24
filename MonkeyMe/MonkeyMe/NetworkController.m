@@ -61,11 +61,28 @@ static NetworkController *singletonInstance;
     
     NSData *postData = [postString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    NSError * error = nil;
+    
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
     [request setHTTPBody:postData];
     
-    [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    
+    
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&error];
+    
+    
+    if(error == nil) {
+        
+        responseData = [[NSMutableData alloc] init];
+        [responseData appendData:data];
+        
+        myParser = [[NSXMLParser alloc]initWithData:responseData];
+        myParser.delegate = self;
+        
+        [myParser parse];
+    }
+    
 }
 
 -(void)postToServer:(NSString *)postString {
@@ -136,15 +153,19 @@ static NetworkController *singletonInstance;
 
 #pragma mark - Request Command Methods-
 
--(void)joinRequest {
+- (void)joinRequest:(NSString*)email Password:(NSString*)password Name:(NSString*)name ObserverName:(NSString*)observerName {
     
+    currentCommand = @"join";
+    currentObserverName = observerName;
+    NSString *string = [NSString stringWithFormat:@"command=%@&email=%@&password=%@&name=%@",currentCommand,email,password,name];
+    [self postToServer:string];
 }
 
--(void)loginRequest:(NSString*)email Password:(NSString*)password ObserverName:(NSString *)observerName {
+-(void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token ObserverName:(NSString *)observerName {
     
     currentCommand = @"login";
     currentObserverName = observerName;
-    NSString *string = [NSString stringWithFormat:@"command=%@&email=%@",currentCommand,email];
+    NSString *string = [NSString stringWithFormat:@"command=%@&email=%@&devicetoken=%@&osType=1",currentCommand,email,token];
     [self postToServer:string];
 }
 

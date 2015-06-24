@@ -41,12 +41,33 @@
 */
 
 - (IBAction)joinBtnPressed:(id)sender {
-    [self.delegate joinRequest:self];
+    
+    if(self.passwordText.text!=nil && self.emailText.text!=nil && self.nameText.text!=nil) {
+        if([self.passwordText.text isEqualToString:self.passwordText2.text]) {
+            [self.delegate joinRequest:self Email:self.emailText.text Password:self.passwordText.text Name:self.nameText.text];
+        }
+        else {
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"비밀번호 오류"
+                                                              message:@"비밀번호를 확인해주세요."
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK"
+                                                    otherButtonTitles:nil];
+            [message show];
+        }
+    }
+    else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"공백 오류"
+                                                          message:@"공백값을 입력할 수 없습니다."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
     
 }
 
 - (IBAction)closeBtnPressed:(id)sender {
-    [self.delegate closePopupJoin:self];
+    [self.delegate closePopup];
 }
 
 @end

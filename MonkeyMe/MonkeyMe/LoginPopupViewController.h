@@ -25,7 +25,7 @@
 
 @optional
 
-- (void)closePopupLogin:(LoginPopupViewController *)controller;
+- (void)closePopup;
 - (void)loginRequest:(LoginPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password;
 
 @end

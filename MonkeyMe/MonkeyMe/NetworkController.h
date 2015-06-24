@@ -14,7 +14,8 @@
 }
 
 - (void)initNetwork;
-- (void)loginRequest:(NSString*)email Password:(NSString*)password ObserverName:(NSString*)observerName;
+- (void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token ObserverName:(NSString*)observerName;
+- (void)joinRequest:(NSString*)email Password:(NSString*)password Name:(NSString*)name ObserverName:(NSString*)observerName;
 - (void)updateMainRequest:(NSString*)observerName;
 - (void)getProfileGameListRequest:(NSString*)friendNumber ObserverName:(NSString*)name ;
 - (void)updateProfile:(NSString*)name Id:(NSString*)myID ObserverName:(NSString*)observerName;
@@ -37,7 +38,7 @@
 
 + (NetworkController *)sharedInstance;
 
-@property (assign, nonatomic) NSString* myMemberNumber;
+@property (strong, nonatomic) NSString* myMemberNumber;
 @property (strong, nonatomic) NSURL *serverURL;
 @property (strong, nonatomic) NSMutableURLRequest *request;
 @property (strong, nonatomic) NSXMLParser *myParser;

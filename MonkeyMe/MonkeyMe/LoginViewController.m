@@ -7,16 +7,19 @@
 //
 
 #import "LoginViewController.h"
-#import "LoginPopupViewController.h"
-#import "JoinPopupViewController.h"
 #import "WYStoryboardPopoverSegue.h"
 #import "SVProgressHUD.h"
 #import "NetworkController.h"
+#import "CommonSharedObject.h"
 
-#define OBSERVERNAME @"loginProcess"
+
+#define OBSERVERNAME1 @"loginProcess"
+#define OBSERVERNAME2 @"joinProcess"
 
 @interface LoginViewController () <LoginViewControllerDelegate, JoinViewControllerDelegate, WYPopoverControllerDelegate> {
    
+    LoginPopupViewController *loginPopupViewController;
+    JoinPopupViewController *joinPopupViewController;
 }
 @end
 @implementation LoginViewController
@@ -42,7 +45,7 @@
 {
     if ([segue.identifier isEqualToString:@"LoginPopupSegue"])
     {
-        LoginPopupViewController *loginPopupViewController = segue.destinationViewController;
+        loginPopupViewController = segue.destinationViewController;
         loginPopupViewController.delegate = self;
 
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
@@ -55,7 +58,7 @@
     }
     else if ([segue.identifier isEqualToString:@"JoinPopupSegue"])
     {
-        JoinPopupViewController *joinPopupViewController = segue.destinationViewController;
+        joinPopupViewController = segue.destinationViewController;
         joinPopupViewController.delegate = self;
         
         WYStoryboardPopoverSegue *popoverSegue = (WYStoryboardPopoverSegue *)segue;
@@ -73,7 +76,8 @@
     
     NSNotificationCenter *sendNotification = [NSNotificationCenter defaultCenter];
     
-    [sendNotification addObserver:self selector:@selector(loginProcess:) name:OBSERVERNAME object:nil];
+    [sendNotification addObserver:self selector:@selector(loginProcess:) name:OBSERVERNAME1 object:nil];
+    [sendNotification addObserver:self selector:@selector(joinProcess:) name:OBSERVERNAME2 object:nil];
 }
 
 - (void)loginProcess:(NSNotification *)notification { //network notify the result of login request
@@ -91,23 +95,72 @@
         //show pop up
         
         NSLog(@"Error Message=%@",message);
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"로그인 실패"
+                                                          message:@"아이디/비밀번호를 확인해 주세요."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
     }
     else {
-        NSString *index = (NSString*)dict[@"memberIndex"];
-        NSLog(@"index=%@",index);
+        
+        [self closePopup];
+        
+        NSString *index = (NSString*)dict[@"memberNo"];
+        
+        networkController.myMemberNumber = index;
         
         [[NSNotificationCenter defaultCenter] removeObserver:self];
+        
         [self performSegueWithIdentifier:@"MainViewSegue" sender:self];
     }
 }
 
-- (void)joinOk {
+- (void)joinProcess:(NSNotification *)notification { //network notify the result of login request
     
     //do something..
     [SVProgressHUD dismiss];
+    
+    NSDictionary* dict = notification.userInfo;
+    
+    NSString *result = (NSString*)dict[@"result"];
+    NSString *message = (NSString*)dict[@"message"];
+    
+    if([result isEqualToString:@"error"]) { // if login failed
+        
+        //show pop up
+        
+        NSLog(@"Error Message=%@",message);
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"회원가입 실패"
+                                                          message:@"사용 불가한 이메일입니다."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
+    else {
+        
+        
+        [self closePopup];
+        
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"회원가입 완료"
+                                                          message:@"로그인 해주세요."
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK"
+                                                otherButtonTitles:nil];
+        [message show];
+
+    }
 }
 
+
 - (void)closePopup {
+    
+    joinPopupViewController.delegate = nil;
+    loginPopupViewController.delegate = nil;
+    
     [popoverController dismissPopoverAnimated:YES];
     popoverController.delegate = nil;
     popoverController = nil;
@@ -115,40 +168,33 @@
 
 #pragma mark - Login popup View Delegate
 
-- (void)closePopupLogin:(LoginPopupViewController *)controller {
-    
-    controller.delegate = nil;
-    
-    [self closePopup];
-}
 
 - (void)loginRequest:(LoginPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password; {
     
-    [self closePopupLogin:controller];
+    loginPopupViewController = controller;
+    
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
     
-    [networkController loginRequest:email Password:(NSString*)password ObserverName:OBSERVERNAME]; //request login
+    CommonSharedObject *commonObject = [CommonSharedObject sharedInstance];
     
-    //[self performSelector:@selector(loginOk)withObject:nil afterDelay:1.0];
+    [networkController loginRequest:email Password:(NSString*)password DevToken:commonObject.tokenString ObserverName:OBSERVERNAME1]; //request login
+    
 }
 
 #pragma mark - Join popup View Delegate
 
-- (void)closePopupJoin:(JoinPopupViewController *)controller {
-    
-    controller.delegate = nil;
-    
-    [self closePopup];
-}
 
-- (void)joinRequest:(JoinPopupViewController *)controller {
-    [self closePopupJoin:controller];
+- (void)joinRequest:(JoinPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password Name:(NSString*)name  {
+    
+    joinPopupViewController = controller;
+    
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];
     [SVProgressHUD show];
-    [self performSelector:@selector(joinOk)withObject:nil afterDelay:1.0];
+    
+    [networkController joinRequest:email Password:password Name:name ObserverName:OBSERVERNAME2];
     
 }
 

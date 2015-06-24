@@ -59,6 +59,7 @@
     NSString *memberID = (NSString*)userStateInfo[@"memberID"];
     NSString *name = (NSString*)userStateInfo[@"name"];
     NSString *level = (NSString*)userStateInfo[@"level"];
+    NSString *profileUrl = (NSString*)userStateInfo[@"profileUrl"];
     UIImage *image = (UIImage*)userStateInfo[@"profileImage"];
     NSString *lightCount = (NSString*)userStateInfo[@"lightCount"];
     NSString *bananaCount = (NSString*)userStateInfo[@"bananaCount"];
@@ -78,7 +79,12 @@
         self.friendNumber = @"0";
     }
     
-    [self.profileImage setImage:image];
+    if([profileUrl isEqualToString:@"default"]) {
+        [self.profileImage setImage:[UIImage imageNamed:@"profile_default.png"]];
+    }
+    else {
+        [self.profileImage setImage:image];
+    }
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.height /2;
     self.profileImage.layer.masksToBounds = YES;
     self.profileImage.layer.borderWidth = 0;

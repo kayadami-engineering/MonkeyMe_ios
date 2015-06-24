@@ -15,6 +15,11 @@
 
 - (IBAction)joinBtnPressed:(id)sender;
 - (IBAction)closeBtnPressed:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *nameText;
+@property (weak, nonatomic) IBOutlet UITextField *emailText;
+@property (weak, nonatomic) IBOutlet UITextField *passwordText;
+@property (weak, nonatomic) IBOutlet UITextField *passwordText2;
+
 @property (weak, nonatomic) id<JoinViewControllerDelegate> delegate;
 
 @end
@@ -23,7 +28,8 @@
 
 @optional
 
-- (void)closePopupJoin:(JoinPopupViewController *)controller;
-- (void)joinRequest:(JoinPopupViewController *)controller;
+- (void)closePopup;
+
+- (void)joinRequest:(JoinPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password Name:(NSString*)name;
 
 @end

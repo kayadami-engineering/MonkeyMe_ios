@@ -241,9 +241,6 @@
 
 - (IBAction)playWithFriend:(id)sender {
     
-    CommonSharedObject *commonSharedObject = [CommonSharedObject sharedInstance];
-    [networkController registerDevice:commonSharedObject.tokenString ObserverName:nil];
-    NSLog(@"register process");
     
     [self performSegueWithIdentifier:@"SelectFriendSegue" sender:self];
 }

@@ -48,6 +48,6 @@
 }
 
 - (IBAction)closeBtnTouch:(id)sender {
-    [self.delegate closePopupLogin:self];
+    [self.delegate closePopup];
 }
 @end
