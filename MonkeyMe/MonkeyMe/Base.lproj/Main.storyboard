@@ -128,13 +128,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <segue destination="bk6-GQ-syl" kind="presentation" identifier="LoginSegue" modalTransitionStyle="crossDissolve" animates="NO" id="dba-sb-xNs"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="353"/>
+            <point key="canvasLocation" x="226" y="337"/>
         </scene>
         <!--Join Popup View Controller-->
         <scene sceneID="wP4-nt-qNE">
@@ -218,7 +215,7 @@
         <!--Login View Controller-->
         <scene sceneID="ubi-oe-ceH">
             <objects>
-                <viewController id="bk6-GQ-syl" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="bk6-GQ-syl" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bcU-xw-nUl"/>
                         <viewControllerLayoutGuide type="bottom" id="JLL-Op-Rw9"/>
@@ -278,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9w5-KG-C5e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="353"/>
+            <point key="canvasLocation" x="683" y="337"/>
         </scene>
         <!--Monkey Me-->
         <scene sceneID="yhT-YK-pu9">
@@ -350,7 +347,7 @@
                                             <segue destination="oBE-NL-imP" kind="show" identifier="ProfileViewSegue" id="uYZ-Wn-XGN"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damee Yoon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHC-TR-pZb">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHC-TR-pZb">
                                         <rect key="frame" x="100" y="68" width="178" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -452,7 +449,8 @@
         <!--Slide Navigation Controller-->
         <scene sceneID="dYg-sz-DpC">
             <objects>
-                <navigationController definesPresentationContext="YES" id="sfV-kv-zpf" customClass="SlideNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SlideNavigationController" definesPresentationContext="YES" id="sfV-kv-zpf" customClass="SlideNavigationController" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Wjk-u4-dkb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -467,7 +465,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nHf-U6-iLe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1283" y="353"/>
+            <point key="canvasLocation" x="1223" y="352"/>
         </scene>
         <!--Monkey Me-->
         <scene sceneID="1WU-YR-Ohm">
@@ -587,13 +585,13 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Damee Yoon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yz-ri-DBI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yz-ri-DBI">
                                 <rect key="frame" x="3" y="175" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@damee.yoon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5h-t3-qre">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5h-t3-qre">
                                 <rect key="frame" x="3" y="199" width="119" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -2513,9 +2511,9 @@
         <image name="ystar.png" width="192" height="182"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="vey-ZC-CWm"/>
         <segue reference="fHr-WI-0pY"/>
-        <segue reference="wLM-c5-vnb"/>
         <segue reference="uYZ-Wn-XGN"/>
+        <segue reference="wLM-c5-vnb"/>
+        <segue reference="hin-pf-qW7"/>
     </inferredMetricsTieBreakers>
 </document>

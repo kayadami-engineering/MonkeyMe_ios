@@ -53,8 +53,6 @@ static NetworkController *singletonInstance;
     tempArray = [[NSMutableArray alloc]init];
     tempArray2 = [[NSMutableArray alloc]init];
     
-    myMemberNumber = @"1";
-    
 }
 
 -(void)postToServerSynch:(NSString *)postString {

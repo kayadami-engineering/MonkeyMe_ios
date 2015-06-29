@@ -11,6 +11,7 @@
 #import "SVProgressHUD.h"
 #import "NetworkController.h"
 #import "CommonSharedObject.h"
+#import "KeychainItemWrapper.h"
 
 
 #define OBSERVERNAME1 @"loginProcess"
@@ -26,6 +27,8 @@
 @synthesize loginBtn;
 @synthesize popoverController;
 @synthesize networkController;
+@synthesize myEmail;
+@synthesize myPassword;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -107,12 +110,15 @@
         
         [self closePopup];
         
+        KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc]initWithIdentifier:@"monkeymeLogin" accessGroup:nil];
+        
+        
         NSString *index = (NSString*)dict[@"memberNo"];
         
+        [wrapper setObject:index forKey:(__bridge id)kSecAttrAccount];
+        
         networkController.myMemberNumber = index;
-        
         [[NSNotificationCenter defaultCenter] removeObserver:self];
-        
         [self performSegueWithIdentifier:@"MainViewSegue" sender:self];
     }
 }
@@ -189,6 +195,9 @@
 - (void)joinRequest:(JoinPopupViewController *)controller Email:(NSString*)email Password:(NSString*)password Name:(NSString*)name  {
     
     joinPopupViewController = controller;
+    
+    myEmail = email;
+    myPassword = password;
     
     [SVProgressHUD setViewForExtension:self.view];
     [SVProgressHUD setForegroundColor:[UIColor colorWithRed:120.0/255.0 green:194.0/255.0 blue:222.0/255.0 alpha:0.90]];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pff-w9-yCk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Vzy-1l-s2i">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Left View Controller-->
@@ -121,7 +121,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eg_launch_up.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Q7f-xi-5ea">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Q7f-xi-5ea">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                         </subviews>
@@ -211,32 +211,46 @@
         <!--Login View Controller-->
         <scene sceneID="RAF-GR-ezD">
             <objects>
-                <viewController id="Vzy-1l-s2i" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="Vzy-1l-s2i" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bCk-u7-GUe"/>
                         <viewControllerLayoutGuide type="bottom" id="iOq-IS-agW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="bfp-Tt-R9L">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eg_launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="lfa-hv-EC0">
-                                <rect key="frame" x="-4" y="0.0" width="329" height="568"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="lfa-hv-EC0">
+                                <rect key="frame" x="-4" y="0.0" width="379" height="633"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kHk-fn-tfw">
-                                <rect key="frame" x="0.0" y="515" width="320" height="53"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.85999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DZI-rv-HqZ">
+                                <rect key="frame" x="0.0" y="611" width="375" height="56"/>
+                                <color key="backgroundColor" red="0.25098039220000001" green="0.17254901959999999" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.25098039220000001" green="0.17254901959999999" blue="0.13725490200000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l2w-uf-dci">
-                                <rect key="frame" x="32" y="515" width="153" height="55"/>
+                                <rect key="frame" x="32" y="612" width="153" height="55"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="이미 회원이신가요?">
                                     <color key="titleColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="0.85999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itO-73-rGL">
+                                <rect key="frame" x="273" y="614" width="59" height="53"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="로그인">
+                                    <color key="titleColor" red="0.95686274510000002" green="0.72156862749999995" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FqP-5c-aHx" kind="custom" identifier="LoginPopupSegue" customClass="WYStoryboardPopoverSegue" id="HsN-gH-Re2"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hrz-Kl-YqS">
-                                <rect key="frame" x="34" y="323" width="253" height="55"/>
+                                <rect key="frame" x="42" y="338" width="290" height="75"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
                                 <state key="normal" title="     이메일로 가입하기" backgroundImage="signup_e_ic.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -245,22 +259,10 @@
                                     <segue destination="Eno-OB-d27" kind="custom" identifier="JoinPopupSegue" customClass="WYStoryboardPopoverSegue" id="oUl-5j-odl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="itO-73-rGL">
-                                <rect key="frame" x="228" y="515" width="59" height="53"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
-                                <state key="normal" title="로그인">
-                                    <color key="titleColor" red="0.83921568629999999" green="0.69411764710000001" blue="0.71372549019999998" alpha="0.85999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="FqP-5c-aHx" kind="custom" identifier="LoginPopupSegue" customClass="WYStoryboardPopoverSegue" id="HsN-gH-Re2"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="568"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="loginBtn" destination="itO-73-rGL" id="eXF-1q-n3M"/>
                         <segue destination="pff-w9-yCk" kind="presentation" identifier="MainViewSegue" id="IMH-jX-s4g"/>
@@ -268,7 +270,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J7v-7h-kzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="353"/>
+            <point key="canvasLocation" x="763.5" y="352.5"/>
         </scene>
         <!--Monkey Me-->
         <scene sceneID="lAi-e6-7OE">
@@ -441,7 +443,7 @@
         <!--Slide Navigation Controller-->
         <scene sceneID="huK-Gm-4mP">
             <objects>
-                <navigationController definesPresentationContext="YES" id="pff-w9-yCk" customClass="SlideNavigationController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SlideNavigationController" definesPresentationContext="YES" id="pff-w9-yCk" customClass="SlideNavigationController" sceneMemberID="viewController">
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UOD-dE-KmY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -2480,11 +2482,10 @@
     <resources>
         <image name="achb.png" width="360" height="140"/>
         <image name="achg.png" width="360" height="140"/>
+        <image name="background.jpeg" width="183" height="275"/>
         <image name="banana.png" width="77" height="69"/>
         <image name="cancel_ic.png" width="41" height="41"/>
         <image name="comm_sort.png" width="70" height="47"/>
-        <image name="eg_launch.png" width="720" height="1280"/>
-        <image name="eg_launch_up.jpg" width="720" height="1280"/>
         <image name="gamb.png" width="360" height="140"/>
         <image name="gamg.png" width="360" height="140"/>
         <image name="goprof.png" width="30" height="80"/>

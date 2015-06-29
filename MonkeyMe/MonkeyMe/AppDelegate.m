@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "CommonSharedObject.h"
+#import "NetworkController.h"
+#import "KeychainItemWrapper.h"
 
 #define OBSERVERNAME @"registerDev"
 
@@ -56,15 +58,12 @@
         if(result.height == 1136){
             [commonSharedObject setStoryboardName:@"Main"];
             storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
-            [self.window setRootViewController:initViewController];
         }
         //iPhone 6
         else if(result.height == 1334) {
             [commonSharedObject setStoryboardName:@"iPhone6"];
             storyBoard = [UIStoryboard storyboardWithName:@"iPhone6" bundle:nil];
-            UIViewController *initViewController = [storyBoard instantiateInitialViewController];
-            [self.window setRootViewController:initViewController];
+            
         }
         
         //[[UIApplication sharedApplication] unregisterForRemoteNotifications];
@@ -84,6 +83,19 @@
         // use registerForRemoteNotifications
             [[UIApplication sharedApplication] registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert)];
         }
+        
+        NSString *identifier;
+        
+        if([self isUserLogged]) {
+            identifier = @"SlideNavigationController";
+            
+        }
+        else {
+            identifier = @"LoginViewController";
+        }
+        
+        UIViewController *initViewController = [storyBoard instantiateViewControllerWithIdentifier:identifier];
+        [self.window setRootViewController:initViewController];
 
     }
     return YES;
@@ -232,6 +244,20 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)isUserLogged {
+    
+    KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc] initWithIdentifier:@"monkeymeLogin" accessGroup:nil];
+    
+    NSString *userIndex = [wrapper objectForKey:(__bridge id)kSecAttrAccount];
+    NetworkController *networkController = [NetworkController sharedInstance];
+    networkController.myMemberNumber = userIndex;
+    
+    BOOL isLogged = ([userIndex length] > 0);
+    
+    return isLogged;
+    
 }
 
 @end

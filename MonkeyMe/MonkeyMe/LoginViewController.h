@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) WYPopoverController *popoverController;
 @property (strong, nonatomic) NetworkController *networkController;
+@property (strong, nonatomic) NSString *myEmail;
+@property (strong, nonatomic) NSString *myPassword;
 
 @end
 

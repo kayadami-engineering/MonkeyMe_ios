@@ -8,6 +8,7 @@
 
 #import "LeftViewController.h"
 #import "CommonSharedObject.h"
+#import "KeychainItemWrapper.h"
 
 @implementation LeftViewController
 
@@ -30,7 +31,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 8;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -84,6 +85,12 @@
         case 6 :
             text.text = @"Help";
             image.image = [UIImage imageNamed:@"help"];
+            break;
+        case 7 :
+            text.text = @"Logout";
+            image.image = [UIImage imageNamed:@"help"];
+            KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc]initWithIdentifier:@"monkeymeLogin" accessGroup:nil];
+            [wrapper resetKeychainItem];
             break;
     }
     
