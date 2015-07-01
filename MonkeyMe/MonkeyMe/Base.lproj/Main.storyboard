@@ -467,7 +467,7 @@
             </objects>
             <point key="canvasLocation" x="1223" y="352"/>
         </scene>
-        <!--Monkey Me-->
+        <!--MongMi-->
         <scene sceneID="1WU-YR-Ohm">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="oBE-NL-imP" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -646,7 +646,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Monkey Me" id="YSp-68-65A">
+                    <navigationItem key="navigationItem" title="MongMi" id="YSp-68-65A">
                         <barButtonItem key="backBarButtonItem" title=" " id="7mz-ep-eQ6"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
