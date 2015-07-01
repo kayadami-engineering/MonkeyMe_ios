@@ -36,6 +36,8 @@
     
     networkController = [NetworkController sharedInstance];
     
+    self.facebookBtn.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -205,6 +207,23 @@
     
     [networkController joinRequest:email Password:password Name:name ObserverName:OBSERVERNAME2];
     
+}
+
+#pragma mark Facebook
+
+-(void)fetchUserInfo {
+    [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:nil]
+     startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+         if (!error) {
+             NSLog(@"fetched user:%@", result);
+         }
+     }];
+}
+
+- (void) loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error {
+    
+    NSLog(@"LOGGED IN TO FACEBOOK");
+    [self fetchUserInfo];
 }
 
 @end

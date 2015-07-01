@@ -11,16 +11,20 @@
 #import "JoinPopupViewController.h"
 #import "WYPopoverController.h"
 #import "NetworkController.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface LoginViewController : UIViewController{
+@interface LoginViewController : UIViewController <FBSDKLoginButtonDelegate> {
    
 }
+
 
 @property (weak, nonatomic) IBOutlet UIButton *loginBtn;
 @property (strong, nonatomic) WYPopoverController *popoverController;
 @property (strong, nonatomic) NetworkController *networkController;
 @property (strong, nonatomic) NSString *myEmail;
 @property (strong, nonatomic) NSString *myPassword;
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *facebookBtn;
 
 @end
 

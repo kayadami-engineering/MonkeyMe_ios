@@ -119,6 +119,9 @@
 		88C053061B16AB48000D3AEA /* selected_star.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C052FF1B16AB48000D3AEA /* selected_star.png */; };
 		88C053071B16AB48000D3AEA /* selected_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 88C053001B16AB48000D3AEA /* selected_star@2x.png */; };
 		88C6B0BB1B418D9100C94592 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C6B0BA1B418D9100C94592 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		88C6B0BF1B44418200C94592 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C6B0BC1B44418200C94592 /* FBSDKCoreKit.framework */; };
+		88C6B0C01B44418200C94592 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C6B0BD1B44418200C94592 /* FBSDKLoginKit.framework */; };
+		88C6B0C11B44418200C94592 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88C6B0BE1B44418200C94592 /* FBSDKShareKit.framework */; };
 		88CA96E11AB30EB7008B72BE /* GuessGiveupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 88CA96E01AB30EB7008B72BE /* GuessGiveupViewController.m */; };
 		88D969471A971F4B007EE2E3 /* monkeywords.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969461A971F4B007EE2E3 /* monkeywords.png */; };
 		88D969491A97208E007EE2E3 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 88D969481A97208E007EE2E3 /* refresh.png */; };
@@ -311,6 +314,9 @@
 		88C053001B16AB48000D3AEA /* selected_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selected_star@2x.png"; sourceTree = "<group>"; };
 		88C6B0B91B418D9100C94592 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		88C6B0BA1B418D9100C94592 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
+		88C6B0BC1B44418200C94592 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../opensource/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		88C6B0BD1B44418200C94592 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../opensource/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		88C6B0BE1B44418200C94592 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../opensource/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		88CA96DF1AB30EB7008B72BE /* GuessGiveupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessGiveupViewController.h; sourceTree = "<group>"; };
 		88CA96E01AB30EB7008B72BE /* GuessGiveupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuessGiveupViewController.m; sourceTree = "<group>"; };
 		88D969461A971F4B007EE2E3 /* monkeywords.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkeywords.png; sourceTree = "<group>"; };
@@ -351,7 +357,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88C6B0BF1B44418200C94592 /* FBSDKCoreKit.framework in Frameworks */,
 				889CD1091A8641FB00580FB6 /* CoreGraphics.framework in Frameworks */,
+				88C6B0C01B44418200C94592 /* FBSDKLoginKit.framework in Frameworks */,
+				88C6B0C11B44418200C94592 /* FBSDKShareKit.framework in Frameworks */,
 				889CD1071A8641F400580FB6 /* Foundation.framework in Frameworks */,
 				889CD1051A8641E400580FB6 /* UIKit.framework in Frameworks */,
 				889CD1031A8641D900580FB6 /* QuartzCore.framework in Frameworks */,
@@ -665,6 +674,9 @@
 		889CD10A1A86420500580FB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				88C6B0BC1B44418200C94592 /* FBSDKCoreKit.framework */,
+				88C6B0BD1B44418200C94592 /* FBSDKLoginKit.framework */,
+				88C6B0BE1B44418200C94592 /* FBSDKShareKit.framework */,
 				889CD1081A8641FB00580FB6 /* CoreGraphics.framework */,
 				889CD1061A8641F400580FB6 /* Foundation.framework */,
 				889CD1041A8641E400580FB6 /* UIKit.framework */,
@@ -1063,6 +1075,10 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Damee Yoon (BEBT2Y3482)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Imac/Documents/opensource/FacebookSDK,
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/MonkeyMe/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1081,6 +1097,10 @@
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Damee Yoon (BEBT2Y3482)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/Imac/Documents/opensource/FacebookSDK,
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/MonkeyMe/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
