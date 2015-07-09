@@ -13,8 +13,6 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-#define OBSERVERNAME @"registerDev"
-
 @interface AppDelegate ()
 
 @end
@@ -22,25 +20,6 @@
 @implementation AppDelegate
 
 
-- (void)registerProcess:(NSNotification *)notification { //network notify the result of update request
-    
-    //do something..
-    
-    NSDictionary* dict = notification.userInfo;
-    
-    NSString *result = (NSString*)dict[@"result"];
-    NSString *message = (NSString*)dict[@"message"];
-    
-    if([result isEqualToString:@"error"]) { // if update failed
-        
-        //show pop up
-        
-        NSLog(@"Error Message=%@",message);
-    }
-    else {
-        NSLog(@"regist ok");
-    }
-}
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
@@ -108,7 +87,8 @@
 
     }
     return [[FBSDKApplicationDelegate sharedInstance] application:application
-                                    didFinishLaunchingWithOptions:launchOptions];;
+                                    didFinishLaunchingWithOptions:launchOptions];
+    
 }
 
 - (BOOL)application:(UIApplication *)application

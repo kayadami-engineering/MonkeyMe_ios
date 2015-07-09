@@ -9,6 +9,8 @@
 #import "LeftViewController.h"
 #import "CommonSharedObject.h"
 #import "KeychainItemWrapper.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @implementation LeftViewController
 
@@ -91,6 +93,8 @@
             image.image = [UIImage imageNamed:@"help"];
             KeychainItemWrapper *wrapper = [[KeychainItemWrapper alloc]initWithIdentifier:@"monkeymeLogin" accessGroup:nil];
             [wrapper resetKeychainItem];
+            [FBSDKAccessToken setCurrentAccessToken:nil];
+            
             break;
     }
     

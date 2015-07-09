@@ -159,11 +159,11 @@ static NetworkController *singletonInstance;
     [self postToServer:string];
 }
 
--(void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token ObserverName:(NSString *)observerName {
+-(void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token FacebookFlag:(BOOL)flag ObserverName:(NSString *)observerName {
     
     currentCommand = @"login";
     currentObserverName = observerName;
-    NSString *string = [NSString stringWithFormat:@"command=%@&email=%@&devicetoken=%@&osType=1",currentCommand,email,token];
+    NSString *string = [NSString stringWithFormat:@"command=%@&email=%@&devicetoken=%@&osType=1&isFacebookLogin=%d",currentCommand,email,token,flag];
     [self postToServer:string];
 }
 

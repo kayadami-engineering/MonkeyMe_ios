@@ -14,7 +14,7 @@
 }
 
 - (void)initNetwork;
-- (void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token ObserverName:(NSString*)observerName;
+- (void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token FacebookFlag:(BOOL)flag ObserverName:(NSString*)observerName;
 - (void)joinRequest:(NSString*)email Password:(NSString*)password Name:(NSString*)name ObserverName:(NSString*)observerName;
 - (void)updateMainRequest:(NSString*)observerName;
 - (void)getProfileGameListRequest:(NSString*)friendNumber ObserverName:(NSString*)name ;

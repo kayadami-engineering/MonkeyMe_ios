@@ -187,7 +187,7 @@
     
     CommonSharedObject *commonObject = [CommonSharedObject sharedInstance];
     
-    [networkController loginRequest:email Password:(NSString*)password DevToken:commonObject.tokenString ObserverName:OBSERVERNAME1]; //request login
+    [networkController loginRequest:email Password:(NSString*)password DevToken:commonObject.tokenString FacebookFlag:FALSE ObserverName:OBSERVERNAME1]; //request login
     
 }
 
@@ -216,6 +216,9 @@
      startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
          if (!error) {
              NSLog(@"fetched user:%@", result);
+             NSString *email = result[@"email"];
+             CommonSharedObject *commonObject = [CommonSharedObject sharedInstance];
+             [networkController loginRequest:email Password:@"" DevToken:commonObject.tokenString FacebookFlag:TRUE ObserverName:OBSERVERNAME1]; //request login
          }
      }];
 }
@@ -224,6 +227,11 @@
     
     NSLog(@"LOGGED IN TO FACEBOOK");
     [self fetchUserInfo];
+}
+
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
+    
+    NSLog(@"logout");
 }
 
 @end
