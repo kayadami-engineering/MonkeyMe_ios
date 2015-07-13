@@ -85,6 +85,14 @@
     [sendNotification addObserver:self selector:@selector(joinProcess:) name:OBSERVERNAME2 object:nil];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    // 사용자가 Yes를 선택한 경우
+    if (buttonIndex == 1) {
+        NSLog(@"yes");
+    }
+}
+
 - (void)loginProcess:(NSNotification *)notification { //network notify the result of login request
     
     //do something..
@@ -101,12 +109,24 @@
         
         NSLog(@"Error Message=%@",message);
         
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"로그인 실패"
+        if([message isEqualToString:@"errmsg_2"]) {
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"로그인 실패"
                                                           message:@"아이디/비밀번호를 확인해 주세요."
                                                          delegate:nil
                                                 cancelButtonTitle:@"OK"
                                                 otherButtonTitles:nil];
-        [message show];
+            [message show];
+        }
+        else if([message isEqualToString:@"errmsg_2-2"]) { //facebook login failed
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"가입된 계정이 없습니다."
+                                                              message:@"페이스북 계정으로 회원 가입하시겠습니까?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"NO"
+                                                    otherButtonTitles:@"YES",nil];
+            [message show];
+            
+        }
     }
     else {
         

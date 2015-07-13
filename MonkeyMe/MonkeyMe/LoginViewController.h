@@ -14,7 +14,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface LoginViewController : UIViewController <FBSDKLoginButtonDelegate> {
+@interface LoginViewController : UIViewController <FBSDKLoginButtonDelegate, UIAlertViewDelegate> {
    
 }
 

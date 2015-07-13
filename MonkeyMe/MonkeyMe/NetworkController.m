@@ -161,7 +161,11 @@ static NetworkController *singletonInstance;
 
 -(void)loginRequest:(NSString*)email Password:(NSString*)password DevToken:(NSString*)token FacebookFlag:(BOOL)flag ObserverName:(NSString *)observerName {
     
-    currentCommand = @"login";
+    if(!flag)
+        currentCommand = @"login";
+    else
+        currentCommand = @"fbLogin";
+    
     currentObserverName = observerName;
     NSString *string = [NSString stringWithFormat:@"command=%@&email=%@&devicetoken=%@&osType=1&isFacebookLogin=%d",currentCommand,email,token,flag];
     [self postToServer:string];
