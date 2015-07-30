@@ -42,7 +42,7 @@ static NetworkController *singletonInstance;
 
 -(void)initNetwork {
     
-    serverURL = [NSURL URLWithString:@"http://175.211.100.229/monkeyme/monkeyme_server/RequestHandleServer.php"];
+    serverURL = [NSURL URLWithString:@"http://175.211.100.40/monkeyme/monkeyme_server/RequestHandleServer.php"];
     request = [[NSMutableURLRequest alloc]init];
     [request setURL:serverURL];
     [request setHTTPMethod:@"POST"];
